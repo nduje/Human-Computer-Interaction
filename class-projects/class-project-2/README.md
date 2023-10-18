@@ -1,16 +1,16 @@
 # Class Project 2: User personas and information architecture
 
-# User Personas:
+## User Personas:
 
-![User persona (Emma).png](Class%20Project%202%20User%20personas%20and%20information%20arch%20d308bdf001684215904539062498476b/User_persona_(Emma).png)
+![User persona (Emma).png](/images/emma.png)
 
-![User persona (David).png](Class%20Project%202%20User%20personas%20and%20information%20arch%20d308bdf001684215904539062498476b/User_persona_(David).png)
+![User persona (David).png](/images/david.png)
 
-![User persona (Alex).png](Class%20Project%202%20User%20personas%20and%20information%20arch%20d308bdf001684215904539062498476b/User_persona_(Alex).png)
+![User persona (Alex).png](/images/alex.png)
 
-# Sitemap:
+## Sitemap:
 
-![Sitemap.png](Class%20Project%202%20User%20personas%20and%20information%20arch%20d308bdf001684215904539062498476b/Sitemap.png)
+![Sitemap.png](/images/sitemap.png)
 
 ### Used ChatGPT prompts:
 
