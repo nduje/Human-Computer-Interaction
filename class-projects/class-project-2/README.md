@@ -2,15 +2,15 @@
 
 ## User Personas:
 
-![emma.png](/images/emma.png)
+![User_Persona_(Emma).png](/class-projects/class-project-2/images/emma.png)
 
-![david.png](/images/david.png)
+![User_Persona_(David).png](/class-projects/class-project-2/images/david.png)
 
-![alex.png](/images/alex.png)
+![User_Persona_(Alex).png](/class-projects/class-project-2/images/alex.png)
 
 ## Sitemap:
 
-![sitemap.png](/images/sitemap.png)
+![Sitemap.png](/class-projects/class-project-2/images/sitemap.png)
 
 ### Used ChatGPT prompts:
 
