@@ -10,7 +10,7 @@
 
 ## Sitemap:
 
-![Sitemap.png](/class-projects/class-project-2/images/sitemap.png)
+![Sitemap.png](/class-projects/class-project-2/images/Sitemap.png)
 
 ### Used ChatGPT prompts:
 
