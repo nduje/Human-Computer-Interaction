@@ -2,15 +2,15 @@
 
 ## User Personas:
 
-![User persona (Emma).png](https://github.com/nduje/Human-Computer-Interaction/tree/main/class-projects/class-project-2/images/User_persona_(Emma).png)
+![User persona (Emma).png](/images/User_persona_(Emma).png)
 
-![User persona (David).png](https://github.com/nduje/Human-Computer-Interaction/tree/main/class-projects/class-project-2/images/User_persona_(David).png))
+![User persona (David).png](/images/User_persona_(David).png))
 
-![User persona (Alex).png](https://github.com/nduje/Human-Computer-Interaction/tree/main/class-projects/class-project-2/images/User_persona_(Alex).png)
+![User persona (Alex).png](/images/User_persona_(Alex).png)
 
 ## Sitemap:
 
-![Sitemap.png](https://github.com/nduje/Human-Computer-Interaction/tree/main/class-projects/class-project-2/images/User_persona_(Emma).png)/Sitemap.png)
+![Sitemap.png](/images/User_persona_(Emma).png)/Sitemap.png)
 
 ### Used ChatGPT prompts:
 
