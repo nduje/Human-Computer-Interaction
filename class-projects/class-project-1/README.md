@@ -1,3 +1,3 @@
-# [Class Project Title]
+# Figma essentials
 
-Provide a short description of your results, if applicable.
+Work in progress.
