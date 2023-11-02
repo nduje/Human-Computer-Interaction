@@ -30,7 +30,7 @@ export default function RootLayout({
               <Link href="/audio-equipment">Audio Equipment</Link>
             </li>
             <li>
-              <Link href="/learning-and-resources">Learning and Resources</Link>
+              <Link href="/learning-and-resources/sheet-music">Learning and Resources</Link>
             </li>
             <li>
               <Link href="/contact-and-support">Contact and Support</Link>
