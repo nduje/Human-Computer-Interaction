@@ -1,22 +1,20 @@
+import { Comment } from "../page";
 import Link from "next/link";
 
-export interface Comment {
-  postId: number;
-  id: number;
-  name: string;
-  email: string;
-  body: string;
+interface Params {
+  commentId: string;
 }
 
 const BASE_API_URL = "https://jsonplaceholder.typicode.com";
 
-const getComments = async (): Promise<Comment[]> => {
-  const data = await fetch(`${BASE_API_URL}/comments`);
+const getComment = async (id: string): Promise<Comment> => {
+  const data = await fetch(`${BASE_API_URL}/comments/${id}`);
   return data.json();
 };
 
-export default async function BlogAndTutorialsPage() {
-  const comments = await getComments();
+export default async function BlogComment({ params }: { params: Params }) {
+  const comment = await getComment(params.commentId);
+
   return (
     <div>
       <div className="flex justify-center">
@@ -40,17 +38,12 @@ export default async function BlogAndTutorialsPage() {
         Blog and Tutorials
       </h1>
       <div className="flex flex-col items-center min-h-screen max-w-5xl m-auto p-10">
-        <ul className="flex flex-col gap-8">
-          {comments.map((comment) => (
-            <li key={comment.id}>
-              <Link href={`blog-and-tutorials/${comment.id}`}>
-                <span className="text-2xl text-purple-500">
-                  Comment {comment.name}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <h1 className="text-3xl font-bold p-10 capitalize">
+          <span className="text-neutral-400">Comment {comment.id}:</span>{" "}
+          {comment.name}
+        </h1>
+        <p className="text-xl p-10">{comment.email}</p>
+        <p className="text-xl p-10">{comment.body}</p>
       </div>
     </div>
   );
