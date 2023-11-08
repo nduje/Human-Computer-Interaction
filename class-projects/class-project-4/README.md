@@ -2,11 +2,11 @@
 
 ## Low and High Fidelity Prototypes:
 
-### Low Fidelity Prototype:
+#### Low Fidelity Prototype:
 
 ![low_fidelity.png](/class-projects/class-project-4/images/low_fidelity.png)
 
-### High Fidelity Prototype:
+#### High Fidelity Prototype:
 
 ![high_fidelity.png](/class-projects/class-project-4/images/high_fidelity.png)
 
