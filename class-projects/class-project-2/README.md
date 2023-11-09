@@ -27,4 +27,4 @@
 - _Next, act as persona 3 and run the same task. Persona 3 is a beginner musician._
 - _Based on the combined categories propose a detailed sitemap for new web application for selling music products._
 
-> \***\*\*\*\*\*\*\***NOTE:\***\*\*\*\*\*\*\*** Proposed sitemap created by ChatGPT was reorganized and adapted for our requirements.
+> ************NOTE:************ Proposed sitemap created by ChatGPT was reorganized and adapted for our requirements.
