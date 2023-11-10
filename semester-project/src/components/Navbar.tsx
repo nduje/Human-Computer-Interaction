@@ -5,7 +5,6 @@ import { usePathname } from "next/navigation";
 import { FC } from "react";
 import LogoIcon from "./icons/LogoIcon";
 import { cn } from "../../lib/utils";
-// import { cn } from "@/lib/utils";
 
 interface NavbarProps {
   pages: Record<string, `/${string}`>;
@@ -26,17 +25,17 @@ const Navbar: FC<NavbarProps> = ({ pages }) => {
                 <li key={name}>
                     <Link href={path}>
                         <span
-                        className={cn(baseClass, {
-                    "font-medium bg-secondary-purple-50 text-secondary-purple-900 pointer-events-none":
-                      path === pathName,
-                  })}
-                >
-                  {name}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+                            className={cn(baseClass, {
+                            "font-medium bg-secondary-purple-50 text-secondary-purple-900 pointer-events-none":
+                            path === pathName,
+                            })}
+                        >
+                        {name}
+                        </span>
+                    </Link>
+                </li>
+            ))}
+            </ul>
       </nav>
     </section>
   );

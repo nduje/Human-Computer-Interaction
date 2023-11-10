@@ -4,7 +4,6 @@ import clsx from "clsx";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
-import Link from "next/link";
 
 const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
@@ -36,6 +35,7 @@ export default function RootLayout({
       <body className={clsx(inter.variable, "bg-secondary-purple-200")}>
         <Navbar pages={pages} />
         {children}
+        <Footer pages={pages} />
       </body>
     </html>
   );
