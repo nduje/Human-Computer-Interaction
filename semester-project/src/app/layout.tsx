@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Pacifico, Roboto } from "next/font/google";
 import clsx from "clsx";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,6 +9,18 @@ const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-inter"
+});
+
+const roboto = Roboto({
+  weight: ["100", "300", "400", "500", "700", "900"],
+  subsets: ["latin"],
+  variable: "--font-roboto"
+});
+
+const pacifico = Pacifico({
+  weight: ["400"],
+  subsets: ["latin"],
+  variable: "--font-pacifico"
 });
 
 export const metadata: Metadata = {
@@ -32,8 +44,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={clsx(inter.variable, "bg-secondary-purple-200")}>
-        <Navbar pages={pages} />
+      <body className={clsx(roboto.variable, pacifico.variable)}>
         {children}
         <Footer pages={pages} />
       </body>
