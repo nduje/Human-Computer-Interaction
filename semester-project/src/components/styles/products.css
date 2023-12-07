@@ -1,0 +1,7 @@
+.wrapperBox {
+    visibility: hidden;
+}
+
+.productBox:hover .wrapperBox {
+    visibility: visible;
+}

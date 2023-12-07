@@ -16,7 +16,7 @@ const pages: Record<string, `/${string}`> = {
 
 const HeadlineSection: FC = () => {
     return (
-      <section className="container flex-col text-center align-middle justify-center mx-auto pb-5 bg-[url('../components/images/background.png')] bg-cover">
+      <section style={{height: "800px"}} className="container flex-col text-center align-middle justify-center mx-auto pb-5 bg-[url('../components/images/background.png')] bg-cover">
         <Navbar pages={pages} />
         <article className="container flex-col text-center self-start align-middle justify-center left-0 p-10 mt-5 mb-5 w-1/2">
             <h1 className="font-pacifico text-7xl text-primary-brown-900 mb-6 p-3">
