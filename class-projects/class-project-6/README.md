@@ -1,4 +1,4 @@
-# Class Project 6
+# Class Project 6: Full Responsive Page Coding
 
 ### Music Shop:
 
