@@ -1,7 +1,13 @@
-.wrapperBox {
-    visibility: hidden;
-}
-
-.productBox:hover .wrapperBox {
-    visibility: visible;
+@media (min-width: 768px) {
+    #productsSection {
+        height: 480px;
+    }
+    
+    .wrapperBox {
+        visibility: hidden;
+    }
+    
+    .productBox:hover .wrapperBox {
+        visibility: visible;
+    }
 }
