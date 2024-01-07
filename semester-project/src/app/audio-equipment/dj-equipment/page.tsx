@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function VinylRecordsPage() {
+export default function DJEquipmentPage() {
   return (
     <div>
       <div className="flex justify-center">
@@ -9,22 +9,21 @@ export default function VinylRecordsPage() {
             <Link href="/">Home</Link>
           </li>
           <li>
-            <Link href="/learning-and-resources/sheet-music">Sheet Music</Link>
+            <Link href="/audio-equipment/amplifiers">Amplifiers</Link>
           </li>
           <li>
-            <Link href="/learning-and-resources/vinyl-records">
-              Vinyl Records
-            </Link>
+            <Link href="/audio-equipment/microphones">Microphones</Link>
           </li>
           <li>
-            <Link href="/learning-and-resources/blog-and-tutorials">
-              Blog and Tutorials
-            </Link>
+            <Link href="/audio-equipment/pedals">Pedals</Link>
+          </li>
+          <li>
+            <Link href="/audio-equipment/dj-equipment">DJ equipment</Link>
           </li>
         </ul>
       </div>
       <div className="flex justify-center align-middle font-bold p-14 text-4xl">
-        <h1>Vinyl Records</h1>
+        <h1>DJ equipment</h1>
       </div>
     </div>
   );

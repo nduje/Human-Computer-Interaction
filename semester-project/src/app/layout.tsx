@@ -30,8 +30,8 @@ export const metadata: Metadata = {
 
 const pages: Record<string, `/${string}`> = {
   "Home": "/",
-  "Music Instruments": "/music-instruments",
-  "Audio Equipment": "/audio-equipment",
+  "Music Instruments": "/music-instruments/guitars",
+  "Audio Equipment": "/audio-equipment/amplifiers",
   "Learning and Resources": "/learning-and-resources/sheet-music",
   "Contact and Support": "/contact-and-support",
   "Login": "/login"

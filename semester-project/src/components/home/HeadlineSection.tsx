@@ -7,8 +7,8 @@ import Navbar from "../Navbar";
 
 const pages: Record<string, `/${string}`> = {
     "Home": "/",
-    "Music\nInstruments": "/music-instruments",
-    "Audio\nEquipment": "/audio-equipment",
+    "Music\nInstruments": "/music-instruments/guitars",
+    "Audio\nEquipment": "/audio-equipment/amplifiers",
     "Learning and Resources": "/learning-and-resources/sheet-music",
     "Contact and Support": "/contact-and-support",
     "Login": "/login"

@@ -22,6 +22,9 @@ export default async function BlogAndTutorialsPage() {
       <div className="flex justify-center">
         <ul className="flex flex-row justify-around text-lg gap-9">
           <li>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
             <Link href="/learning-and-resources/sheet-music">Sheet Music</Link>
           </li>
           <li>
