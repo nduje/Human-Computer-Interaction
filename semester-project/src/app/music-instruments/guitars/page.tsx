@@ -1,4 +1,5 @@
 import Link from "next/link";
+import FetchGuitars from './fetchGuitars';
 
 export default function GuitarsPage() {
   return (
@@ -23,8 +24,9 @@ export default function GuitarsPage() {
           </li>
         </ul>
       </div>
-      <div className="flex justify-center align-middle font-bold p-14 text-4xl">
+      <div className="flex flex-col text-center justify-center align-middle font-bold p-14 text-4xl">
         <h1>Guitars</h1>
+        <FetchGuitars />
       </div>
     </div>
   );

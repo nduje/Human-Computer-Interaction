@@ -1,4 +1,5 @@
 import Link from "next/link";
+import FetchDJEquipment from './fetchDJEquipment';
 
 export default function DJEquipmentPage() {
   return (
@@ -22,8 +23,9 @@ export default function DJEquipmentPage() {
           </li>
         </ul>
       </div>
-      <div className="flex justify-center align-middle font-bold p-14 text-4xl">
+      <div className="flex flex-col text-center justify-center align-middle font-bold p-14 text-4xl">
         <h1>DJ equipment</h1>
+        <FetchDJEquipment />
       </div>
     </div>
   );

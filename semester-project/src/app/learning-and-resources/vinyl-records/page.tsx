@@ -1,4 +1,5 @@
 import Link from "next/link";
+import FetchRecords from './fetchVinylRecords';
 
 export default function VinylRecordsPage() {
   return (
@@ -23,8 +24,9 @@ export default function VinylRecordsPage() {
           </li>
         </ul>
       </div>
-      <div className="flex justify-center align-middle font-bold p-14 text-4xl">
+      <div className="flex flex-col text-center justify-center align-middle font-bold p-14 text-4xl">
         <h1>Vinyl Records</h1>
+        <FetchRecords />
       </div>
     </div>
   );

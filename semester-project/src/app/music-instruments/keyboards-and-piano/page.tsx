@@ -1,4 +1,5 @@
 import Link from "next/link";
+import FetchKeyboards from './fetchKeyboardsAndPiano';
 
 export default function KeyboardsAndPianosPage() {
   return (
@@ -23,8 +24,9 @@ export default function KeyboardsAndPianosPage() {
           </li>
         </ul>
       </div>
-      <div className="flex justify-center align-middle font-bold p-14 text-4xl">
+      <div className="flex flex-col text-center justify-center align-middle font-bold p-14 text-4xl">
         <h1>Keyboards and Pianos</h1>
+        <FetchKeyboards />
       </div>
     </div>
   );
