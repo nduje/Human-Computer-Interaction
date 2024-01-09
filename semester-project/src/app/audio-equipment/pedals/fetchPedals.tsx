@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 
 const FetchPedals = () => {
-  const [pedals, setPedals] = useState([]);
-  const [assets, setAssets] = useState([]);
+  const [pedals, setPedals] = useState<any[]>([]);
+  const [assets, setAssets] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,7 +35,7 @@ const FetchPedals = () => {
           <li key={pedal.sys.id}>
             <p>ID: {pedal.fields.id}</p>
             <p>Ime: {pedal.fields.name}</p>
-            {pedal.fields.images.map((image) => {
+            {pedal.fields.images.map((image: any) => {
               const asset = assets.find(
                 (asset) => asset.sys.id === image.sys.id
               );

@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 
 const FetchRecords = () => {
-  const [records, setRecords] = useState([]);
-  const [assets, setAssets] = useState([]);
+  const [records, setRecords] = useState<any[]>([]);
+  const [assets, setAssets] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {

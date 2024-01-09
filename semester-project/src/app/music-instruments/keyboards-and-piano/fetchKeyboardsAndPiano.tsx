@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 
 const FetchKeyboards = () => {
-  const [keyboards, setKeyboards] = useState([]);
-  const [assets, setAssets] = useState([]);
+  const [keyboards, setKeyboards] = useState<any[]>([]);
+  const [assets, setAssets] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +36,7 @@ const FetchKeyboards = () => {
             <p>ID: {keyboard.fields.id}</p>
             <p>Ime: {keyboard.fields.name}</p>
             <p>Tip: {keyboard.fields.type}</p>
-            {keyboard.fields.images.map((image) => {
+            {keyboard.fields.images.map((image: any) => {
               const asset = assets.find(
                 (asset) => asset.sys.id === image.sys.id
               );

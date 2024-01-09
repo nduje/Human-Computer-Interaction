@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 
 const FetchAmplifiers = () => {
-  const [amplifiers, setAmplifiers] = useState([]);
-  const [assets, setAssets] = useState([]);
+  const [amplifiers, setAmplifiers] = useState<any[]>([]);
+  const [assets, setAssets] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,7 +35,7 @@ const FetchAmplifiers = () => {
           <li key={amplifier.sys.id}>
             <p>ID: {amplifier.fields.id}</p>
             <p>Ime: {amplifier.fields.name}</p>
-            {amplifier.fields.images.map((image) => {
+            {amplifier.fields.images.map((image: any) => {
               const asset = assets.find(
                 (asset) => asset.sys.id === image.sys.id
               );

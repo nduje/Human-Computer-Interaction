@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 
 const FetchMicrophones = () => {
-  const [microphones, setMicrophones] = useState([]);
-  const [assets, setAssets] = useState([]);
+  const [microphones, setMicrophones] = useState<any[]>([]);
+  const [assets, setAssets] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,7 +35,7 @@ const FetchMicrophones = () => {
           <li key={microphone.sys.id}>
             <p>ID: {microphone.fields.id}</p>
             <p>Ime: {microphone.fields.name}</p>
-            {microphone.fields.images.map((image) => {
+            {microphone.fields.images.map((image: any) => {
               const asset = assets.find(
                 (asset) => asset.sys.id === image.sys.id
               );

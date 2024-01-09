@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 
 const FetchGuitars = () => {
-  const [guitars, setGuitars] = useState([]);
-  const [assets, setAssets] = useState([]);
+  const [guitars, setGuitars] = useState<any[]>([]);
+  const [assets, setAssets] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +36,7 @@ const FetchGuitars = () => {
             <p>ID: {guitar.fields.id}</p>
             <p>Ime: {guitar.fields.name}</p>
             <p>Tip: {guitar.fields.type}</p>
-            {guitar.fields.images.map((image) => {
+            {guitar.fields.images.map((image: any) => {
               const asset = assets.find(
                 (asset) => asset.sys.id === image.sys.id
               );
