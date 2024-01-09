@@ -15,6 +15,8 @@
 - Content is filled with data
 - Data is displayed on each "products" page
 
+---
+
 - **Content Model**
 
 ![Content_Model.png](/class-projects/weekly-1/images/content_model.png)
