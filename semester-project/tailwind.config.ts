@@ -9,70 +9,26 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        inter: ["var(--font-inter)"],
-        roboto: ["var(--font-roboto)"],
-        pacifico: ["var(--font-pacifico)"]
+        roboto: ["var(--font-roboto)"]
       },
       colors: {
-        "primary-brown": {
-          50: "#F3ECEA",
-          100: "#DBC3BF",
-          200: "#C9A6A0",
-          300: "#B17E74",
-          400: "#A16559",
-          500: "#8A3E30",
-          600: "#7E382C",
-          700: "#622C22",
-          800: "#4C221A",
-          900: "#3A1A14",
-        },
-        "secondary-brown": {
-          50: "#F6F0EE",
-          100: "#E3D0CB",
-          200: "#D6BAB1",
-          300: "#C39A8E",
-          400: "#B88678",
-          500: "#A66856",
-          600: "#975F4E",
-          700: "#764A3D",
-          800: "#5B392F",
-          900: "#462C24",
-        },
-        "primary-beige": {
-          50: "#FFFCF6",
-          100: "#FFF5E4",
-          200: "#FFF0D7",
-          300: "#FFE9C5",
-          400: "#FFE5BA",
-          500: "#FFDEA9",
-          600: "#E8CA9A",
-          700: "#B59E78",
-          800: "#8C7A5D",
-          900: "#6B5D47",
-        },
-        "primary-grey": {
-          50: "#EEEEEE",
-          100: "#CCCCCC",
-          200: "#B3B3B3",
-          300: "#909090",
-          400: "#7A7A7A",
-          500: "#595959",
-          600: "#515151",
-          700: "#3F3F3F",
-          800: "#313131",
-          900: "#252525",
-        },
-        "primary-white": {
+        "base-colors": {
           50: "#FFFFFF",
-          100: "#FFFFFF",
-          200: "#FFFFFF",
-          300: "#FFFFFF",
-          400: "#FFFFFF",
-          500: "#FFFFFF",
-          600: "#E8E8E8",
-          700: "#B5B5B5",
-          800: "#8C8C8C",
-          900: "#6B6B6B",
+          100: "#F3F3F3",
+          200: "#1C1C1C",
+          300: "#C9313B"
+        },
+        "navbar-palette": {
+          50: "#C21106",
+          100: "#D6551C",
+          200: "#EB8A29",
+          300: "#BAD3BC",
+          400: "#68B35F",
+          500: "#318959",
+          600: "#39635A",
+          700: "#527FBE",
+          800: "#71A1D4",
+          900: "#9ECCDD",
         }
       },
       flexGrow: {
@@ -82,4 +38,5 @@ const config: Config = {
   },
   plugins: [],
 };
+
 export default config;

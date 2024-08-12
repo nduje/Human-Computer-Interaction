@@ -2,7 +2,6 @@
 
 import { FC } from "react";
 import Image from "next/image";
-import LogoIcon from "./images/violin_logo.png";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "../../lib/utils";
@@ -19,12 +18,7 @@ const Footer: FC<FooterProps> = ({ pages }) => {
             <section className="flex md:flex-row justify-around text-center align-middle p-10 flex-col">
                 <article className="flex flex-col justify-center text-center align-middle w-64 m-auto">
                     <div className="flex justify-center text-center align-middle">
-                        <Image 
-                            src={LogoIcon}
-                            alt={"logo"}  
-                            className="w-20 h-20 md:w-32 md:h-32"
-                            style={{transform: 'rotate(270deg)'}}  
-                        />
+                        Placeholder
                     </div>
                     <h2 className="font-roboto text-base md:text-lg font-medium text-primary-beige-50 p-2">
                         Explore a world of <br />instruments, gear, <br />and resources for <br />musicians of all levels.

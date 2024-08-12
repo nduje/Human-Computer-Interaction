@@ -5,22 +5,10 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
-const inter = Inter({
-  weight: ["300", "400", "500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--font-inter"
-});
-
 const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
   subsets: ["latin"],
   variable: "--font-roboto"
-});
-
-const pacifico = Pacifico({
-  weight: ["400"],
-  subsets: ["latin"],
-  variable: "--font-pacifico"
 });
 
 export const metadata: Metadata = {
@@ -44,9 +32,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={clsx(roboto.variable, pacifico.variable)}>
+      <body className={clsx(roboto.variable)}>
         {children}
-        <Footer pages={pages} />
+        {/* <Footer pages={pages} /> */}
       </body>
     </html>
   );
