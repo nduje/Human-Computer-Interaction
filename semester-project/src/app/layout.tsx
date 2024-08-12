@@ -17,12 +17,15 @@ export const metadata: Metadata = {
 };
 
 const pages: Record<string, `/${string}`> = {
-  "Home": "/",
-  "Music Instruments": "/music-instruments/guitars",
-  "Audio Equipment": "/audio-equipment/amplifiers",
-  "Learning and Resources": "/learning-and-resources/sheet-music",
-  "Contact and Support": "/contact-and-support",
-  "Login": "/login"
+  "Guitars": "/music-instruments/guitars",
+  "Keys": "/music-instruments/keyboards-and-piano",
+  "Drums": "/music-instruments/drums-and-percussion",
+  "Amplifiers": "/audio-equipment/amplifiers",
+  "Microphones": "/audio-equipment/microphones",
+  "Pedals": "/audio-equipment/pedals",
+  "DJ": "/audio-equipment/dj-equipment",
+  "Sheet": "/learning-and-resources/sheet-music",
+  "Vinyls": "/learning-and-resources/vinyl-records",
 };
 
 export default function RootLayout({
@@ -32,9 +35,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={clsx(roboto.variable)}>
+      <body className={clsx(roboto.variable, "w-full")}>
+        <Navbar pages={pages}/>
         {children}
-        {/* <Footer pages={pages} /> */}
+        <Footer pages={pages} />
       </body>
     </html>
   );
