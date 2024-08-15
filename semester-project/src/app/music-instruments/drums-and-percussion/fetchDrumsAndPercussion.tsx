@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const FetchDrums = () => {
   const [drums, setDrums] = useState<any[]>([]);
@@ -45,12 +46,16 @@ const FetchDrums = () => {
               const imageUrl = `https:${asset.fields.file.url}`;
 
               return (
-                <img
+                <Link
                   key={image.sys.id}
-                  src={imageUrl}
-                  width={asset.fields.file.details.image.width}
-                  height={asset.fields.file.details.image.height}
-                />
+                  href={`/music-instruments/drums-and-percussion/${drum.sys.id}`}
+                >
+                  <img
+                    src={imageUrl}
+                    width={asset.fields.file.details.image.width}
+                    height={asset.fields.file.details.image.height}
+                  />
+                </Link>
               );
             })}
             <p>Ocjena: {drum.fields.rating}</p>

@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const FetchDJEquipment = () => {
   const [djEquipments, setDJEquipment] = useState<any[]>([]);
@@ -44,12 +45,16 @@ const FetchDJEquipment = () => {
               const imageUrl = `https:${asset.fields.file.url}`;
 
               return (
-                <img
+                <Link
                   key={image.sys.id}
-                  src={imageUrl}
-                  width={asset.fields.file.details.image.width}
-                  height={asset.fields.file.details.image.height}
-                />
+                  href={`/audio-equipment/dj-equipment/${djEquipment.sys.id}`}
+                >
+                  <img
+                    src={imageUrl}
+                    width={asset.fields.file.details.image.width}
+                    height={asset.fields.file.details.image.height}
+                  />
+                </Link>
               );
             })}
             <p>Ocjena: {djEquipment.fields.rating}</p>

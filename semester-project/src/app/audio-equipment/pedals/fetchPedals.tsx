@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const FetchPedals = () => {
   const [pedals, setPedals] = useState<any[]>([]);
@@ -44,12 +45,16 @@ const FetchPedals = () => {
               const imageUrl = `https:${asset.fields.file.url}`;
 
               return (
-                <img
+                <Link
                   key={image.sys.id}
+                  href={`/audio-equipment/pedals/${pedal.sys.id}`}
+                >
+                <img
                   src={imageUrl}
                   width={asset.fields.file.details.image.width}
                   height={asset.fields.file.details.image.height}
                 />
+                </Link>
               );
             })}
             <p>Ocjena: {pedal.fields.rating}</p>
