@@ -35,7 +35,11 @@ const FetchAmplifiers = () => {
         {amplifiers?.map((amplifier) => (
           <li key={amplifier.sys.id}>
             <p>ID: {amplifier.fields.id}</p>
-            <p>Ime: {amplifier.fields.name}</p>
+            <p>
+              <Link href={`/audio-equipment/amplifiers/${amplifier.sys.id}`}>
+                {amplifier.fields.name}
+              </Link>
+            </p>
             {amplifier.fields.images.map((image: any) => {
               const asset = assets.find(
                 (asset) => asset.sys.id === image.sys.id

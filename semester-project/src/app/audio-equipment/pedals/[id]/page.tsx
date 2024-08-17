@@ -12,6 +12,7 @@ type Pedal = {
 const PedalDetails = ({ params }: { params: { id: string } }) => {
   const [pedal, setPedal] = useState<Pedal | null>(null);
   const [assets, setAssets] = useState<any[]>([]);
+  const [relatedPedals, setRelatedPedals] = useState<Pedal[]>([]);
   const { id } = params;
 
   useEffect(() => {
@@ -22,18 +23,31 @@ const PedalDetails = ({ params }: { params: { id: string } }) => {
         const SPACE_ID = "kxdn75bdbglk";
         const ACCESS_TOKEN = "3P9BtHbld8K0ojZWgyeLWTUeDAZQ53ZWRAdwftR4whg";
 
-        const response1 = await fetch(
+        const pedalResponse = await fetch(
           `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries/${id}?access_token=${ACCESS_TOKEN}`
         );
-        const response2 = await fetch(
+        const relatedPedalsResponse = await fetch(
           `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=pedal`
         );
 
-        const data1 = await response1.json();
-        const data2 = await response2.json();
+        const pedalData = await pedalResponse.json();
+        const relatedPedalsData = await relatedPedalsResponse.json();
 
-        setPedal(data1.fields);
-        setAssets(data2.includes.Asset);
+        setPedal(pedalData.fields);
+        setAssets(relatedPedalsData.includes.Asset);
+
+        const otherPedals = relatedPedalsData.items.filter(
+          (item: any) => item.sys.id !== id
+        );
+
+        const selectedRelatedPedals = otherPedals
+          .slice(0, 1)
+          .map((item: any) => ({
+            ...item.fields,
+            id: item.sys.id,
+          }));
+
+        setRelatedPedals(selectedRelatedPedals);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -74,6 +88,31 @@ const PedalDetails = ({ params }: { params: { id: string } }) => {
 
         return <p>Opis: {description}</p>;
       })}
+
+      <h2>Related Pedals</h2>
+      <div style={{ display: "flex", gap: "20px" }}>
+        {relatedPedals.map((relatedPedal) => {
+          const relatedImageAsset = relatedPedal.images[0]
+            ? assets.find(
+                (asset) => asset.sys.id === relatedPedal.images[0].sys.id
+              )
+            : null;
+
+          return (
+            <div key={relatedPedal.id}>
+              {relatedImageAsset && (
+                <img
+                  src={`https:${relatedImageAsset.fields.file.url}`}
+                  width="200"
+                  height="200"
+                  alt={relatedPedal.name}
+                />
+              )}
+              <p>{relatedPedal.name}</p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

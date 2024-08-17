@@ -12,6 +12,9 @@ type DJEquipment = {
 const DJEquipmentDetails = ({ params }: { params: { id: string } }) => {
   const [djEquipment, setDJEquipment] = useState<DJEquipment | null>(null);
   const [assets, setAssets] = useState<any[]>([]);
+  const [relatedDJEquipment, setRelatedDJEquipment] = useState<DJEquipment[]>(
+    []
+  );
   const { id } = params;
 
   useEffect(() => {
@@ -22,18 +25,31 @@ const DJEquipmentDetails = ({ params }: { params: { id: string } }) => {
         const SPACE_ID = "kxdn75bdbglk";
         const ACCESS_TOKEN = "3P9BtHbld8K0ojZWgyeLWTUeDAZQ53ZWRAdwftR4whg";
 
-        const response1 = await fetch(
+        const djEquipmentResponse = await fetch(
           `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries/${id}?access_token=${ACCESS_TOKEN}`
         );
-        const response2 = await fetch(
+        const relatedDJEquipmentResponse = await fetch(
           `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=dj`
         );
 
-        const data1 = await response1.json();
-        const data2 = await response2.json();
+        const djEquipmentData = await djEquipmentResponse.json();
+        const relatedDJEquipmentData = await relatedDJEquipmentResponse.json();
 
-        setDJEquipment(data1.fields);
-        setAssets(data2.includes.Asset);
+        setDJEquipment(djEquipmentData.fields);
+        setAssets(relatedDJEquipmentData.includes.Asset);
+
+        const otherDJEquipment = relatedDJEquipmentData.items.filter(
+          (item: any) => item.sys.id !== id
+        );
+
+        const selectedRelatedDJEquipment = otherDJEquipment
+          .slice(0, 1)
+          .map((item: any) => ({
+            ...item.fields,
+            id: item.sys.id,
+          }));
+
+        setRelatedDJEquipment(selectedRelatedDJEquipment);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -74,6 +90,31 @@ const DJEquipmentDetails = ({ params }: { params: { id: string } }) => {
 
         return <p>Opis: {description}</p>;
       })}
+
+      <h2>Related DJEquipment</h2>
+      <div style={{ display: "flex", gap: "20px" }}>
+        {relatedDJEquipment.map((relatedEquipment) => {
+          const relatedImageAsset = relatedEquipment.images[0]
+            ? assets.find(
+                (asset) => asset.sys.id === relatedEquipment.images[0].sys.id
+              )
+            : null;
+
+          return (
+            <div key={relatedEquipment.id}>
+              {relatedImageAsset && (
+                <img
+                  src={`https:${relatedImageAsset.fields.file.url}`}
+                  width="200"
+                  height="200"
+                  alt={relatedEquipment.name}
+                />
+              )}
+              <p>{relatedEquipment.name}</p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

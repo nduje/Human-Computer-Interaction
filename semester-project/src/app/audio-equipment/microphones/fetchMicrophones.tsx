@@ -35,7 +35,11 @@ const FetchMicrophones = () => {
         {microphones?.map((microphone) => (
           <li key={microphone.sys.id}>
             <p>ID: {microphone.fields.id}</p>
-            <p>Ime: {microphone.fields.name}</p>
+            <p>
+              <Link href={`/audio-equipment/microphones/${microphone.sys.id}`}>
+                {microphone.fields.name}
+              </Link>
+            </p>
             {microphone.fields.images.map((image: any) => {
               const asset = assets.find(
                 (asset) => asset.sys.id === image.sys.id

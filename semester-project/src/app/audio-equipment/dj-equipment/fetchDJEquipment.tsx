@@ -35,7 +35,11 @@ const FetchDJEquipment = () => {
         {djEquipments?.map((djEquipment) => (
           <li key={djEquipment.sys.id}>
             <p>ID: {djEquipment.fields.id}</p>
-            <p>Ime: {djEquipment.fields.name}</p>
+            <p>
+              <Link href={`/audio-equipment/dj-equipment/${djEquipment.sys.id}`}>
+                {djEquipment.fields.name}
+              </Link>
+            </p>
             {djEquipment.fields.images.map((image: any) => {
               const asset = assets.find(
                 (asset) => asset.sys.id === image.sys.id

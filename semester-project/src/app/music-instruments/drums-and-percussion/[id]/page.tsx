@@ -8,7 +8,6 @@ type Drum = {
   rating: number;
   price: number;
   description: string;
-  images: { sys: { id: string } }[];
 };
 
 const DrumDetails = ({ params }: { params: { id: string } }) => {
@@ -25,27 +24,29 @@ const DrumDetails = ({ params }: { params: { id: string } }) => {
         const SPACE_ID = "kxdn75bdbglk";
         const ACCESS_TOKEN = "3P9BtHbld8K0ojZWgyeLWTUeDAZQ53ZWRAdwftR4whg";
 
-        const response1 = await fetch(
+        const drumResponse = await fetch(
           `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries/${id}?access_token=${ACCESS_TOKEN}`
         );
-        const response2 = await fetch(
+        const relatedDrumsResponse = await fetch(
           `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=drums`
         );
 
-        const data1 = await response1.json();
-        const data2 = await response2.json();
+        const drumData = await drumResponse.json();
+        const relatedDrumsData = await relatedDrumsResponse.json();
 
-        setDrum(data1.fields);
-        setAssets(data2.includes.Asset);
+        setDrum(drumData.fields);
+        setAssets(relatedDrumsData.includes.Asset);
 
-        const otherDrums = data2.items.filter(
+        const otherDrums = relatedDrumsData.items.filter(
           (item: any) => item.sys.id !== id
         );
 
-        const selectedRelatedDrums = otherDrums.slice(0, 3).map((item: any) => ({
-          ...item.fields,
-          id: item.sys.id,
-        }));
+        const selectedRelatedDrums = otherDrums
+          .slice(0, 3)
+          .map((item: any) => ({
+            ...item.fields,
+            id: item.sys.id,
+          }));
 
         setRelatedDrums(selectedRelatedDrums);
       } catch (error) {

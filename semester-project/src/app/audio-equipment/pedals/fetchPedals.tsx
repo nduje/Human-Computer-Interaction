@@ -35,7 +35,11 @@ const FetchPedals = () => {
         {pedals?.map((pedal) => (
           <li key={pedal.sys.id}>
             <p>ID: {pedal.fields.id}</p>
-            <p>Ime: {pedal.fields.name}</p>
+            <p>
+              <Link href={`/audio-equipment/pedals/${pedal.sys.id}`}>
+                {pedal.fields.name}
+              </Link>
+            </p>
             {pedal.fields.images.map((image: any) => {
               const asset = assets.find(
                 (asset) => asset.sys.id === image.sys.id
@@ -49,11 +53,11 @@ const FetchPedals = () => {
                   key={image.sys.id}
                   href={`/audio-equipment/pedals/${pedal.sys.id}`}
                 >
-                <img
-                  src={imageUrl}
-                  width={asset.fields.file.details.image.width}
-                  height={asset.fields.file.details.image.height}
-                />
+                  <img
+                    src={imageUrl}
+                    width={asset.fields.file.details.image.width}
+                    height={asset.fields.file.details.image.height}
+                  />
                 </Link>
               );
             })}

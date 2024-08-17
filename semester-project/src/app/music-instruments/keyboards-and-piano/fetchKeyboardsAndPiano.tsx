@@ -35,7 +35,13 @@ const FetchKeyboards = () => {
         {keyboards?.map((keyboard) => (
           <li key={keyboard.sys.id}>
             <p>ID: {keyboard.fields.id}</p>
-            <p>Ime: {keyboard.fields.name}</p>
+            <p>
+              <Link
+                href={`/music-instruments/keyboards-and-piano/${keyboard.sys.id}`}
+              >
+                {keyboard.fields.name}
+              </Link>
+            </p>
             <p>Tip: {keyboard.fields.type}</p>
             {keyboard.fields.images.map((image: any) => {
               const asset = assets.find(

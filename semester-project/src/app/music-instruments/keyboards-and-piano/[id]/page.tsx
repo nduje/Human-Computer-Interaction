@@ -24,20 +24,20 @@ const KeyboardDetails = ({ params }: { params: { id: string } }) => {
         const SPACE_ID = "kxdn75bdbglk";
         const ACCESS_TOKEN = "3P9BtHbld8K0ojZWgyeLWTUeDAZQ53ZWRAdwftR4whg";
 
-        const response1 = await fetch(
+        const keyboardResponse = await fetch(
           `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries/${id}?access_token=${ACCESS_TOKEN}`
         );
-        const response2 = await fetch(
+        const relatedKeyboardsResponse = await fetch(
           `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=keyboard`
         );
 
-        const data1 = await response1.json();
-        const data2 = await response2.json();
+        const keyboardData = await keyboardResponse.json();
+        const relatedKeyboardsData = await relatedKeyboardsResponse.json();
 
-        setKeyboard(data1.fields);
-        setAssets(data2.includes.Asset);
+        setKeyboard(keyboardData.fields);
+        setAssets(relatedKeyboardsData.includes.Asset);
 
-        const otherKeyboards = data2.items.filter(
+        const otherKeyboards = relatedKeyboardsData.items.filter(
           (item: any) => item.sys.id !== id
         );
 

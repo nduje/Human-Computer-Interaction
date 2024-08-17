@@ -12,6 +12,9 @@ type Microphone = {
 const MicrophoneDetails = ({ params }: { params: { id: string } }) => {
   const [microphone, setMicrophone] = useState<Microphone | null>(null);
   const [assets, setAssets] = useState<any[]>([]);
+  const [relatedMicrophones, setRelatedMicrophones] = useState<Microphone[]>(
+    []
+  );
   const { id } = params;
 
   useEffect(() => {
@@ -22,18 +25,31 @@ const MicrophoneDetails = ({ params }: { params: { id: string } }) => {
         const SPACE_ID = "kxdn75bdbglk";
         const ACCESS_TOKEN = "3P9BtHbld8K0ojZWgyeLWTUeDAZQ53ZWRAdwftR4whg";
 
-        const response1 = await fetch(
+        const microphoneResponse = await fetch(
           `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries/${id}?access_token=${ACCESS_TOKEN}`
         );
-        const response2 = await fetch(
+        const relatedMicrophonesResponse = await fetch(
           `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=microphone`
         );
 
-        const data1 = await response1.json();
-        const data2 = await response2.json();
+        const microphoneData = await microphoneResponse.json();
+        const relatedMicrophonesData = await relatedMicrophonesResponse.json();
 
-        setMicrophone(data1.fields);
-        setAssets(data2.includes.Asset);
+        setMicrophone(microphoneData.fields);
+        setAssets(relatedMicrophonesData.includes.Asset);
+
+        const otherMicrophones = relatedMicrophonesData.items.filter(
+          (item: any) => item.sys.id !== id
+        );
+
+        const selectedRelatedMicrophones = otherMicrophones
+          .slice(0, 1)
+          .map((item: any) => ({
+            ...item.fields,
+            id: item.sys.id,
+          }));
+
+        setRelatedMicrophones(selectedRelatedMicrophones);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -74,6 +90,31 @@ const MicrophoneDetails = ({ params }: { params: { id: string } }) => {
 
         return <p>Opis: {description}</p>;
       })}
+
+      <h2>Related Microphones</h2>
+      <div style={{ display: "flex", gap: "20px" }}>
+        {relatedMicrophones.map((relatedMicrophone) => {
+          const relatedImageAsset = relatedMicrophone.images[0]
+            ? assets.find(
+                (asset) => asset.sys.id === relatedMicrophone.images[0].sys.id
+              )
+            : null;
+
+          return (
+            <div key={relatedMicrophone.id}>
+              {relatedImageAsset && (
+                <img
+                  src={`https:${relatedImageAsset.fields.file.url}`}
+                  width="200"
+                  height="200"
+                  alt={relatedMicrophone.name}
+                />
+              )}
+              <p>{relatedMicrophone.name}</p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

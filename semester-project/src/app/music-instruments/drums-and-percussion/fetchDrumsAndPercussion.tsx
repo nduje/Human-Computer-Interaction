@@ -35,7 +35,11 @@ const FetchDrums = () => {
         {drums?.map((drum) => (
           <li key={drum.sys.id}>
             <p>ID: {drum.fields.id}</p>
-            <p>Ime: {drum.fields.name}</p>
+            <p>
+              <Link href={`/music-instruments/drums-and-percussion/${drum.sys.id}`}>
+                {drum.fields.name}
+              </Link>
+            </p>
             <p>Tip: {drum.fields.type}</p>
             {drum.fields.images.map((image: any) => {
               const asset = assets.find(

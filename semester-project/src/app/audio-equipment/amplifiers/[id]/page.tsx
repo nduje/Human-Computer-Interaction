@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-type Amplifiers = {
+type Amplifier = {
   name: string;
   rating: number;
   price: number;
@@ -10,8 +10,9 @@ type Amplifiers = {
 };
 
 const AmplifierDetails = ({ params }: { params: { id: string } }) => {
-  const [amplifier, setAmplifier] = useState<Amplifiers | null>(null);
+  const [amplifier, setAmplifier] = useState<Amplifier | null>(null);
   const [assets, setAssets] = useState<any[]>([]);
+  const [relatedAmplifiers, setRelatedAmplifiers] = useState<Amplifier[]>([]);
   const { id } = params;
 
   useEffect(() => {
@@ -22,18 +23,31 @@ const AmplifierDetails = ({ params }: { params: { id: string } }) => {
         const SPACE_ID = "kxdn75bdbglk";
         const ACCESS_TOKEN = "3P9BtHbld8K0ojZWgyeLWTUeDAZQ53ZWRAdwftR4whg";
 
-        const response1 = await fetch(
+        const amplifierResponse = await fetch(
           `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries/${id}?access_token=${ACCESS_TOKEN}`
         );
-        const response2 = await fetch(
+        const relatedAmplifiersResponse = await fetch(
           `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=amplifier`
         );
 
-        const data1 = await response1.json();
-        const data2 = await response2.json();
+        const amplifierData = await amplifierResponse.json();
+        const relatedAmplifiersData = await relatedAmplifiersResponse.json();
 
-        setAmplifier(data1.fields);
-        setAssets(data2.includes.Asset);
+        setAmplifier(amplifierData.fields);
+        setAssets(relatedAmplifiersData.includes.Asset);
+
+        const otherAmplifiers = relatedAmplifiersData.items.filter(
+          (item: any) => item.sys.id !== id
+        );
+
+        const selectedRelatedAmplifiers = otherAmplifiers
+          .slice(0, 1)
+          .map((item: any) => ({
+            ...item.fields,
+            id: item.sys.id,
+          }));
+
+        setRelatedAmplifiers(selectedRelatedAmplifiers);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -74,6 +88,31 @@ const AmplifierDetails = ({ params }: { params: { id: string } }) => {
 
         return <p>Opis: {description}</p>;
       })}
+
+      <h2>Related Amplifiers</h2>
+      <div style={{ display: "flex", gap: "20px" }}>
+        {relatedAmplifiers.map((relatedAmplifier) => {
+          const relatedImageAsset = relatedAmplifier.images[0]
+            ? assets.find(
+                (asset) => asset.sys.id === relatedAmplifier.images[0].sys.id
+              )
+            : null;
+
+          return (
+            <div key={relatedAmplifier.id}>
+              {relatedImageAsset && (
+                <img
+                  src={`https:${relatedImageAsset.fields.file.url}`}
+                  width="200"
+                  height="200"
+                  alt={relatedAmplifier.name}
+                />
+              )}
+              <p>{relatedAmplifier.name}</p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
