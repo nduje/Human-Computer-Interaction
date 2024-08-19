@@ -5,6 +5,8 @@ import Link from "next/link";
 const FetchDrums = () => {
   const [drums, setDrums] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,11 +30,29 @@ const FetchDrums = () => {
     fetchData();
   }, []);
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentDrums = drums.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handleNextPage = () => {
+    if (indexOfLastItem < drums.length) {
+      setCurrentPage(currentPage + 1);
+      window.scrollTo(0, 0); // Scroll to the top of the page
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      window.scrollTo(0, 0); // Scroll to the top of the page
+    }
+  };
+
   return (
     <div>
       <h1>Popis bubnjeva:</h1>
       <ul>
-        {drums?.map((drum) => (
+        {currentDrums?.map((drum) => (
           <li key={drum.sys.id}>
             <p>ID: {drum.fields.id}</p>
             <p>
@@ -67,6 +87,14 @@ const FetchDrums = () => {
           </li>
         ))}
       </ul>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        {currentPage > 1 && (
+          <button onClick={handlePreviousPage}>Prethodna stranica</button>
+        )}
+        {indexOfLastItem < drums.length && (
+          <button onClick={handleNextPage}>Sljedeća stranica</button>
+        )}
+      </div>
     </div>
   );
 };

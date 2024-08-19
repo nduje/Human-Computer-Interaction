@@ -5,6 +5,8 @@ import Link from "next/link";
 const FetchDJEquipment = () => {
   const [djEquipments, setDJEquipment] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 1;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,11 +30,32 @@ const FetchDJEquipment = () => {
     fetchData();
   }, []);
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentDJEquipments = djEquipments.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+
+  const handleNextPage = () => {
+    if (indexOfLastItem < djEquipments.length) {
+      setCurrentPage(currentPage + 1);
+      window.scrollTo(0, 0); // Scroll to the top of the page
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      window.scrollTo(0, 0); // Scroll to the top of the page
+    }
+  };
+
   return (
     <div>
       <h1>Popis DJ opreme:</h1>
       <ul>
-        {djEquipments?.map((djEquipment) => (
+        {currentDJEquipments?.map((djEquipment) => (
           <li key={djEquipment.sys.id}>
             <p>ID: {djEquipment.fields.id}</p>
             <p>
@@ -66,6 +89,14 @@ const FetchDJEquipment = () => {
           </li>
         ))}
       </ul>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        {currentPage > 1 && (
+          <button onClick={handlePreviousPage}>Prethodna stranica</button>
+        )}
+        {indexOfLastItem < djEquipments.length && (
+          <button onClick={handleNextPage}>Sljedeća stranica</button>
+        )}
+      </div>
     </div>
   );
 };

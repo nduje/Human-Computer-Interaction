@@ -5,6 +5,8 @@ import Link from "next/link";
 const FetchGuitars = () => {
   const [guitars, setGuitars] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,17 +30,33 @@ const FetchGuitars = () => {
     fetchData();
   }, []);
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentGuitars = guitars.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handleNextPage = () => {
+    if (indexOfLastItem < guitars.length) {
+      setCurrentPage(currentPage + 1);
+      window.scrollTo(0, 0); // Scroll to the top of the page
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      window.scrollTo(0, 0); // Scroll to the top of the page
+    }
+  };
+
   return (
     <div>
       <h1>Popis gitara:</h1>
       <ul>
-        {guitars?.map((guitar) => (
+        {currentGuitars?.map((guitar) => (
           <li key={guitar.sys.id}>
             <p>ID: {guitar.fields.id}</p>
             <p>
-              <Link
-                href={`/guitars/${guitar.sys.id}`}
-              >
+              <Link href={`/guitars/${guitar.sys.id}`}>
                 {guitar.fields.name}
               </Link>
             </p>
@@ -52,10 +70,7 @@ const FetchGuitars = () => {
               const imageUrl = `https:${asset.fields.file.url}`;
 
               return (
-                <Link
-                  key={image.sys.id}
-                  href={`/guitars/${guitar.sys.id}`}
-                >
+                <Link key={image.sys.id} href={`/guitars/${guitar.sys.id}`}>
                   <img
                     src={imageUrl}
                     width={asset.fields.file.details.image.width}
@@ -69,6 +84,14 @@ const FetchGuitars = () => {
           </li>
         ))}
       </ul>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        {currentPage > 1 && (
+          <button onClick={handlePreviousPage}>Prethodna stranica</button>
+        )}
+        {indexOfLastItem < guitars.length && (
+          <button onClick={handleNextPage}>Sljedeća stranica</button>
+        )}
+      </div>
     </div>
   );
 };

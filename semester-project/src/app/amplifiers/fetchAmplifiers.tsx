@@ -5,6 +5,8 @@ import Link from "next/link";
 const FetchAmplifiers = () => {
   const [amplifiers, setAmplifiers] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 1;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,11 +30,29 @@ const FetchAmplifiers = () => {
     fetchData();
   }, []);
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentAmplifiers = amplifiers.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handleNextPage = () => {
+    if (indexOfLastItem < amplifiers.length) {
+      setCurrentPage(currentPage + 1);
+      window.scrollTo(0, 0); // Scroll to the top of the page
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      window.scrollTo(0, 0); // Scroll to the top of the page
+    }
+  };
+
   return (
     <div>
       <h1>Popis amplifiera:</h1>
       <ul>
-        {amplifiers?.map((amplifier) => (
+        {currentAmplifiers?.map((amplifier) => (
           <li key={amplifier.sys.id}>
             <p>ID: {amplifier.fields.id}</p>
             <p>
@@ -66,6 +86,14 @@ const FetchAmplifiers = () => {
           </li>
         ))}
       </ul>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        {currentPage > 1 && (
+          <button onClick={handlePreviousPage}>Prethodna stranica</button>
+        )}
+        {indexOfLastItem < amplifiers.length && (
+          <button onClick={handleNextPage}>Sljedeća stranica</button>
+        )}
+      </div>
     </div>
   );
 };

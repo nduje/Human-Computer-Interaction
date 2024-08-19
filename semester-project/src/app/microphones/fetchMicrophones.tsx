@@ -5,6 +5,8 @@ import Link from "next/link";
 const FetchMicrophones = () => {
   const [microphones, setMicrophones] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 1;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,11 +30,32 @@ const FetchMicrophones = () => {
     fetchData();
   }, []);
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentMicrophones = microphones.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+
+  const handleNextPage = () => {
+    if (indexOfLastItem < microphones.length) {
+      setCurrentPage(currentPage + 1);
+      window.scrollTo(0, 0); // Scroll to the top of the page
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      window.scrollTo(0, 0); // Scroll to the top of the page
+    }
+  };
+
   return (
     <div>
       <h1>Popis mikrofona:</h1>
       <ul>
-        {microphones?.map((microphone) => (
+        {currentMicrophones?.map((microphone) => (
           <li key={microphone.sys.id}>
             <p>ID: {microphone.fields.id}</p>
             <p>
@@ -66,6 +89,14 @@ const FetchMicrophones = () => {
           </li>
         ))}
       </ul>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        {currentPage > 1 && (
+          <button onClick={handlePreviousPage}>Prethodna stranica</button>
+        )}
+        {indexOfLastItem < microphones.length && (
+          <button onClick={handleNextPage}>Sljedeća stranica</button>
+        )}
+      </div>
     </div>
   );
 };

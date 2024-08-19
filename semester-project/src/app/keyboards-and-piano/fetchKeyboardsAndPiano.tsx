@@ -5,6 +5,8 @@ import Link from "next/link";
 const FetchKeyboards = () => {
   const [keyboards, setKeyboards] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,17 +30,33 @@ const FetchKeyboards = () => {
     fetchData();
   }, []);
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentKeyboards = keyboards.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handleNextPage = () => {
+    if (indexOfLastItem < keyboards.length) {
+      setCurrentPage(currentPage + 1);
+      window.scrollTo(0, 0); // Scroll to the top of the page
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      window.scrollTo(0, 0); // Scroll to the top of the page
+    }
+  };
+
   return (
     <div>
       <h1>Popis klavijatura:</h1>
       <ul>
-        {keyboards?.map((keyboard) => (
+        {currentKeyboards?.map((keyboard) => (
           <li key={keyboard.sys.id}>
             <p>ID: {keyboard.fields.id}</p>
             <p>
-              <Link
-                href={`/keyboards-and-piano/${keyboard.sys.id}`}
-              >
+              <Link href={`/keyboards-and-piano/${keyboard.sys.id}`}>
                 {keyboard.fields.name}
               </Link>
             </p>
@@ -70,6 +88,14 @@ const FetchKeyboards = () => {
           </li>
         ))}
       </ul>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        {currentPage > 1 && (
+          <button onClick={handlePreviousPage}>Prethodna stranica</button>
+        )}
+        {indexOfLastItem < keyboards.length && (
+          <button onClick={handleNextPage}>Sljedeća stranica</button>
+        )}
+      </div>
     </div>
   );
 };

@@ -5,6 +5,8 @@ import Link from "next/link";
 const FetchPedals = () => {
   const [pedals, setPedals] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 1;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,17 +30,33 @@ const FetchPedals = () => {
     fetchData();
   }, []);
 
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentPedals = pedals.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handleNextPage = () => {
+    if (indexOfLastItem < pedals.length) {
+      setCurrentPage(currentPage + 1);
+      window.scrollTo(0, 0); // Scroll to the top of the page
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      window.scrollTo(0, 0); // Scroll to the top of the page
+    }
+  };
+
   return (
     <div>
       <h1>Popis pedala:</h1>
       <ul>
-        {pedals?.map((pedal) => (
+        {currentPedals?.map((pedal) => (
           <li key={pedal.sys.id}>
             <p>ID: {pedal.fields.id}</p>
             <p>
-              <Link href={`/pedals/${pedal.sys.id}`}>
-                {pedal.fields.name}
-              </Link>
+              <Link href={`/pedals/${pedal.sys.id}`}>{pedal.fields.name}</Link>
             </p>
             {pedal.fields.images.map((image: any) => {
               const asset = assets.find(
@@ -49,10 +67,7 @@ const FetchPedals = () => {
               const imageUrl = `https:${asset.fields.file.url}`;
 
               return (
-                <Link
-                  key={image.sys.id}
-                  href={`/pedals/${pedal.sys.id}`}
-                >
+                <Link key={image.sys.id} href={`/pedals/${pedal.sys.id}`}>
                   <img
                     src={imageUrl}
                     width={asset.fields.file.details.image.width}
@@ -66,6 +81,14 @@ const FetchPedals = () => {
           </li>
         ))}
       </ul>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        {currentPage > 1 && (
+          <button onClick={handlePreviousPage}>Prethodna stranica</button>
+        )}
+        {indexOfLastItem < pedals.length && (
+          <button onClick={handleNextPage}>Sljedeća stranica</button>
+        )}
+      </div>
     </div>
   );
 };
