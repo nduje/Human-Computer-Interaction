@@ -17,15 +17,15 @@ export const metadata: Metadata = {
 };
 
 const pages: Record<string, `/${string}`> = {
-  "Guitars": "/music-instruments/guitars",
-  "Keys": "/music-instruments/keyboards-and-piano",
-  "Drums": "/music-instruments/drums-and-percussion",
-  "Amplifiers": "/audio-equipment/amplifiers",
-  "Microphones": "/audio-equipment/microphones",
-  "Pedals": "/audio-equipment/pedals",
-  "DJ": "/audio-equipment/dj-equipment",
-  "Sheet": "/learning-and-resources/sheet-music",
-  "Vinyls": "/learning-and-resources/vinyl-records",
+  "Guitars": "/guitars",
+  "Keys": "/keyboards-and-piano",
+  "Drums": "/drums-and-percussion",
+  "Amplifiers": "/amplifiers",
+  "Microphones": "/microphones",
+  "Pedals": "/pedals",
+  "DJ": "/dj-equipment",
+  "Sheet": "/sheet-music",
+  "Vinyls": "/vinyl-records",
 };
 
 export default function RootLayout({
