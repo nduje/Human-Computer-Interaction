@@ -22,7 +22,7 @@ const HeadlineSection: FC = () => {
         <section className="flex flex-row justify-evenly text-center align-middle h-3/4">
             <section className="flex flex-col justify-evenly text-center align-middle h-full w-1/4 m-2 p-2">
                 <div className="flex flex-col justify-between text-center align-middle">
-                    <Link href="music-instruments/guitars" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
+                    <Link href="/guitars" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}
                             src={guitars}
@@ -36,7 +36,7 @@ const HeadlineSection: FC = () => {
                     <hr className="border-[1.5px] w-full border-base-colors-100 my-4"></hr>
                 </div>  
                 <div className="flex flex-col justify-between text-center align-middle">
-                    <Link href="music-instruments/keyboards-and-piano" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
+                    <Link href="/keyboards-and-piano" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}
                             src={keys}
@@ -50,7 +50,7 @@ const HeadlineSection: FC = () => {
                     <hr className="border-[1.5px] w-full border-base-colors-100 my-4"></hr>
                 </div>  
                 <div className="flex flex-col justify-between text-center align-middle">
-                    <Link href="music-instruments/drums-and-percussion" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
+                    <Link href="/drums-and-percussion" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}
                             src={drums}
@@ -66,7 +66,7 @@ const HeadlineSection: FC = () => {
             </section>
             <section className="flex flex-col justify-evenly text-center align-middle w-1/4 m-2 p-2">
                 <div className="flex flex-col justify-between text-center align-middle">
-                    <Link href="/audio-equipment/amplifiers" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
+                    <Link href="/amplifiers" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}
                             src={amplifiers}
@@ -80,7 +80,7 @@ const HeadlineSection: FC = () => {
                     <hr className="border-[1.5px] w-full border-base-colors-100 my-4"></hr>
                 </div>  
                 <div className="flex flex-col justify-between text-center align-middle">
-                    <Link href="/audio-equipment/microphones" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
+                    <Link href="/microphones" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}
                             src={microphones}
@@ -94,7 +94,7 @@ const HeadlineSection: FC = () => {
                     <hr className="border-[1.5px] w-full border-base-colors-100 my-4"></hr>
                 </div>  
                 <div className="flex flex-col justify-between text-center align-middle">
-                    <Link href="/audio-equipment/pedals" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
+                    <Link href="/pedals" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}
                             src={pedals}
@@ -110,7 +110,7 @@ const HeadlineSection: FC = () => {
             </section>
             <section className="flex flex-col justify-evenly text-center align-middle w-1/4 m-2 p-2">
                 <div className="flex flex-col justify-between text-center align-middle">
-                    <Link href="/audio-equipment/dj-equipment" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
+                    <Link href="/dj-equipment" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}
                             src={dj}
@@ -124,7 +124,7 @@ const HeadlineSection: FC = () => {
                     <hr className="border-[1.5px] w-full border-base-colors-100 my-4"></hr>
                 </div>  
                 <div className="flex flex-col justify-between text-center align-middle">
-                    <Link href="resources-and-learning/sheet-music" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
+                    <Link href="/sheet-music" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}
                             src={sheet}
@@ -138,7 +138,7 @@ const HeadlineSection: FC = () => {
                     <hr className="border-[1.5px] w-full border-base-colors-100 my-4"></hr>
                 </div>  
                 <div className="flex flex-col justify-between text-center align-middle">
-                    <Link href="resources-and-learning/vinyl-records" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
+                    <Link href="/vinyl-records" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}
                             src={vinyls}
