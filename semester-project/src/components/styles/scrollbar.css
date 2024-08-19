@@ -1,0 +1,13 @@
+.scrollbar::-webkit-scrollbar {
+    margin-top: 1rem;
+    height: 3px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(28, 28, 28, 0.9);
+    border-radius: 0;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+}
