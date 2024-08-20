@@ -6,23 +6,19 @@ import Image from "next/image";
 import guitars from "../images/categories/guitars.jpg";
 import drums from "../images/categories/drums.jpg";
 import keys from "../images/categories/keys.jpg";
-import amplifiers from "../images/categories/amplifiers.jpg";
-import microphones from "../images/categories/microphones.jpg";
-import pedals from "../images/categories/pedals.jpg";
-import dj from "../images/categories/dj.jpg";
-import sheet from "../images/categories/sheet.jpg";
+import orchestra from "../images/categories/orchestra.jpg";
+import equipment from "../images/categories/equipment.jpg";
 import vinyls from "../images/categories/vinyls.jpg";
 
 const HeadlineSection: FC = () => {
     return (
-      <article className="flex font-roboto flex-col text-center align-middle justify-center bg-base-colors-50 h-auto w-auto">
-        <h1 className="font-bold text-3xl text-base-colors-200 m-12">
-          Our Categories
-        </h1>
-        <section className="flex flex-row justify-evenly text-center align-middle h-3/4">
-            <section className="flex flex-col justify-evenly text-center align-middle h-full w-1/4 m-2 p-2">
+        <article className="flex font-roboto flex-col text-center align-middle justify-center bg-base-colors-50 h-auto w-auto">
+            <h1 className="font-bold text-3xl text-base-colors-200 m-12">
+            Our Categories
+            </h1>
+            <section className="grid grid-cols-3 gap-x-36 gap-y-12 m-8 mx-20 text-center align-middle">
                 <div className="flex flex-col justify-between text-center align-middle">
-                    <Link href="/guitars" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
+                    <Link href="/guitars-and-basses" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}
                             src={guitars}
@@ -33,7 +29,7 @@ const HeadlineSection: FC = () => {
                             Guitars
                         </h1>
                     </Link>
-                    <hr className="border-[1.5px] w-full border-base-colors-100 my-4"></hr>
+                    <hr className="border-[1.5px] w-full border-base-colors-100"></hr>
                 </div>  
                 <div className="flex flex-col justify-between text-center align-middle">
                     <Link href="/keyboards-and-piano" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
@@ -47,10 +43,10 @@ const HeadlineSection: FC = () => {
                             Keys
                         </h1>
                     </Link>
-                    <hr className="border-[1.5px] w-full border-base-colors-100 my-4"></hr>
+                    <hr className="border-[1.5px] w-full border-base-colors-100"></hr>
                 </div>  
                 <div className="flex flex-col justify-between text-center align-middle">
-                    <Link href="/drums-and-percussion" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
+                    <Link href="/drums" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}
                             src={drums}
@@ -61,82 +57,36 @@ const HeadlineSection: FC = () => {
                             Drums
                         </h1>
                     </Link>
-                    <hr className="border-[1.5px] w-full border-base-colors-100 my-4"></hr>
-                </div>  
-            </section>
-            <section className="flex flex-col justify-evenly text-center align-middle w-1/4 m-2 p-2">
+                    <hr className="border-[1.5px] w-full border-base-colors-100"></hr>
+                </div>
                 <div className="flex flex-col justify-between text-center align-middle">
-                    <Link href="/amplifiers" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
+                    <Link href="/orchestra-instruments" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}
-                            src={amplifiers}
-                            alt="amplifiers"
+                            src={orchestra}
+                            alt="orchestra"
                             className="rounded-md"
                         />
                         <h1 className="my-auto text-xl font-semibold">
-                            Amplifiers
+                            Orchestra
                         </h1>
                     </Link>
-                    <hr className="border-[1.5px] w-full border-base-colors-100 my-4"></hr>
-                </div>  
+                    <hr className="border-[1.5px] w-full border-base-colors-100"></hr>
+                </div>
                 <div className="flex flex-col justify-between text-center align-middle">
-                    <Link href="/microphones" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
+                    <Link href="/audio-equipment" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}
-                            src={microphones}
-                            alt="microphones"
+                            src={equipment}
+                            alt="equipment"
                             className="rounded-md"
                         />
                         <h1 className="my-auto text-xl font-semibold">
-                            Microphones
+                            Equipment
                         </h1>
                     </Link>
-                    <hr className="border-[1.5px] w-full border-base-colors-100 my-4"></hr>
-                </div>  
-                <div className="flex flex-col justify-between text-center align-middle">
-                    <Link href="/pedals" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
-                        <Image
-                            style={{width: "75px", height: "75px", objectFit: "contain"}}
-                            src={pedals}
-                            alt="pedals"
-                            className="rounded-md"
-                        />
-                        <h1 className="my-auto text-xl font-semibold">
-                            Pedals
-                        </h1>
-                    </Link>
-                    <hr className="border-[1.5px] w-full border-base-colors-100 my-4"></hr>
-                </div>       
-            </section>
-            <section className="flex flex-col justify-evenly text-center align-middle w-1/4 m-2 p-2">
-                <div className="flex flex-col justify-between text-center align-middle">
-                    <Link href="/dj-equipment" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
-                        <Image
-                            style={{width: "75px", height: "75px", objectFit: "contain"}}
-                            src={dj}
-                            alt="dj"
-                            className="rounded-md"
-                        />
-                        <h1 className="my-auto text-xl font-semibold">
-                            DJ
-                        </h1>
-                    </Link>
-                    <hr className="border-[1.5px] w-full border-base-colors-100 my-4"></hr>
-                </div>  
-                <div className="flex flex-col justify-between text-center align-middle">
-                    <Link href="/sheet-music" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
-                        <Image
-                            style={{width: "75px", height: "75px", objectFit: "contain"}}
-                            src={sheet}
-                            alt="sheet"
-                            className="rounded-md"
-                        />
-                        <h1 className="my-auto text-xl font-semibold">
-                            Sheet
-                        </h1>
-                    </Link>
-                    <hr className="border-[1.5px] w-full border-base-colors-100 my-4"></hr>
-                </div>  
+                    <hr className="border-[1.5px] w-full border-base-colors-100"></hr>
+                </div>
                 <div className="flex flex-col justify-between text-center align-middle">
                     <Link href="/vinyl-records" className="flex flex-auto justify-between text-center align-middle m-4 px-10 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
@@ -149,11 +99,10 @@ const HeadlineSection: FC = () => {
                             Vinyls
                         </h1>
                     </Link>
-                    <hr className="border-[1.5px] w-full border-base-colors-100 my-4"></hr>
-                </div>  
+                    <hr className="border-[1.5px] w-full border-base-colors-100"></hr>
+                </div>
             </section>
-        </section>
-      </article>
+        </article>
     );
 };
   

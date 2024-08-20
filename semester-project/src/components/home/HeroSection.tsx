@@ -13,14 +13,28 @@ import vinyls from "../images/hero/vinyls.png"
 
 const HeroSection: FC = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
+    const scrollAmount = 824;
+    const fullScrollSize = scrollAmount * 5;
 
     useEffect(() => {
-        if (sectionRef.current) {
-            const scrollWidth = sectionRef.current.scrollWidth;
-            const clientWidth = sectionRef.current.clientWidth;
-            sectionRef.current.scrollLeft = (scrollWidth - clientWidth) / 2;
+        const section = sectionRef.current;
+        if (section) {
+            const scrollWidth = section.scrollWidth;
+            const clientWidth = section.clientWidth;
+            section.scrollLeft = (scrollWidth - clientWidth) / 2;
+    
+            const interval = setInterval(() => {
+                if (section.scrollLeft + clientWidth >= fullScrollSize) {
+                    section.scrollLeft = 0;
+                } else {
+                    section.scrollLeft += scrollAmount;
+                }
+            }, 15000);
+    
+            return () => clearInterval(interval);
         }
-    }, []);
+    }, [scrollAmount]);
+    
 
     return (
         <section ref={sectionRef} className="scrollbar flex overflow-x-auto snap-x snap-mandatory scroll-smooth my-6">

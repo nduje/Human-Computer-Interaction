@@ -10,18 +10,6 @@ interface FooterProps {
     pages: Record<string, `/${string}`>;
   }
 
-const colors: Record<string, string> = {
-    "Guitars": "hover:bg-navbar-palette-50",
-    "Keys": "hover:bg-navbar-palette-100",
-    "Drums": "hover:bg-navbar-palette-200",
-    "Amplifiers": "hover:bg-navbar-palette-300",
-    "Microphones": "hover:bg-navbar-palette-400",
-    "Pedals": "hover:bg-navbar-palette-500",
-    "DJ": "hover:bg-navbar-palette-600",
-    "Sheet": "hover:bg-navbar-palette-700",
-    "Vinyls": "hover:bg-navbar-palette-800",
-};
-
 const Footer: FC<FooterProps> = ({ pages }) => {
     const pathName = usePathname();
     
@@ -55,7 +43,7 @@ const Footer: FC<FooterProps> = ({ pages }) => {
                     {Object.entries(pages).map(([name, path]) => (
                         <li key={name}>
                         <Link href={path}>
-                        <span className={cn(colors[name], "font-roboto font-light hover:font-normal text-base md:text-xl text-base-colors-50 rounded-tl-3xl rounded-br-3xl px-4")}>
+                        <span className="font-roboto font-light hover:font-normal text-base md:text-xl text-base-colors-50 hover:bg-base-colors-300 rounded-tl-3xl rounded-br-3xl px-4">
                             {name}
                         </span>
                         </Link>
