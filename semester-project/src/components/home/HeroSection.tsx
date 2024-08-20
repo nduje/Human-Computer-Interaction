@@ -37,7 +37,7 @@ const HeroSection: FC = () => {
     
 
     return (
-        <section ref={sectionRef} className="scrollbar flex overflow-x-auto snap-x snap-mandatory scroll-smooth my-6">
+        <section ref={sectionRef} className="scrollbar flex overflow-x-auto snap-x snap-mandatory scroll-smooth mt-6 mb-12">
             <Image
                 style={{width: "800px", height: "400px", objectFit: "cover"}}
                 src={guitars}

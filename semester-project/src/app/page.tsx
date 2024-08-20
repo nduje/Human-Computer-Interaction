@@ -1,8 +1,8 @@
 import HeroSection from "../components/home/HeroSection";
 import CategoriesSection from "../components/home/CategoriesSection";
+import FeaturedSection from "../components/home/FeaturedSection";
 import ReviewSection from "../components/home/ReviewSection";
 import BlogsSection from "../components/home/BlogsSection";
-import FeaturedSection from "../components/home/FeaturedSection";
 
 
 export default function Home() {
@@ -10,8 +10,8 @@ export default function Home() {
     <div className="m-0 p-0">
       <HeroSection />
       <CategoriesSection />
-      <ReviewSection />
       <FeaturedSection />
+      <ReviewSection />
       <BlogsSection />
     </div>
   );
