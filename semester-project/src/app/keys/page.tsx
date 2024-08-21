@@ -10,7 +10,7 @@ import accordions from "../../components/images/products/keys/accordions.jpg"
 import pianos from "../../components/images/products/keys/pianos.jpg"
 
 
-export default function KeyboardsAndPianosPage() {
+export default function KeysPage() {
   return (
     <article className="flex font-roboto flex-col text-center align-middle justify-center bg-base-colors-50 h-auto w-auto m-12">
       <h1 className="font-bold text-3xl text-base-colors-200 m-12">Keys</h1>
@@ -23,7 +23,7 @@ export default function KeyboardsAndPianosPage() {
                   alt="keyboards"
                   className="rounded-md"
               />
-              <h1 className="my-auto text-xl font-semibold">
+              <h1 className="mb-auto mt-6 text-xl font-semibold">
                   Keyboards
               </h1>
           </Link>
@@ -37,7 +37,7 @@ export default function KeyboardsAndPianosPage() {
                   alt="synthesizers"
                   className="rounded-md"
               />
-              <h1 className="my-auto text-xl font-semibold">
+              <h1 className="mb-auto mt-6 text-xl font-semibold">
                   Synthesizers
               </h1>
           </Link>
@@ -51,7 +51,7 @@ export default function KeyboardsAndPianosPage() {
                   alt="accordions"
                   className="rounded-md"
               />
-              <h1 className="my-auto text-xl font-semibold">
+              <h1 className="mb-auto mt-6 text-xl font-semibold">
                   Accordions
               </h1>
           </Link>
@@ -65,7 +65,7 @@ export default function KeyboardsAndPianosPage() {
                   alt="pianos"
                   className="rounded-md"
               />
-              <h1 className="my-auto text-xl font-semibold">
+              <h1 className="mb-auto mt-6 text-xl font-semibold">
                   Pianos
               </h1>
           </Link>

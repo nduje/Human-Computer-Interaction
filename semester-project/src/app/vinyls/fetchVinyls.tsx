@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-const FetchRecords = () => {
+const FetchVinyls = () => {
   const [records, setRecords] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
 
@@ -58,4 +58,4 @@ const FetchRecords = () => {
   );
 };
 
-export default FetchRecords;
+export default FetchVinyls;
