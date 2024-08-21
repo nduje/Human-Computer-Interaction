@@ -19,7 +19,7 @@ const BlogsSection: FC = () => {
                 <section className="flex flex-col justify-center align-middle items-center text-base-colors-200 hover:cursor-pointer hover:text-base-colors-300">
                     <div className="cover-container rounded-t-md w-full h-[225px] relative overflow-hidden">
                         <Image
-                            style={{width: "100%", height: "100%"}}
+                            style={{width: "100%", height: "100%", objectFit: "cover"}}
                             src={thompson}
                             alt="thompson"
                             className="cover rounded-t-md"
@@ -34,7 +34,7 @@ const BlogsSection: FC = () => {
                 <section className="flex flex-col justify-center align-middle items-center text-base-colors-200 hover:cursor-pointer hover:text-base-colors-300">
                     <div className="cover-container rounded-t-md w-full h-[225px] relative overflow-hidden">
                         <Image
-                            style={{width: "100%", height: "100%"}}
+                            style={{width: "100%", height: "100%", objectFit: "cover"}}
                             src={oliver}
                             alt="oliver"
                             className="cover rounded-t-md"
@@ -49,7 +49,7 @@ const BlogsSection: FC = () => {
                 <section className="flex flex-col justify-center align-middle items-center text-base-colors-200 hover:cursor-pointer hover:text-base-colors-300">
                     <div className="cover-container rounded-t-md w-full h-[225px] relative overflow-hidden">
                         <Image
-                            style={{width: "100%", height: "100%"}}
+                            style={{width: "100%", height: "100%", objectFit: "cover"}}
                             src={solin_summer_festival}
                             alt="solin_summer_festival"
                             className="cover rounded-t-md"
@@ -64,7 +64,7 @@ const BlogsSection: FC = () => {
                 <section className="flex flex-col justify-center align-middle items-center text-base-colors-200 hover:cursor-pointer hover:text-base-colors-300">
                     <div className="cover-container rounded-t-md w-full h-[225px] relative overflow-hidden">
                         <Image
-                            style={{width: "100%", height: "100%"}}
+                            style={{width: "100%", height: "100%", objectFit: "cover"}}
                             src={prljavo_kazaliste}
                             alt="prljavo_kazaliste"
                             className="cover rounded-t-md"
