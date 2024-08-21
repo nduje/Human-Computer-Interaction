@@ -64,15 +64,15 @@ const FeaturedSection: FC = () => {
             <li key={item.sys.id} className="flex flex-col bg-base-colors-100 w-1/6 rounded-md">
                 <Link href={`/${item.sys.contentType.sys.id}/${item.sys.id}`} className="product flex flex-col justify-center items-left text-left align-middle">
                     {item.fields.images && item.fields.images.length > 0 && (
-                    <img
-                        src={getImageUrl(item.fields.images[0].sys.id)}
-                        alt={item.fields.name}
-                        style={{width: "100%", height: "100%", objectFit: "contain"}}
-                        className="m-0 p-0 border-x-8 border-t-8 rounded-t-md border-base-colors-100"
-                    />
+                      <img
+                          src={getImageUrl(item.fields.images[0].sys.id)}
+                          alt={item.fields.name}
+                          style={{width: "100%", height: "100%", objectFit: "contain"}}
+                          className="m-0 p-0 border-x-8 border-t-8 rounded-t-md border-base-colors-100"
+                      />
                     )}
-                    <h2 className="name font-medium text-lg mx-2 mt-2">{item.fields.name}</h2>
-                    <h3 className="font-bold text-3xl mx-2 mb-2">{item.fields.price}€</h3>
+                    <h2 className="name font-medium text-lg mx-2 mt-2 h-[55px] overflow-hidden text-ellipsis">{item.fields.name}</h2>
+                    <h3 className="font-bold text-3xl mx-2 mb-2 mt-1">{item.fields.price}€</h3>
                 </Link>
             </li>
             ))}

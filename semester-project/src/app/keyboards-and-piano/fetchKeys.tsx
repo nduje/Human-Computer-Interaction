@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-const FetchKeyboards = () => {
+const FetchKeys = () => {
   const [keyboards, setKeyboards] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -100,4 +100,4 @@ const FetchKeyboards = () => {
   );
 };
 
-export default FetchKeyboards;
+export default FetchKeys;
