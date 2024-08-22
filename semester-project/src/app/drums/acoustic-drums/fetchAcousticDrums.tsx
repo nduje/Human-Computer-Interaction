@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-const FetchDrums = () => {
+const FetchAcousticDrums = () => {
   const [drums, setDrums] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,7 +20,12 @@ const FetchDrums = () => {
 
         const data = await response.json();
 
-        setDrums(data.items);
+        // Filtriranje samo akustičnih bubnjeva
+        const acousticDrums = data.items.filter(
+          (drum: any) => drum.fields.category === "Acoustic Drums"
+        );
+
+        setDrums(acousticDrums);
         setAssets(data.includes.Asset);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -50,7 +55,7 @@ const FetchDrums = () => {
 
   return (
     <div>
-      <h1>Popis bubnjeva:</h1>
+      <h1>Popis akustičnih bubnjeva:</h1>
       <ul>
         {currentDrums?.map((drum) => (
           <li key={drum.sys.id}>
@@ -100,4 +105,4 @@ const FetchDrums = () => {
   );
 };
 
-export default FetchDrums;
+export default FetchAcousticDrums;
