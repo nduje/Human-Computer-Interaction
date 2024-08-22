@@ -70,8 +70,7 @@ const DrumDetails = ({ params }: { params: { id: string } }) => {
   return (
     <div>
       <h1>{drum.name}</h1>
-      <p>Tip: {drum.type}</p>
-      <p>Ocjena: {drum.rating}</p>
+      <p>Kategorija: {drum.category}</p>
       <p>Cijena: {drum.price}€</p>
       {drum.images.map((image: any) => {
         const asset = assets.find((asset) => asset.sys.id === image.sys.id);
@@ -88,14 +87,7 @@ const DrumDetails = ({ params }: { params: { id: string } }) => {
           />
         );
       })}
-      {drum.images.map((image: any) => {
-        const asset = assets.find((asset) => asset.sys.id === image.sys.id);
-        if (!asset) return null;
-
-        const description = asset.fields.description;
-
-        return <p>Opis: {description}</p>;
-      })}
+      <p>Opis: {drum.description}</p>;
 
       <h2>Related Drums</h2>
       <div style={{ display: "flex", gap: "20px" }}>
@@ -109,9 +101,7 @@ const DrumDetails = ({ params }: { params: { id: string } }) => {
           return (
             <div key={relatedDrum.id}>
               {relatedImageAsset && (
-                <Link
-                  href={`/drums-and-percussion/${relatedDrum.id}`}
-                >
+                <Link href={`/drums/${relatedDrum.id}`}>
                   <img
                     src={`https:${relatedImageAsset.fields.file.url}`}
                     width="200"
@@ -120,12 +110,11 @@ const DrumDetails = ({ params }: { params: { id: string } }) => {
                 </Link>
               )}
               <p>
-                <Link
-                  href={`/drums-and-percussion/${relatedDrum.id}`}
-                >
+                <Link href={`/drums/${relatedDrum.id}`}>
                   {relatedDrum.name}
                 </Link>
               </p>
+              <p>Cijena: {relatedDrum   .price}€</p>
             </div>
           );
         })}
