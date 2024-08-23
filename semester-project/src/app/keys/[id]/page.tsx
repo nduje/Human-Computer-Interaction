@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-type Keyboard = {
+type Keys = {
   name: string;
   type: string;
   rating: number;
@@ -11,71 +11,68 @@ type Keyboard = {
   description: string;
 };
 
-const KeyboardDetails = ({ params }: { params: { id: string } }) => {
-  const [keyboard, setKeyboard] = useState<Keyboard | null>(null);
+const KeysDetails = ({ params }: { params: { id: string } }) => {
+  const [keys, setKeys] = useState<Keys | null>(null);
   const [assets, setAssets] = useState<any[]>([]);
-  const [relatedKeyboards, setRelatedKeyboards] = useState<Keyboard[]>([]);
+  const [relatedKeys, setRelatedKeys] = useState<Keys[]>([]);
   const { id } = params;
 
   useEffect(() => {
-    const fetchKeyboardData = async () => {
+    const fetchKeysData = async () => {
       if (!id) return;
 
       try {
         const SPACE_ID = "kxdn75bdbglk";
         const ACCESS_TOKEN = "3P9BtHbld8K0ojZWgyeLWTUeDAZQ53ZWRAdwftR4whg";
 
-        const keyboardResponse = await fetch(
+        const keysResponse = await fetch(
           `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries/${id}?access_token=${ACCESS_TOKEN}`
         );
-        const relatedKeyboardsResponse = await fetch(
-          `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=keyboard`
+        const relatedKeysResponse = await fetch(
+          `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=keys`
         );
 
-        const keyboardData = await keyboardResponse.json();
-        const relatedKeyboardsData = await relatedKeyboardsResponse.json();
+        const keysData = await keysResponse.json();
+        const relatedKeysData = await relatedKeysResponse.json();
 
-        setKeyboard({
-          ...keyboardData.fields,
-          id: keyboardData.sys.id,
+        setKeys({
+          ...keysData.fields,
+          id: keysData.sys.id,
         });
-        setAssets(relatedKeyboardsData.includes.Asset);
+        setAssets(relatedKeysData.includes.Asset);
 
-        const otherKeyboards = relatedKeyboardsData.items.filter(
+        const otherKeys = relatedKeysData.items.filter(
           (item: any) => item.sys.id !== id
         );
 
-        const shuffledKeyboards = otherKeyboards.sort(
-          () => 0.5 - Math.random()
-        );
+        const shuffledKeys = otherKeys.sort(() => 0.5 - Math.random());
 
-        const selectedRelatedKeyboards = shuffledKeyboards
+        const selectedRelatedKeys = shuffledKeys
           .slice(0, 3)
           .map((item: any) => ({
             ...item.fields,
             id: item.sys.id,
           }));
 
-        setRelatedKeyboards(selectedRelatedKeyboards);
+        setRelatedKeys(selectedRelatedKeys);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
-    fetchKeyboardData();
+    fetchKeysData();
   }, [id]);
 
-  if (!keyboard) {
+  if (!keys) {
     return <div>Loading...</div>;
   }
 
   return (
     <div>
-      <h1>{keyboard.name}</h1>
-      <p>Tip: {keyboard.type}</p>
-      <p>Ocjena: {keyboard.rating}</p>
-      <p>Cijena: {keyboard.price}€</p>
-      {keyboard.images.map((image: any) => {
+      <h1>{keys.name}</h1>
+      <p>Kategorija: {keys.category}</p>
+      <p>Cijena: {keys.price}€</p>
+      {keys.images.map((image: any) => {
         const asset = assets.find((asset) => asset.sys.id === image.sys.id);
         if (!asset) return null;
 
@@ -90,30 +87,19 @@ const KeyboardDetails = ({ params }: { params: { id: string } }) => {
           />
         );
       })}
-      {keyboard.images.map((image: any) => {
-        const asset = assets.find((asset) => asset.sys.id === image.sys.id);
-        if (!asset) return null;
-
-        const description = asset.fields.description;
-
-        return <p>Opis: {description}</p>;
-      })}
-
-      <h2>Related Keyboards</h2>
+      <p>Opis: {keys.description}</p>;<h2>Related Keys</h2>
       <div style={{ display: "flex", gap: "20px" }}>
-        {relatedKeyboards.map((relatedKeyboard) => {
-          const relatedImageAsset = relatedKeyboard.images[0]
+        {relatedKeys.map((relatedKey) => {
+          const relatedImageAsset = relatedKey.images[0]
             ? assets.find(
-                (asset) => asset.sys.id === relatedKeyboard.images[0].sys.id
+                (asset) => asset.sys.id === relatedKey.images[0].sys.id
               )
             : null;
 
           return (
-            <div key={relatedKeyboard.id}>
+            <div key={relatedKey.id}>
               {relatedImageAsset && (
-                <Link
-                  href={`/keyboards-and-piano/${relatedKeyboard.id}`}
-                >
+                <Link href={`/keys/${relatedKey.id}`}>
                   <img
                     src={`https:${relatedImageAsset.fields.file.url}`}
                     width="200"
@@ -121,11 +107,10 @@ const KeyboardDetails = ({ params }: { params: { id: string } }) => {
                   />
                 </Link>
               )}
-              <Link
-                href={`/keyboards-and-piano/${relatedKeyboard.id}`}
-              >
-                <p>{relatedKeyboard.name}</p>
-              </Link>
+              <p>
+                <Link href={`/keys/${relatedKey.id}`}>{relatedKey.name}</Link>
+              </p>
+              <p>Cijena: {relatedKey.price}€</p>
             </div>
           );
         })}
@@ -134,4 +119,4 @@ const KeyboardDetails = ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default KeyboardDetails;
+export default KeysDetails;

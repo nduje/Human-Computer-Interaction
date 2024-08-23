@@ -87,7 +87,7 @@ const GuitarDetails = ({ params }: { params: { id: string } }) => {
           />
         );
       })}
-      <p>Opis: {guitar.description}</p>;<h2>Related Equipment</h2>
+      <p>Opis: {guitar.description}</p>;<h2>Related Guitars</h2>
       <div style={{ display: "flex", gap: "20px" }}>
         {relatedGuitars.map((relatedGuitar) => {
           const relatedImageAsset = relatedGuitar.images[0]
@@ -99,7 +99,7 @@ const GuitarDetails = ({ params }: { params: { id: string } }) => {
           return (
             <div key={relatedGuitar.id}>
               {relatedImageAsset && (
-                <Link href={`/equipment/${relatedGuitar.id}`}>
+                <Link href={`/guitars/${relatedGuitar.id}`}>
                   <img
                     src={`https:${relatedImageAsset.fields.file.url}`}
                     width="200"
@@ -108,7 +108,7 @@ const GuitarDetails = ({ params }: { params: { id: string } }) => {
                 </Link>
               )}
               <p>
-                <Link href={`/equipment/${relatedGuitar.id}`}>
+                <Link href={`/guitars/${relatedGuitar.id}`}>
                   {relatedGuitar.name}
                 </Link>
               </p>
