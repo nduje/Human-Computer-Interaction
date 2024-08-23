@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-const FetchGuitars = () => {
+const FetchBasses = () => {
   const [guitars, setGuitars] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,7 +20,11 @@ const FetchGuitars = () => {
 
         const data = await response.json();
 
-        setGuitars(data.items);
+        const basses = data.items.filter(
+          (guitar: any) => guitar.fields.category === "Basses"
+        );
+
+        setGuitars(basses);
         setAssets(data.includes.Asset);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -28,10 +32,6 @@ const FetchGuitars = () => {
     };
 
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
   }, []);
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -54,7 +54,7 @@ const FetchGuitars = () => {
 
   return (
     <div>
-      <h1>Popis bubnjeva:</h1>
+      <h1>Popis BAAASOVA:</h1>
       <ul>
         {currentGuitars?.map((guitar) => (
           <li key={guitar.sys.id}>
@@ -101,4 +101,4 @@ const FetchGuitars = () => {
   );
 };
 
-export default FetchGuitars;
+export default FetchBasses;

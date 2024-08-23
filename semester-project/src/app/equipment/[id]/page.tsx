@@ -14,7 +14,7 @@ type Equipment = {
 const EquipmentDetails = ({ params }: { params: { id: string } }) => {
   const [equipment, setEquipment] = useState<Equipment | null>(null);
   const [assets, setAssets] = useState<any[]>([]);
-  const [relatedEquipment, setRelatedEquipment] = useState<Equipment[]>([]);
+  const [relatedEquipments, setRelatedEquipment] = useState<Equipment[]>([]);
   const { id } = params;
 
   useEffect(() => {
@@ -91,7 +91,7 @@ const EquipmentDetails = ({ params }: { params: { id: string } }) => {
 
       <h2>Related Equipment</h2>
       <div style={{ display: "flex", gap: "20px" }}>
-        {relatedEquipment.map((relatedEquipment) => {
+        {relatedEquipments.map((relatedEquipment) => {
           const relatedImageAsset = relatedEquipment.images[0]
             ? assets.find(
                 (asset) => asset.sys.id === relatedEquipment.images[0].sys.id

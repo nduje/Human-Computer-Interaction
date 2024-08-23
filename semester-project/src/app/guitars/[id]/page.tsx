@@ -29,7 +29,7 @@ const GuitarDetails = ({ params }: { params: { id: string } }) => {
           `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries/${id}?access_token=${ACCESS_TOKEN}`
         );
         const relatedGuitarsResponse = await fetch(
-          `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=guitar`
+          `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=guitars`
         );
 
         const guitarData = await guitarResponse.json();
@@ -70,8 +70,7 @@ const GuitarDetails = ({ params }: { params: { id: string } }) => {
   return (
     <div>
       <h1>{guitar.name}</h1>
-      <p>Tip: {guitar.type}</p>
-      <p>Ocjena: {guitar.rating}</p>
+      <p>Kategorija: {guitar.category}</p>
       <p>Cijena: {guitar.price}€</p>
       {guitar.images.map((image: any) => {
         const asset = assets.find((asset) => asset.sys.id === image.sys.id);
@@ -88,16 +87,7 @@ const GuitarDetails = ({ params }: { params: { id: string } }) => {
           />
         );
       })}
-      {guitar.images.map((image: any) => {
-        const asset = assets.find((asset) => asset.sys.id === image.sys.id);
-        if (!asset) return null;
-
-        const description = asset.fields.description;
-
-        return <p>Opis: {description}</p>;
-      })}
-
-      <h2>Related Guitars</h2>
+      <p>Opis: {guitar.description}</p>;<h2>Related Equipment</h2>
       <div style={{ display: "flex", gap: "20px" }}>
         {relatedGuitars.map((relatedGuitar) => {
           const relatedImageAsset = relatedGuitar.images[0]
@@ -109,7 +99,7 @@ const GuitarDetails = ({ params }: { params: { id: string } }) => {
           return (
             <div key={relatedGuitar.id}>
               {relatedImageAsset && (
-                <Link href={`/guitars/${relatedGuitar.id}`}>
+                <Link href={`/equipment/${relatedGuitar.id}`}>
                   <img
                     src={`https:${relatedImageAsset.fields.file.url}`}
                     width="200"
@@ -117,9 +107,12 @@ const GuitarDetails = ({ params }: { params: { id: string } }) => {
                   />
                 </Link>
               )}
-              <Link href={`/guitars/${relatedGuitar.id}`}>
-                <p>{relatedGuitar.name}</p>
-              </Link>
+              <p>
+                <Link href={`/equipment/${relatedGuitar.id}`}>
+                  {relatedGuitar.name}
+                </Link>
+              </p>
+              <p>Cijena: {relatedGuitar.price}€</p>
             </div>
           );
         })}
