@@ -1,14 +1,12 @@
 "use client";
-import FetchCymbals from "./fetchCymbals";
+import FetchAmplifiers from "./fetchAmplifiers";
 
-export default function AllCymbalsPage() {
+export default function AllAmplifiersPage() {
   return (
     <article className="flex font-roboto flex-col text-center align-middle justify-center bg-base-colors-50 h-auto w-auto m-12">
-      <h1 className="font-bold text-3xl text-base-colors-200 m-12">
-        All Cymbals
-      </h1>
+      <h1 className="font-bold text-3xl text-base-colors-200 m-12">All Amplifiers</h1>
       <section className="m-8 mx-20">
-        <FetchCymbals />
+        <FetchAmplifiers />
       </section>
     </article>
   );

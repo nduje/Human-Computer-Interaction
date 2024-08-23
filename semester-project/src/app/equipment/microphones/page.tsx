@@ -1,14 +1,14 @@
 "use client";
-import FetchSticksAndMallets from "./fetchSticksAndMallets";
+import FetchMicrophones from "./fetchMicrophones";
 
-export default function AllSticksAndMalletsPage() {
+export default function AllMicrophonesPage() {
   return (
     <article className="flex font-roboto flex-col text-center align-middle justify-center bg-base-colors-50 h-auto w-auto m-12">
       <h1 className="font-bold text-3xl text-base-colors-200 m-12">
-        All Sticks and Mallets
+        All Microphones
       </h1>
       <section className="m-8 mx-20">
-        <FetchSticksAndMallets />
+        <FetchMicrophones />
       </section>
     </article>
   );

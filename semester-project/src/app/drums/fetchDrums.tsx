@@ -30,6 +30,10 @@ const FetchDrums = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentDrums = drums.slice(indexOfFirstItem, indexOfLastItem);
@@ -70,10 +74,7 @@ const FetchDrums = () => {
                   const imageUrl = `https:${asset.fields.file.url}`;
 
                   return (
-                    <Link
-                      key={image.sys.id}
-                      href={`/drums/${drum.sys.id}`}
-                    >
+                    <Link key={image.sys.id} href={`/drums/${drum.sys.id}`}>
                       <img
                         src={imageUrl}
                         width={asset.fields.file.details.image.width}

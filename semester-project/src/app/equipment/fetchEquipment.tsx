@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-const FetchAcousticDrums = () => {
-  const [drums, setDrums] = useState<any[]>([]);
+const FetchEquipment = () => {
+  const [equipments, setEquipments] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
@@ -15,16 +15,12 @@ const FetchAcousticDrums = () => {
         const ACCESS_TOKEN = "3P9BtHbld8K0ojZWgyeLWTUeDAZQ53ZWRAdwftR4whg";
 
         const response = await fetch(
-          `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=drums`
+          `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?access_token=${ACCESS_TOKEN}&content_type=equipment`
         );
 
         const data = await response.json();
 
-        const acousticDrums = data.items.filter(
-          (drum: any) => drum.fields.category === "Acoustic Drums"
-        );
-
-        setDrums(acousticDrums);
+        setEquipments(data.items);
         setAssets(data.includes.Asset);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -34,12 +30,16 @@ const FetchAcousticDrums = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentDrums = drums.slice(indexOfFirstItem, indexOfLastItem);
+  const currentEquipment = equipments.slice(indexOfFirstItem, indexOfLastItem);
 
   const handleNextPage = () => {
-    if (indexOfLastItem < drums.length) {
+    if (indexOfLastItem < equipments.length) {
       setCurrentPage(currentPage + 1);
       window.scrollTo(0, 0);
     }
@@ -54,18 +54,18 @@ const FetchAcousticDrums = () => {
 
   return (
     <div>
-      <h1>Popis akustičnih bubnjeva:</h1>
+      <h1>Popis opreme:</h1>
       <ul>
-        {currentDrums?.map((drum) => (
-          <li key={drum.sys.id}>
-            <p>Kategorija: {drum.fields.category}</p>
-            <Link href={`/drums/${drum.sys.id}`}>
-              <p>{drum.fields.name}</p>
+        {currentEquipment?.map((equipment) => (
+          <li key={equipment.sys.id}>
+            <p>Kategorija: {equipment.fields.category}</p>
+            <Link href={`/equipment/${equipment.sys.id}`}>
+              <p>{equipment.fields.name}</p>
             </Link>
-            {drum.fields.images.length > 0 && (
+            {equipment.fields.images.length > 0 && (
               <>
                 {(() => {
-                  const image = drum.fields.images[0];
+                  const image = equipment.fields.images[0];
                   const asset = assets.find(
                     (asset) => asset.sys.id === image.sys.id
                   );
@@ -74,7 +74,10 @@ const FetchAcousticDrums = () => {
                   const imageUrl = `https:${asset.fields.file.url}`;
 
                   return (
-                    <Link key={image.sys.id} href={`/drums/${drum.sys.id}`}>
+                    <Link
+                      key={image.sys.id}
+                      href={`/equipment/${equipment.sys.id}`}
+                    >
                       <img
                         src={imageUrl}
                         width={asset.fields.file.details.image.width}
@@ -85,7 +88,7 @@ const FetchAcousticDrums = () => {
                 })()}
               </>
             )}
-            <p>Cijena: {drum.fields.price}€</p>
+            <p>Cijena: {equipment.fields.price}€</p>
           </li>
         ))}
       </ul>
@@ -93,7 +96,7 @@ const FetchAcousticDrums = () => {
         {currentPage > 1 && (
           <button onClick={handlePreviousPage}>Prethodna stranica</button>
         )}
-        {indexOfLastItem < drums.length && (
+        {indexOfLastItem < equipments.length && (
           <button onClick={handleNextPage}>Sljedeća stranica</button>
         )}
       </div>
@@ -101,4 +104,4 @@ const FetchAcousticDrums = () => {
   );
 };
 
-export default FetchAcousticDrums;
+export default FetchEquipment;

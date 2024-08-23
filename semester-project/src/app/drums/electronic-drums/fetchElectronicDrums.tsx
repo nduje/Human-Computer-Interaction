@@ -20,12 +20,11 @@ const FetchElectronicDrums = () => {
 
         const data = await response.json();
 
-        // Filtriranje samo akustičnih bubnjeva
-        const acousticDrums = data.items.filter(
+        const electronicDrums = data.items.filter(
           (drum: any) => drum.fields.category === "Electronic Drums"
         );
 
-        setDrums(acousticDrums);
+        setDrums(electronicDrums);
         setAssets(data.includes.Asset);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -75,10 +74,7 @@ const FetchElectronicDrums = () => {
                   const imageUrl = `https:${asset.fields.file.url}`;
 
                   return (
-                    <Link
-                      key={image.sys.id}
-                      href={`/drums/${drum.sys.id}`}
-                    >
+                    <Link key={image.sys.id} href={`/drums/${drum.sys.id}`}>
                       <img
                         src={imageUrl}
                         width={asset.fields.file.details.image.width}
