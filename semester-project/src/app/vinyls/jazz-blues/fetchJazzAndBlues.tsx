@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-const FetchVinyls = () => {
+const FetchJazzAndBlues = () => {
   const [vinyls, setVinyls] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,7 +20,11 @@ const FetchVinyls = () => {
 
         const data = await response.json();
 
-        setVinyls(data.items);
+        const jazzAndBluesVinyls = data.items.filter(
+          (vinyl: any) => vinyl.fields.category === "Jazz & Blues"
+        );
+
+        setVinyls(jazzAndBluesVinyls);
         setAssets(data.includes.Asset);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -28,10 +32,6 @@ const FetchVinyls = () => {
     };
 
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
   }, []);
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -54,7 +54,7 @@ const FetchVinyls = () => {
 
   return (
     <div>
-      <h1>Popis VIINilii:</h1>
+      <h1>Popis jazz i bluesa:</h1>
       <ul>
         {currentVinyls?.map((vinyl) => (
           <li key={vinyl.sys.id}>
@@ -101,4 +101,4 @@ const FetchVinyls = () => {
   );
 };
 
-export default FetchVinyls;
+export default FetchJazzAndBlues;
