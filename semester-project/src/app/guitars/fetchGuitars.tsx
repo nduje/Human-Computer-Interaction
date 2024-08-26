@@ -11,7 +11,7 @@ const FetchGuitars = () => {
   const [guitars, setGuitars] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3;
+  const itemsPerPage = 5;
 
   useEffect(() => {
     const fetchData = async () => {

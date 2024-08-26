@@ -11,7 +11,7 @@ const FetchKeyboards = () => {
   const [keys, setKeys] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 1;
+  const itemsPerPage = 5;
 
   useEffect(() => {
     const fetchData = async () => {
