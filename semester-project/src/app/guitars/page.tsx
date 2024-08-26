@@ -3,10 +3,15 @@
 import { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import Guitars from "./fetchGuitars";
 import electric_guitars from "../../components/images/products/guitars/electric_guitars.jpg";
-import classical_guitars from "../../components/images/products/guitars/classical_guitars.jpg";
+import acoustic_guitars from "../../components/images/products/guitars/acoustic_guitars.jpg";
 import basses from "../../components/images/products/guitars/basses.jpg";
+
+export const colors: Record<string, string> = {
+  "Electric Guitars": "bg-green-500",
+  "Acoustic Guitars": "bg-blue-500",
+  "Basses": "bg-yellow-500"
+};
 
 export default function GuitarsPage() {
   return (
@@ -37,12 +42,12 @@ export default function GuitarsPage() {
           >
             <Image
               style={{ width: "150px", height: "150px", objectFit: "contain" }}
-              src={classical_guitars}
-              alt="classical_guitars"
+              src={acoustic_guitars}
+              alt="acoustic_guitars"
               className="rounded-md"
             />
             <h1 className="mb-auto mt-6 text-xl font-semibold">
-              Classical Guitars
+              Acoustic Guitars
             </h1>
           </Link>
           <hr className="border-[1.5px] w-full border-base-colors-100"></hr>

@@ -7,6 +7,12 @@ import string_instruments from "../../components/images/products/orchestra/strin
 import wind_instruments from "../../components/images/products/orchestra/wind_instruments.jpg";
 import percussion from "../../components/images/products/orchestra/percussion.jpg";
 
+export const colors: Record<string, string> = {
+  "String Instruments": "bg-green-500",
+  "Wind Instruments": "bg-blue-500",
+  "Percussion": "bg-yellow-500"
+};
+
 export default function OrchestraPage() {
   return (
     <article className="flex font-roboto flex-col text-center align-middle justify-center bg-base-colors-50 h-auto w-auto m-12">

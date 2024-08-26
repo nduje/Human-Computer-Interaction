@@ -9,6 +9,13 @@ import synthesizers from "../../components/images/products/keys/synthesizers.jpg
 import accordions from "../../components/images/products/keys/accordions.jpg";
 import pianos from "../../components/images/products/keys/pianos.jpg";
 
+export const colors: Record<string, string> = {
+  "Keyboards": "bg-green-500",
+  "Synthesizers": "bg-blue-500",
+  "Accordions": "bg-yellow-500",
+  "Pianos": "bg-red-500"
+};
+
 export default function KeysPage() {
   return (
     <article className="flex font-roboto flex-col text-center align-middle justify-center bg-base-colors-50 h-auto w-auto m-12">

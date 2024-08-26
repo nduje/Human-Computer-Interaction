@@ -9,6 +9,13 @@ import electronic_drums from "../../components/images/products/drums/electronic_
 import cymbals from "../../components/images/products/drums/cymbals.jpg";
 import sticks_and_mallets from "../../components/images/products/drums/sticks_and_mallets.jpg";
 
+export const colors: Record<string, string> = {
+  "Electronic Drums": "bg-green-500",
+  "Acoustic Drums": "bg-blue-500",
+  "Cymbals": "bg-yellow-500",
+  "Sticks and Mallets": "bg-red-500"
+};
+
 export default function DrumsPage() {
   return (
     <article className="flex font-roboto flex-col text-center align-middle justify-center bg-base-colors-50 h-auto w-auto m-12">

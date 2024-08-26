@@ -9,6 +9,14 @@ import microphones from "../../components/images/products/equipment/microphones.
 import speakers from "../../components/images/products/equipment/speakers.jpg";
 import pedals from "../../components/images/products/equipment/pedals.jpg";
 
+export const colors: Record<string, string> = {
+  "DJ Equipment": "bg-green-500",
+  "Amplifiers": "bg-blue-500",
+  "Microphones": "bg-yellow-500",
+  "Speakers": "bg-red-500",
+  "Pedals": "bg-purple-500"
+};
+
 export default function EquipmentPage() {
   return (
     <article className="flex font-roboto flex-col text-center align-middle justify-center bg-base-colors-50 h-auto w-auto m-12">

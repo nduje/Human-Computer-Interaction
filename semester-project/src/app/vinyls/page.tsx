@@ -9,6 +9,14 @@ import heavy_metal from "../../components/images/products/vinyls/heavy_metal.jpg
 import jazz_and_blues from "../../components/images/products/vinyls/jazz_and_blues.jpg";
 import hip_hop_and_rap from "../../components/images/products/vinyls/hip_hop_and_rap.jpg";
 
+export const colors: Record<string, string> = {
+  "Rock": "bg-green-500",
+  "Pop": "bg-blue-500",
+  "Heavy Metal": "bg-yellow-500",
+  "Jazz & Blues": "bg-red-500",
+  "Hip Hop & Rap": "bg-purple-500"
+};
+
 export default function VinylsPage() {
   return (
     <article className="flex font-roboto flex-col text-center align-middle justify-center bg-base-colors-50 h-auto w-auto m-12">
