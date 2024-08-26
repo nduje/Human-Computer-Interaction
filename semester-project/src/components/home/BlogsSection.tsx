@@ -72,7 +72,7 @@ const BlogsSection: FC = () => {
                     </div>
                     <div className="flex justify-start text-left items-center align-middle rounded-b-md bg-base-colors-100 h-16 w-full p-4">
                         <h1 className="font-medium">
-                            "Prljavci" announced a concert in Zagreb
+                            <i>"Prljavci"</i> announced a concert in Zagreb
                         </h1>
                     </div>
                 </section>
