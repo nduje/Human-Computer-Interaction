@@ -42,7 +42,7 @@ const BlogsSection: FC = () => {
                     </div>
                     <div className="flex justify-start text-left items-center align-middle rounded-b-md bg-base-colors-100 h-16 w-full p-4">
                         <h1 className="font-medium">
-                            The sixth anniversary of Oliver's death was commemorated
+                            The sixth anniversary of Oliver&apos;s death was commemorated
                         </h1>
                     </div>
                 </section>
@@ -72,7 +72,7 @@ const BlogsSection: FC = () => {
                     </div>
                     <div className="flex justify-start text-left items-center align-middle rounded-b-md bg-base-colors-100 h-16 w-full p-4">
                         <h1 className="font-medium">
-                            <i>"Prljavci"</i> announced a concert in Zagreb
+                            &quot;Prljavci&quot; announced a concert in Zagreb
                         </h1>
                     </div>
                 </section>
