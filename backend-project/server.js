@@ -32,7 +32,7 @@ function authenticateToken(req, res, next) {
   });
 }
 
-setupDatabase();
+// setupDatabase();
 
 app.use(express.json());
 app.use("/api/auth", authRoutes); // Set up the authentication routes

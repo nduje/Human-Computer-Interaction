@@ -1,84 +1,241 @@
 "use client";
 
-import { FC } from "react";
-import Link from "next/link";
+import { FC, useEffect, useState } from "react";
 import Image from "next/image";
-import "../styles/blogs.css"
-import thompson from "../images/blogs/thompson.jpeg"
-import oliver from "../images/blogs/oliver.jpg"
-import prljavo_kazaliste from "../images/blogs/prljavo_kazaliste.jpeg"
-import solin_summer_festival from "../images/blogs/solin_summer_festival.jpg"
+import "../styles/blogs.css";
+
+type Blog = {
+  id: number;
+  title: string;
+  text: string;
+  image: string; // Base64 string
+};
 
 const BlogsSection: FC = () => {
-    return (
-        <article className="flex font-roboto flex-col text-center align-middle justify-center bg-base-colors-50 m-6 md:m-12">
-            <h1 className="font-bold text-xl md:text-3xl text-base-colors-200 m-6 md:m-12">
-                Blogs
-            </h1>
-            <section className="grid grid-rows-1 md:grid-cols-3 gap-7 md:gap-14 m-4 md:m-8 mx-10 md:mx-20">
-                <section className="flex flex-col justify-center align-middle items-center text-sm md:text-base text-base-colors-200 hover:cursor-pointer hover:text-base-colors-300">
-                    <div className="cover-container rounded-t-md w-full h-[150px] md:h-[225px] relative overflow-hidden">
-                        <Image
-                            style={{width: "100%", height: "100%", objectFit: "cover"}}
-                            src={thompson}
-                            alt="thompson"
-                            className="cover rounded-t-md"
-                        />
-                    </div>
-                    <div className="flex justify-start text-left items-center align-middle rounded-b-md bg-base-colors-100 h-12 md:h-16 w-full p-2 md:p-4 overflow-hidden">
-                        <h1 className="font-medium overflow-hidden text-ellipsis break-all md:whitespace-nowrap">
-                            Thompson held a concert in front of 40,000 people
-                        </h1>
-                    </div>
-                </section>
-                <section className="flex flex-col justify-center align-middle items-center text-sm md:text-base text-base-colors-200 hover:cursor-pointer hover:text-base-colors-300">
-                    <div className="cover-container rounded-t-md w-full h-[150px] md:h-[225px] relative overflow-hidden">
-                        <Image
-                            style={{width: "100%", height: "100%", objectFit: "cover"}}
-                            src={oliver}
-                            alt="oliver"
-                            className="cover rounded-t-md"
-                        />
-                    </div>
-                    <div className="flex justify-start text-left items-center align-middle rounded-b-md bg-base-colors-100 h-12 md:h-16 w-full p-2 md:p-4 overflow-hidden">
-                        <h1 className="font-medium overflow-hidden text-ellipsis break-all md:whitespace-nowrap">
-                            The sixth anniversary of Oliver&apos;s death was commemorated
-                        </h1>
-                    </div>
-                </section>
-                <section className="flex flex-col justify-center align-middle items-center text-sm md:text-base text-base-colors-200 hover:cursor-pointer hover:text-base-colors-300">
-                    <div className="cover-container rounded-t-md w-full h-[150px] md:h-[225px] relative overflow-hidden">
-                        <Image
-                            style={{width: "100%", height: "100%", objectFit: "cover"}}
-                            src={solin_summer_festival}
-                            alt="solin_summer_festival"
-                            className="cover rounded-t-md"
-                        />
-                    </div>
-                    <div className="flex justify-start text-left items-center align-middle rounded-b-md bg-base-colors-100 h-12 md:h-16 w-full p-2 md:p-4 overflow-hidden">
-                        <h1 className="font-medium overflow-hidden text-ellipsis break-all md:whitespace-nowrap">
-                            29th Solin Summer Festival: Program Announcement
-                        </h1>
-                    </div>
-                </section>
-                <section className="flex flex-col justify-center align-middle items-center text-sm md:text-base text-base-colors-200 hover:cursor-pointer hover:text-base-colors-300">
-                    <div className="cover-container rounded-t-md w-full h-[150px] md:h-[225px] relative overflow-hidden">
-                        <Image
-                            style={{width: "100%", height: "100%", objectFit: "cover"}}
-                            src={prljavo_kazaliste}
-                            alt="prljavo_kazaliste"
-                            className="cover rounded-t-md"
-                        />
-                    </div>
-                    <div className="flex justify-start text-left items-center align-middle rounded-b-md bg-base-colors-100 h-12 md:h-16 w-full p-2 md:p-4 overflow-hidden">
-                        <h1 className="font-medium overflow-hidden text-ellipsis break-all md:whitespace-nowrap">
-                            &quot;Prljavci&quot; announced a concert in Zagreb
-                        </h1>
-                    </div>
-                </section>
-            </section>
-        </article>
-    );
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const [newBlog, setNewBlog] = useState({ title: "", text: "", image: "" });
+  const [isCreating, setIsCreating] = useState<boolean>(false);
+
+  // Fetch blogs from the server
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      setLoading(true);
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          throw new Error("No token found. Please log in.");
+        }
+
+        const response = await fetch("http://localhost:5000/api/auth/blogs", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch blogs");
+        }
+
+        const data = await response.json();
+        setBlogs(data);
+      } catch (error) {
+        setError((error as Error).message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
+  const handleDelete = async (id: number) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found. Please log in.");
+      }
+
+      const response = await fetch(
+        `http://localhost:5000/api/auth/blogs/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to delete blog");
+      }
+
+      setBlogs(blogs.filter((blog) => blog.id !== id));
+    } catch (error) {
+      setError((error as Error).message);
+    }
+  };
+
+  const handleCreate = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found. Please log in.");
+      }
+
+      const response = await fetch("http://localhost:5000/api/auth/blogs", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newBlog),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create blog");
+      }
+
+      const createdBlog = await response.json();
+      setBlogs([...blogs, createdBlog]); // Add the new blog to the list
+      setIsCreating(false); // Close the create form
+      setNewBlog({ title: "", text: "", image: "" }); // Reset the form fields
+    } catch (error) {
+      setError((error as Error).message);
+    }
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setNewBlog({
+      ...newBlog,
+      [name]: value,
+    });
+  };
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setNewBlog({ ...newBlog, image: reader.result as string });
+      };
+      reader.readAsDataURL(file); // This will convert the image to base64
+    }
+  };
+
+  return (
+    <article className="flex font-roboto flex-col text-center align-middle justify-center bg-base-colors-50 m-6 md:m-12">
+      <h1 className="font-bold text-xl md:text-3xl text-base-colors-200 m-6 md:m-12">
+        Blogs
+      </h1>
+
+      {loading && <p>Loading...</p>}
+      {error && <p className="text-red-500">{error}</p>}
+
+      <button
+        onClick={() => setIsCreating(!isCreating)}
+        className="bg-blue-500 text-white py-2 px-4 rounded-md mb-4"
+      >
+        {isCreating ? "Cancel" : "Create New Blog"}
+      </button>
+
+      {isCreating && (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleCreate();
+          }}
+          className="bg-white p-6 rounded-md shadow-md w-full mb-4"
+        >
+          <div className="mb-4">
+            <label htmlFor="title" className="block text-gray-700">
+              Title
+            </label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              value={newBlog.title}
+              onChange={handleInputChange}
+              required
+              className="w-full px-3 py-2 border border-gray-300 rounded-md mt-1"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="text" className="block text-gray-700">
+              Text
+            </label>
+            <textarea
+              id="text"
+              name="text"
+              value={newBlog.text}
+              onChange={handleInputChange}
+              required
+              className="w-full px-3 py-2 border border-gray-300 rounded-md mt-1"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="image" className="block text-gray-700">
+              Image
+            </label>
+            <input
+              type="file"
+              id="image"
+              accept="image/*"
+              onChange={handleImageUpload}
+              required
+              className="w-full px-3 py-2 border border-gray-300 rounded-md mt-1"
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
+          >
+            Create Blog
+          </button>
+        </form>
+      )}
+
+      <section className="grid grid-rows-1 md:grid-cols-3 gap-7 md:gap-14 m-4 md:m-8 mx-10 md:mx-20">
+        {blogs.map((blog) => (
+          <section
+            key={blog.id}
+            className="flex flex-col justify-center align-middle items-center text-sm md:text-base text-base-colors-200 hover:cursor-pointer hover:text-base-colors-300"
+          >
+            <div className="cover-container rounded-t-md w-full h-[150px] md:h-[225px] relative overflow-hidden">
+              <Image
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                src={blog.image} // Assuming the image is stored in base64 format
+                alt={blog.title}
+                className="cover rounded-t-md"
+                width={300}
+                height={200}
+              />
+            </div>
+            <div className="flex justify-start text-left items-center align-middle rounded-b-md bg-base-colors-100 h-12 md:h-16 w-full p-2 md:p-4 overflow-hidden">
+              <h1 className="font-medium overflow-hidden text-ellipsis break-all md:whitespace-nowrap">
+                {blog.title}
+              </h1>
+            </div>
+            <button
+              onClick={() => handleDelete(blog.id)}
+              className="text-red-500 mt-2"
+            >
+              Delete
+            </button>
+          </section>
+        ))}
+      </section>
+    </article>
+  );
 };
 
 export default BlogsSection;
