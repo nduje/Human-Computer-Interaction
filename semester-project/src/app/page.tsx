@@ -8,7 +8,7 @@ import BlogsSection from "../components/home/BlogsSection";
 export default function Home() {
   return (
     <div className="w-full m-0 p-0 overflow-x-hidden">
-      {/* <LoginForm />*/}
+      <LoginForm />
       <HeroSection />
       <CategoriesSection />
       <FeaturedSection />
