@@ -1,20 +1,11 @@
 "use client";
 
-import { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import FetchDrums from "./fetchDrums";
 import acoustic_drums from "../../components/images/products/drums/acoustic_drums.jpg";
 import electronic_drums from "../../components/images/products/drums/electronic_drums.jpg";
 import cymbals from "../../components/images/products/drums/cymbals.jpg";
 import sticks_and_mallets from "../../components/images/products/drums/sticks_and_mallets.jpg";
-
-export const colors: Record<string, string> = {
-  "Electronic Drums": "bg-green-500",
-  "Acoustic Drums": "bg-blue-500",
-  "Cymbals": "bg-yellow-500",
-  "Sticks and Mallets": "bg-red-500"
-};
 
 export default function DrumsPage() {
   return (

@@ -1,17 +1,10 @@
 "use client";
 
-import { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import string_instruments from "../../components/images/products/orchestra/string_instruments.jpg";
 import wind_instruments from "../../components/images/products/orchestra/wind_instruments.jpg";
 import percussion from "../../components/images/products/orchestra/percussion.jpg";
-
-export const colors: Record<string, string> = {
-  "String Instruments": "bg-green-500",
-  "Wind Instruments": "bg-blue-500",
-  "Percussion": "bg-yellow-500"
-};
 
 export default function OrchestraPage() {
   return (

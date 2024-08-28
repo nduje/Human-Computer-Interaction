@@ -2,8 +2,10 @@
 
 import { FC, useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import "../styles/products.css"
 import "../styles/scrollbar.css"
+import error from "../images/error/error.png"
 
 const FeaturedSection: FC = () => {
   const [featuredItems, setFeaturedItems] = useState<any[]>([]);
@@ -65,11 +67,13 @@ const FeaturedSection: FC = () => {
             <li key={item.sys.id} className="flex flex-col bg-base-colors-100 w-1/2 md:w-1/6 rounded-md flex-shrink-0 snap-center snap-always mx-[25vw] md:mx-2">
                 <Link href={`/${item.sys.contentType.sys.id}/${item.sys.id}`} className="product flex flex-col justify-center items-left text-left align-middle rounded-md m-auto">
                     {item.fields.images && item.fields.images.length > 0 && (
-                      <img
-                          src={getImageUrl(item.fields.images[0].sys.id)}
+                      <Image
+                          src={getImageUrl(item.fields.images[0].sys.id) || error}
                           alt={item.fields.name}
-                          style={{width: "100%", height: "100%", objectFit: "contain"}}
-                          className="m-0 p-0 border-x-8 border-t-8 rounded-t-md border-base-colors-100"
+                          width={512}
+                          height={512}
+                          style={{objectFit: "contain"}}
+                          className="w-full h-full m-0 p-0 border-x-8 border-t-8 rounded-t-md border-base-colors-100"
                       />
                     )}
                     <h2 className="name font-medium text-sm md:text-lg mx-2 mt-1 md:mt-2 h-[60px] md:h-[55px] overflow-hidden text-ellipsis">{item.fields.name}</h2>

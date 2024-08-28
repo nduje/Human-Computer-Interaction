@@ -3,9 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { cn } from "../../../../lib/utils"
+import { cn, colors } from "../../../../lib/utils"
 import "../../../components/styles/products.css"
-import { colors } from "../page";
 
 const FetchElectricGuitars = () => {
   const [guitars, setGuitars] = useState<any[]>([]);

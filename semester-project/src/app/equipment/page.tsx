@@ -1,6 +1,5 @@
 "use client";
 
-import { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import dj_equipment from "../../components/images/products/equipment/dj_equipment.jpg";
@@ -8,14 +7,6 @@ import amplifiers from "../../components/images/products/equipment/amplifiers.jp
 import microphones from "../../components/images/products/equipment/microphones.jpg";
 import speakers from "../../components/images/products/equipment/speakers.jpg";
 import pedals from "../../components/images/products/equipment/pedals.jpg";
-
-export const colors: Record<string, string> = {
-  "DJ Equipment": "bg-green-500",
-  "Amplifiers": "bg-blue-500",
-  "Microphones": "bg-yellow-500",
-  "Speakers": "bg-red-500",
-  "Pedals": "bg-purple-500"
-};
 
 export default function EquipmentPage() {
   return (
