@@ -1,17 +1,10 @@
 "use client";
 
-import { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import electric_guitars from "../../components/images/products/guitars/electric_guitars.jpg";
 import acoustic_guitars from "../../components/images/products/guitars/acoustic_guitars.jpg";
 import basses from "../../components/images/products/guitars/basses.jpg";
-
-export const colors: Record<string, string> = {
-  "Electric Guitars": "bg-green-500",
-  "Acoustic Guitars": "bg-blue-500",
-  "Basses": "bg-yellow-500"
-};
 
 export default function GuitarsPage() {
   return (

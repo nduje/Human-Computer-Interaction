@@ -1,19 +1,11 @@
 "use client";
 
-import { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import keyboards from "../../components/images/products/keys/keyboards.jpg";
 import synthesizers from "../../components/images/products/keys/synthesizers.jpg";
 import accordions from "../../components/images/products/keys/accordions.jpg";
 import pianos from "../../components/images/products/keys/pianos.jpg";
-
-export const colors: Record<string, string> = {
-  "Keyboards": "bg-green-500",
-  "Synthesizers": "bg-blue-500",
-  "Accordions": "bg-yellow-500",
-  "Pianos": "bg-red-500"
-};
 
 export default function KeysPage() {
   return (
