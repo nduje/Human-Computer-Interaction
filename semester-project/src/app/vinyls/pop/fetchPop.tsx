@@ -39,6 +39,10 @@ const FetchPop = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentVinyls = vinyls.slice(indexOfFirstItem, indexOfLastItem);
@@ -58,12 +62,12 @@ const FetchPop = () => {
   };
 
   return (
-    <section className="flex flex-col justify-center items-center text-center m-0">
-      <ul className="flex flex-col items-center mx-auto my-12">
+    <section className="flex flex-col justify-center items-center align-middle text-center m-0">
+      <ul className="flex flex-col justify-center items-center align-middle mx-0 md:mx-auto my-6 md:my-12">
         {currentVinyls?.map((vinyl) => (
           <Link key={vinyl.sys.id} href={`/vinyls/${vinyl.sys.id}`}>
-            <li className="product grid grid-cols-[3fr_1fr] justify-around items-start bg-base-colors-100 rounded-md w-[1024px] m-6">
-              <div className="flex flex-row">
+            <li className="product grid grid-rows-[auto,auto] md:grid-cols-[3fr_1fr] justify-around items-start bg-base-colors-100 rounded-md w-[90vw] md:w-[1024px] mx-auto my-3 md:m-6">
+              <div className="flex flex-row col-span-2 md:col-auto">
                 {vinyl.fields.images.length > 0 && (
                   <>
                     {(() => {
@@ -80,22 +84,22 @@ const FetchPop = () => {
                           key={image.sys.id}
                           src={imageUrl}
                           alt={vinyl.fields.name}
-                          width={200}
-                          height={200}
+                          width={256}
+                          height={256}
                           style={{ objectFit: "cover" }}
-                          className="rounded-md m-4 mr-0"
+                          className="w-[100px] md:w-[200px] h-[100px] md:h-[200px] rounded-md m-2 md:m-4 mr-2 md:mr-0"
                         />
                       );
                     })()}
                   </>
                 )}
-                <div className="flex flex-col justify-start text-left font-roboto m-4">
-                  <p className="name text-left font-medium text-xl">{vinyl.fields.name}</p>
-                  <p className="font-bold text-3xl">{vinyl.fields.price}€</p>
+                <div className="flex flex-col justify-start text-left font-roboto m-2 md:m-4 col-span-2 md:col-auto">
+                  <p className="name text-left font-medium text-xs md:text-xl">{vinyl.fields.name}</p>
+                  <p className="font-bold text-base md:text-3xl">{vinyl.fields.price}€</p>
                 </div>
               </div>
-              <div className="inline-flex flex-col ml-auto mr-4 my-4 justify-between">
-                <p className={cn(colors[vinyl.fields.category], "flex h-full items-center justify-center px-4 py-1 font-normal text-md rounded-tl-3xl rounded-br-3xl")}>
+              <div className="flex md:inline-flex flex-col w-auto md:w-auto m-2 md:ml-auto md:mr-4 md:my-4 justify-between col-span-4 md:col-auto">
+                <p className={cn(colors[vinyl.fields.category], "flex h-full items-center justify-center px-4 py-1 font-medium md:font-normal text-xs md:text-md rounded-3xl md:rounded-bl-none md:rounded-tr-none md:rounded-tl-3xl md:rounded-br-3xl")}>
                   {vinyl.fields.category}
                 </p>
               </div>
@@ -103,7 +107,7 @@ const FetchPop = () => {
           </Link>
         ))}
       </ul>
-      <div className="flex flex-row justify-evenly items-center w-full font-roboto font-medium text-xl mx-auto mt-2">
+      <div className="flex flex-row justify-around md:justify-evenly items-center w-full font-roboto font-medium text-xs md:text-xl mx-0 md:mx-auto mt-1 md:mt-2">
         {currentPage > 1 && (
           <button onClick={handlePreviousPage} className="inline-block text-base-colors-50 bg-base-colors-200 hover:bg-base-colors-300 rounded-tl-3xl rounded-br-3xl hover:cursor-pointer px-4 py-2">
             Previous Page

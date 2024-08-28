@@ -3,7 +3,7 @@ import HeroSection from "../components/home/HeroSection";
 import CategoriesSection from "../components/home/CategoriesSection";
 import FeaturedSection from "../components/home/FeaturedSection";
 import ReviewSection from "../components/home/ReviewSection";
-import BlogsSection from "../components/home/blogs/BlogsSection";
+import BlogsSection from "../components/home/BlogsSection";
 
 export default function Home() {
   return (
