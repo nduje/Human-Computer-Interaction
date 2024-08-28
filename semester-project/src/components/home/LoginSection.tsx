@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 
 const LoginForm: FC = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +11,13 @@ const LoginForm: FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
   const [isLoginMode, setIsLoginMode] = useState<boolean>(true); // Toggle between login and signup
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+  useEffect(() => {
+    // Check if user is logged in by checking for token in localStorage
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -29,12 +36,6 @@ const LoginForm: FC = () => {
       ? "http://localhost:5000/api/auth/login"
       : "http://localhost:5000/api/auth/register"; // Switch URL based on mode
 
-    console.log(
-      JSON.stringify({
-        username: formData.username,
-        password: formData.password,
-      })
-    );
     try {
       const response = await fetch(url, {
         method: "POST",
@@ -59,7 +60,10 @@ const LoginForm: FC = () => {
 
       if (isLoginMode) {
         if (data.token) {
+          // Save token and username in localStorage
           localStorage.setItem("token", data.token);
+          localStorage.setItem("username", data.username);
+          setIsLoggedIn(true);
           setSuccess(true);
         } else {
           throw new Error("Login failed. No token received.");
@@ -74,11 +78,18 @@ const LoginForm: FC = () => {
     }
   };
 
+  const handleLogout = () => {
+    // Clear token and username from localStorage
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    setIsLoggedIn(false);
+  };
+
   return (
     <section className="flex justify-center items-center h-screen">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-md shadow-md w-80"
+        className="bg-white p-6 rounded-md shadow-md w-80 flex flex-col"
       >
         <h1 className="text-2xl font-bold mb-4 text-center">
           {isLoginMode ? "Login" : "Sign Up"}
@@ -134,6 +145,16 @@ const LoginForm: FC = () => {
             {isLoginMode ? "Sign up" : "Login"}
           </span>
         </p>
+        {/* Conditionally render logout button if logged in */}
+        {isLoggedIn && (
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 mt-4"
+          >
+            Logout
+          </button>
+        )}
       </form>
     </section>
   );
