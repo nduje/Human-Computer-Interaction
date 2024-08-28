@@ -63,7 +63,7 @@ const FeaturedSection: FC = () => {
         <ul className="scrollbar flex flex-row justify-evenly text-left items-start align-middle p-4 md:p-0 md:my-8 overflow-x-auto snap-x snap-mandatory">
             {featuredItems.map((item) => (
             <li key={item.sys.id} className="flex flex-col bg-base-colors-100 w-1/2 md:w-1/6 rounded-md flex-shrink-0 snap-center snap-always mx-[25vw] md:mx-2">
-                <Link href={`/${item.sys.contentType.sys.id}/${item.sys.id}`} className="product flex flex-col justify-center items-left text-left align-middle">
+                <Link href={`/${item.sys.contentType.sys.id}/${item.sys.id}`} className="product flex flex-col justify-center items-left text-left align-middle rounded-md m-auto">
                     {item.fields.images && item.fields.images.length > 0 && (
                       <img
                           src={getImageUrl(item.fields.images[0].sys.id)}
