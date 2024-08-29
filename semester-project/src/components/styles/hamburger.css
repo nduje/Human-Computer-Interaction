@@ -4,6 +4,7 @@
     width: 100%;
     max-width: 75vw;
     max-height: 100vh;
+    min-height: 100vh;
     position: fixed;
     top: 0;
     right: -75vw;
@@ -14,12 +15,12 @@
     text-align: center;
     font-size: 3rem;
     transition: .3s ease;
-    overflow-y: auto;
 }
 
 
 .off-screen-menu.active {
     right: 0;
+    overflow-y: auto;
 }
 
 .hamburger-menu span {
