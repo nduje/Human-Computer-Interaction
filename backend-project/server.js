@@ -1,20 +1,22 @@
 const express = require("express");
-const cors = require("cors");  // Include CORS package
+const cors = require("cors"); // Include CORS package
 const jwt = require("jsonwebtoken");
 const authRoutes = require("./authRoutes");
-const { setupDatabase } = require("./db");  // Ensure this path matches the location of your db.js file
+const { setupDatabase } = require("./db"); // Ensure this path matches the location of your db.js file
 
 const app = express();
 
 // Configure CORS
 // This configuration allows all origins by default
 // Modify the CORS configuration based on your security policies
-app.use(cors({
-    origin: '*', // Allows all domains
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true // Allows cookies and credentials to be sent along with requests
-}));
+app.use(
+  cors({
+    origin: "*", // Allows all domains
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed HTTP methods
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true, // Allows cookies and credentials to be sent along with requests
+  })
+);
 
 app.get("/protected", authenticateToken, (req, res) => {
   res.json({ message: `Hello ${req.user.username}` });
@@ -34,7 +36,7 @@ function authenticateToken(req, res, next) {
 
 // setupDatabase();
 
-app.use(express.json());
+app.use(express.json({ limit: "10mb" })); // Adjust the size as needed
 app.use("/api/auth", authRoutes); // Set up the authentication routes
 
 const PORT = process.env.PORT || 5000;

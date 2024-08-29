@@ -49,7 +49,7 @@ router.post("/login", async (req, res) => {
   // Fetch the user from the Supabase database
   const { data: users, error } = await supabase
     .from("users")
-    .select("*")
+    .select("id, username, password")
     .eq("username", username)
     .single();
 
@@ -71,7 +71,12 @@ router.post("/login", async (req, res) => {
 
   // Create a JWT token
   const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: "1h" });
-  res.json({ message: "User logged in", token });
+  res.json({
+    message: "User logged in",
+    token,
+    username: user.username,
+    id: user.id,
+  });
 });
 
 // Create a new blog post
@@ -87,39 +92,86 @@ router.post("/blogs", authenticateToken, async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 
-  res.status(201).json({ message: "Blog post created"});
+  res.status(201).json({ message: "Blog post created" });
 });
 
 // Get all blog posts
 router.get("/blogs", async (req, res) => {
-  const { data, error } = await supabase.from("blogs").select("*");
+  try {
+    // Fetch blog posts
+    const { data: blogs, error: blogError } = await supabase
+      .from("blogs")
+      .select("*");
 
-  if (error) {
-    return res.status(500).json({ error: error.message });
+    if (blogError) {
+      throw new Error(blogError.message);
+    }
+
+    // Fetch usernames based on user_id in the blogs
+    const { data: users, error: userError } = await supabase
+      .from("users")
+      .select("id, username");
+
+    if (userError) {
+      throw new Error(userError.message);
+    }
+
+    // Create a map of user_id to username
+    const userMap = new Map(users.map((user) => [user.id, user.username]));
+
+    // Combine blogs with usernames
+    const blogsWithUsernames = blogs.map((blog) => ({
+      ...blog,
+      username: userMap.get(blog.user_id) || "Unknown",
+    }));
+
+    res.status(200).json(blogsWithUsernames);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
-
-  res.status(200).json(data);
 });
 
 // Get a single blog post by ID
 router.get("/blogs/:id", async (req, res) => {
   const { id } = req.params;
 
-  const { data, error } = await supabase
-    .from("blogs")
-    .select("*")
-    .eq("id", id)
-    .single();
+  try {
+    // Fetch the blog post
+    const { data: blog, error: blogError } = await supabase
+      .from("blogs")
+      .select("*")
+      .eq("id", id)
+      .single();
 
-  if (error) {
-    return res.status(500).json({ error: error.message });
-  }
+    if (blogError) {
+      throw new Error(blogError.message);
+    }
 
-  if (!data) {
-    return res.status(404).json({ message: "Blog post not found" });
+    if (!blog) {
+      return res.status(404).json({ message: "Blog post not found" });
+    }
+
+    // Fetch the username of the blog's author
+    const { data: user, error: userError } = await supabase
+      .from("users")
+      .select("username")
+      .eq("id", blog.user_id)
+      .single();
+
+    if (userError) {
+      throw new Error(userError.message);
+    }
+
+    // Combine blog data with username
+    const blogWithUsername = {
+      ...blog,
+      username: user?.username || "Unknown",
+    };
+
+    res.status(200).json(blogWithUsername);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
-  
-  res.status(200).json(data);
 });
 
 // Update a blog post
@@ -153,7 +205,7 @@ router.put("/blogs/:id", authenticateToken, async (req, res) => {
     return res.status(500).json({ error: error.message });
   }
 
-  res.status(200).json({ message: "Blog post updated", blog: data[0] });
+  res.status(200).json({ message: "Blog post updated" });
 });
 
 // Delete a blog post

@@ -3,7 +3,7 @@
 import { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import "../../styles/blogs.css";
+import "../../../components/styles/blogs.css";
 
 type Blog = {
   id: number;
@@ -12,26 +12,21 @@ type Blog = {
   image: string; // Base64 string
 };
 
-const BlogsSection: FC = () => {
+const AllBlogsPage: FC = () => {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [newBlog, setNewBlog] = useState({ title: "", text: "", image: "" });
   const [isCreating, setIsCreating] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchBlogs = async () => {
       setLoading(true);
       try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          throw new Error("No token found. Please log in.");
-        }
-
         const response = await fetch("http://localhost:5000/api/auth/blogs", {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         });
@@ -50,35 +45,11 @@ const BlogsSection: FC = () => {
     };
 
     fetchBlogs();
+
+    // Check if user is logged in by checking for token in localStorage
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
   }, []);
-
-  const handleDelete = async (id: number) => {
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        throw new Error("No token found. Please log in.");
-      }
-
-      const response = await fetch(
-        `http://localhost:5000/api/auth/blogs/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to delete blog");
-      }
-
-      setBlogs(blogs.filter((blog) => blog.id !== id));
-    } catch (error) {
-      setError((error as Error).message);
-    }
-  };
 
   const handleCreate = async () => {
     try {
@@ -133,74 +104,78 @@ const BlogsSection: FC = () => {
   return (
     <article className="flex font-roboto flex-col text-center align-middle justify-center bg-base-colors-50 m-6 md:m-12">
       <h1 className="font-bold text-xl md:text-3xl text-base-colors-200 m-6 md:m-12">
-        Blogs
+        All Blogs
       </h1>
 
       {loading && <p>Loading...</p>}
       {error && <p className="text-red-500">{error}</p>}
 
-      <button
-        onClick={() => setIsCreating(!isCreating)}
-        className="bg-blue-500 text-white py-2 px-4 rounded-md mb-4"
-      >
-        {isCreating ? "Cancel" : "Create New Blog"}
-      </button>
-
-      {isCreating && (
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleCreate();
-          }}
-          className="bg-white p-6 rounded-md shadow-md w-full mb-4"
-        >
-          <div className="mb-4">
-            <label htmlFor="title" className="block text-gray-700">
-              Title
-            </label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              value={newBlog.title}
-              onChange={handleInputChange}
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md mt-1"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="text" className="block text-gray-700">
-              Text
-            </label>
-            <textarea
-              id="text"
-              name="text"
-              value={newBlog.text}
-              onChange={handleInputChange}
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md mt-1"
-            />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="image" className="block text-gray-700">
-              Image
-            </label>
-            <input
-              type="file"
-              id="image"
-              accept="image/*"
-              onChange={handleImageUpload}
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md mt-1"
-            />
-          </div>
+      {isLoggedIn && (
+        <>
           <button
-            type="submit"
-            className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
+            onClick={() => setIsCreating(!isCreating)}
+            className="bg-blue-500 text-white py-2 px-4 rounded-md mb-4"
           >
-            Create Blog
+            {isCreating ? "Cancel" : "Create New Blog"}
           </button>
-        </form>
+
+          {isCreating && (
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleCreate();
+              }}
+              className="bg-white p-6 rounded-md shadow-md w-full mb-4"
+            >
+              <div className="mb-4">
+                <label htmlFor="title" className="block text-gray-700">
+                  Title
+                </label>
+                <input
+                  type="text"
+                  id="title"
+                  name="title"
+                  value={newBlog.title}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md mt-1"
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="text" className="block text-gray-700">
+                  Text
+                </label>
+                <textarea
+                  id="text"
+                  name="text"
+                  value={newBlog.text}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md mt-1"
+                />
+              </div>
+              <div className="mb-4">
+                <label htmlFor="image" className="block text-gray-700">
+                  Image
+                </label>
+                <input
+                  type="file"
+                  id="image"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  required
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md mt-1"
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
+              >
+                Create Blog
+              </button>
+            </form>
+          )}
+        </>
       )}
 
       <section className="grid grid-rows-1 md:grid-cols-3 gap-7 md:gap-14 m-4 md:m-8 mx-10 md:mx-20">
@@ -230,4 +205,4 @@ const BlogsSection: FC = () => {
   );
 };
 
-export default BlogsSection;
+export default AllBlogsPage;
