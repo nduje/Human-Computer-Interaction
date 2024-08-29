@@ -29,7 +29,7 @@ const Footer: FC<FooterProps> = ({ pages }) => {
             </h1>
           </Link>
           <h2 className="font-roboto text-sm md:text-lg md:w-3/4 font-thin text-base-colors-100">
-            Explore a world of instruments, gear, and resources for musicians of all levels.
+            Unlock your musical journey and explore a world of instruments, gear, and resources for musicians of all levels.
           </h2>
         </article>
         <hr className="md:hidden my-8 rounded-full border-base-colors-100 border-[1px] w-full max-w-full"></hr>
