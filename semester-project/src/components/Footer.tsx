@@ -52,7 +52,7 @@ const Footer: FC<FooterProps> = ({ pages }) => {
             ))}
           </ul>
         </article>
-        <hr className="md:hidden my-8 rounded-full border-base-100 border-[1px] w-full max-w-full"></hr>
+        <hr className="md:hidden my-8 rounded-full border-base-colors-100 border-[1px] w-full max-w-full"></hr>
         <article className="flex flex-col justify-center text-center md:text-right align-center p-0">
           <h1 className="whitespace-nowrap font-roboto font-normal text-xl md:text-3xl text-base-colors-50 pb-1 md:pb-3">
             Contact Us
