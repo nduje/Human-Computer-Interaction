@@ -19,7 +19,7 @@ const Footer: FC<FooterProps> = ({ pages }) => {
         <article className="flex flex-col justify-center items-center md:items-start text-center md:text-left align-middle">
           <Link
             href="/"
-            className="flex flex-row justify-center md:justify-start items-center md:items-start text-center md:text-left align-middle text-2xl md:text-4xl py-1 px-2 my-1 rounded-tl-3xl rounded-br-3xl hover:cursor-pointer hover:bg-base-colors-400/25"
+            className="flex flex-row justify-center md:justify-start items-center md:items-start text-center md:text-left align-middle text-2xl md:text-4xl py-1 px-2 my-1 rounded-tl-3xl rounded-br-3xl hover:cursor-pointer active:bg-base-colors-400/30 md:hover:bg-base-colors-400/25"
           >
             <h1 className="font-roboto text-base-colors-300 font-bold my-1 md:my-2">
               G
@@ -44,7 +44,7 @@ const Footer: FC<FooterProps> = ({ pages }) => {
             {Object.entries(pages).map(([name, path]) => (
               <li key={name}>
                 <Link href={path}>
-                  <span className="font-roboto font-light hover:font-normal text-base md:text-xl text-base-colors-50 hover:bg-base-colors-300 rounded-tl-3xl rounded-br-3xl px-4">
+                  <span className="font-roboto font-light hover:font-normal text-base md:text-xl text-base-colors-50 active:bg-base-colors-300 md:hover:bg-base-colors-300 rounded-tl-3xl rounded-br-3xl px-4">
                     {name}
                   </span>
                 </Link>

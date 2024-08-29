@@ -65,7 +65,7 @@ const FetchStringInstruments = () => {
   };
 
   return (
-<section className="flex flex-col justify-center items-center align-middle text-center m-0">
+<section className="flex flex-col justify-center items-center align-middle text-center text-base-colors-200 m-0">
       <ul className="flex flex-col justify-center items-center align-middle mx-0 md:mx-auto my-6 md:my-12">
         {currentInstruments?.map((instrument) => (
           <Link key={instrument.sys.id} href={`/orchestra/${instrument.sys.id}`}>
@@ -112,12 +112,12 @@ const FetchStringInstruments = () => {
       </ul>
       <div className="flex flex-row justify-around md:justify-evenly items-center w-full font-roboto font-medium text-xs md:text-xl mx-0 md:mx-auto mt-1 md:mt-2">
         {currentPage > 1 && (
-          <button onClick={handlePreviousPage} className="inline-block text-base-colors-50 bg-base-colors-200 hover:bg-base-colors-300 rounded-tl-3xl rounded-br-3xl hover:cursor-pointer px-4 py-2">
+          <button onClick={handlePreviousPage} className="inline-block text-base-colors-50 bg-base-colors-200 active:bg-base-colors-300 md:hover:bg-base-colors-300 rounded-tl-3xl rounded-br-3xl hover:cursor-pointer px-4 py-2">
             Previous Page
           </button>
         )}
         {indexOfLastItem < instruments.length && (
-          <button onClick={handleNextPage} className="inline-block text-base-colors-50 bg-base-colors-200 hover:bg-base-colors-300 rounded-tl-3xl rounded-br-3xl hover:cursor-pointer px-4 py-2">
+          <button onClick={handleNextPage} className="inline-block text-base-colors-50 bg-base-colors-200 active:bg-base-colors-300 md:hover:bg-base-colors-300 rounded-tl-3xl rounded-br-3xl hover:cursor-pointer px-4 py-2">
             Next Page
           </button>
         )}

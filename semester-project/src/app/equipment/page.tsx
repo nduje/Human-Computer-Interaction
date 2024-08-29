@@ -101,7 +101,7 @@ export default function EquipmentPage() {
           <hr className="border-[1px] md:border-[1.5px] m-auto w-3/4 md:w-full border-base-colors-100"></hr>
         </div>
       </section>
-      <Link href="/equipment/all-equipment" className="inline-block justify-center items-center text-center align-middle text-base-colors-50 bg-base-colors-200 hover:bg-base-colors-300 rounded-tl-3xl rounded-br-3xl hover:cursor-pointer px-4 py-2 mx-auto mt-6 md:mt-12">
+      <Link href="/equipment/all-equipment" className="inline-block justify-center items-center text-center align-middle text-base-colors-50 bg-base-colors-200 active:bg-base-colors-300 md:hover:bg-base-colors-300 rounded-tl-3xl rounded-br-3xl hover:cursor-pointer px-4 py-2 mx-auto mt-6 md:mt-12">
         <h3 className="font-roboto font-medium text-xs md:text-xl">
           Display all products
         </h3>

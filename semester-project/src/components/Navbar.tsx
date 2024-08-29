@@ -11,10 +11,10 @@
   }
 
   const baseClass =
-    "whitespace-nowrap font-roboto font-normal text-2xl px-2 py-1 m-1 text-base-colors-100";
+    "whitespace-nowrap font-roboto font-normal text-2xl px-2 py-1 m-1 text-base-colors-50";
 
   const baseClassPhone = 
-    "whitespace-nowrap font-roboto font-normal text-lg p-0 text-base-colors-100"
+    "whitespace-nowrap font-roboto font-normal text-lg p-0 text-base-colors-50"
 
   const Navbar: FC<NavbarProps> = ({ pages }) => {
     const pathName = usePathname();
@@ -84,7 +84,7 @@
           <nav className="flex items-center align-middle justify-evenly mx-auto my-0 bg-base-colors-200 w-full h-14">
             <ul className="flex items-center justify-evenly align-middle m-auto w-full h-full p-2">
               {Object.entries(pages).map(([name, path]) => (
-                <li key={name} className="flex h-full items-center justify-center align-middle px-2 rounded-tl-3xl rounded-br-3xl hover:bg-base-colors-300">
+                <li key={name} className="flex h-full items-center justify-center align-middle px-2 rounded-tl-3xl rounded-br-3xl active:bg-base-colors-300 hover:bg-base-colors-300">
                   <Link href={path} className="rounded-tl-3xl rounded-br-3xl">
                     <span className={cn(baseClass, {"pointer-events-none": path === pathName})}>
                       {name}
@@ -105,7 +105,7 @@
           <hr className="mt-16 rounded-full border-base-colors-100/25 border-[1px] w-full max-w-full"></hr>
           <ul className="flex flex-col items-center justify-evenly align-middle m-auto p-auto w-full h-full gap-2">
             {Object.entries(pages).map(([name, path]) => (
-              <li key={name} className="inline-flex leading-none items-center justify-center align-middle px-4 rounded-tl-3xl rounded-br-3xl hover:bg-base-colors-300">
+              <li key={name} className="inline-flex leading-none items-center justify-center align-middle px-4 rounded-tl-3xl rounded-br-3xl active:bg-base-colors-300">
                 <Link href={path} className="flex m-0 p-0 rounded-tl-3xl rounded-br-3xl">
                   <span className={cn(baseClassPhone, {"pointer-events-none": path === pathName})}>
                     {name}
