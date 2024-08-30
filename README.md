@@ -1,6 +1,6 @@
 ﻿# Semester Project: Music Shop
 
-## Music Shop:
+## GString | Music Shop:
 
 [GString on Vercel](https://gstring.vercel.app/)
 
