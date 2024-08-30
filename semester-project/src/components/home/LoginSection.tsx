@@ -83,77 +83,110 @@ const LoginForm: FC = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
     setIsLoggedIn(false);
+
+    // Clear form fields and status messages
+    setFormData({ username: "", password: "" });
+    setError(null);
+    setSuccess(false);
+  };
+
+  const getUsername = () => {
+    // Retrieve the username from localStorage
+    const username = localStorage.getItem("username");
+
+    // Return the username, or null if it doesn't exist
+    return username ? username : null;
+  };
+
+  useEffect(() => {
+    // Clear error and success messages when form data changes
+    setError(null);
+    setSuccess(false);
+  }, [formData]);
+
+  const toggleMode = () => {
+    setIsLoginMode(!isLoginMode);
+    // Clear form fields and status messages when switching modes
+    setFormData({ username: "", password: "" });
+    setError(null);
+    setSuccess(false);
   };
 
   return (
-    <section className="flex justify-center items-center h-screen">
+    <section className="flex justify-center items-center h-screen text-base-colors-200 font-roboto">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 rounded-md shadow-md w-80 flex flex-col"
+        className="bg-base-colors-50 p-6 rounded-md shadow-md w-80 flex flex-col"
       >
-        <h1 className="text-2xl font-bold mb-4 text-center">
-          {isLoginMode ? "Login" : "Sign Up"}
-        </h1>
-        {error && <p className="text-red-500 mb-4">{error}</p>}
-        {success && (
-          <p className="text-green-500 mb-4">
-            {isLoginMode
-              ? "Login successful!"
-              : "Registration successful! Please log in."}
-          </p>
-        )}
-        <div className="mb-4">
-          <label htmlFor="username" className="block text-gray-700">
-            Username
-          </label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md mt-1"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="password" className="block text-gray-700">
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-            className="w-full px-3 py-2 border border-gray-300 rounded-md mt-1"
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
-        >
-          {isLoginMode ? "Login" : "Sign Up"}
-        </button>
-        <p className="text-center mt-4">
-          {isLoginMode ? "Don't have an account?" : "Already have an account?"}{" "}
-          <span
-            onClick={() => setIsLoginMode(!isLoginMode)}
-            className="text-blue-500 cursor-pointer"
-          >
-            {isLoginMode ? "Sign up" : "Login"}
-          </span>
-        </p>
-        {/* Conditionally render logout button if logged in */}
-        {isLoggedIn && (
-          <button
-            type="button"
-            onClick={handleLogout}
-            className="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 mt-4"
-          >
-            Logout
-          </button>
+        {!isLoggedIn ? (
+          <>
+            <h1 className="text-2xl font-bold mb-4 text-center">
+              {isLoginMode ? "Login" : "Sign Up"}
+            </h1>
+            {error && <p className="text-base-colors-300 mb-4">{error}</p>}
+            {success && (
+              <p className="text-base-colors-400 mb-4">
+                {isLoginMode
+                  ? "Login successful!"
+                  : "Registration successful! Please log in."}
+              </p>
+            )}
+            <div className="mb-4">
+              <label htmlFor="username" className="block">
+                Username
+              </label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                required
+                className="w-full px-3 py-2 border border-base-colors-100 rounded-md mt-1"
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="password" className="block">
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                className="w-full px-3 py-2 border border-base-colors-100 rounded-md mt-1"
+              />
+            </div>
+            <button
+              type="submit"
+              className="flex justify-center items-center align-middle text-enter text-lg font-medium text-base-colors-50 m-auto w-36 px-1 py-2 border-0 rounded-tl-3xl rounded-br-3xl bg-base-colors-200 hover:bg-base-colors-300"
+            >
+              {isLoginMode ? "Login" : "Sign Up"}
+            </button>
+            <p className="text-center mt-4">
+              {isLoginMode ? "Don't have an account?" : "Already have an account?"}{" "}
+              <span
+                onClick={toggleMode}
+                className="text-base-colors-300 cursor-pointer"
+              >
+                {isLoginMode ? "Sign up" : "Login"}
+              </span>
+            </p>
+          </>
+        ) : (
+          <div className="flex flex-col justify-center items-center text-center align-middle">
+            <h1 className="font-medium text-xl">You Are Logged In As:</h1>
+            <span className="font-extrabold text-2xl text-base-colors-300">{getUsername()}</span>
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="flex justify-center items-center align-middle text-enter text-lg font-medium text-base-colors-50 m-auto w-36 mt-4 px-1 py-2 border-0 rounded-tl-3xl rounded-br-3xl bg-base-colors-200 hover:bg-base-colors-300"
+            >
+              Logout
+            </button>
+          </div>
         )}
       </form>
     </section>

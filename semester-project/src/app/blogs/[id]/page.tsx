@@ -142,7 +142,7 @@ const BlogPage = ({ id }: { id: string }) => {
   if (!blog) return <p className="text-red-500">Blog not found</p>;
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="w-full m-0 p-0 font-roboto text-base-colors-200">
       {isEditing ? (
         // Edit Mode
         <div>
@@ -166,7 +166,7 @@ const BlogPage = ({ id }: { id: string }) => {
             className="text-lg w-full mb-4"
           />
           {newImage && (
-            <div className="relative w-full h-64 mb-4">
+            <div className="relative w-full h-96 mb-4">
               <Image
                 src={newImage}
                 alt={blog.title}
@@ -184,13 +184,13 @@ const BlogPage = ({ id }: { id: string }) => {
           />
           <button
             onClick={handleSave}
-            className="bg-green-500 text-white py-2 px-4 rounded-md"
+            className="bg-green-500 text-base-colors-50 py-2 px-4 rounded-md"
           >
             Save
           </button>
           <button
             onClick={handleDelete}
-            className="bg-red-500 text-white py-2 px-4 rounded-md ml-2"
+            className="bg-red-500 text-base-colors-50 py-2 px-4 rounded-md ml-2"
           >
             Delete
           </button>
@@ -198,36 +198,40 @@ const BlogPage = ({ id }: { id: string }) => {
       ) : (
         // View Mode
         <div>
-          <h1 className="text-3xl font-bold mb-4">{blog.title}</h1>
-          <p className="text-gray-500 mb-4">Posted by: {blog.username}</p>
           {blog.image && (
-            <div className="relative w-full h-64 mb-4">
+            <div className="relative w-full h-[30vw] mb-4">
               <Image
                 src={blog.image}
                 alt={blog.title}
                 fill
                 style={{ objectFit: "cover" }}
-                className="rounded-md"
+                className="rounded border-b-2 border-base-colors-200"
               />
             </div>
           )}
-          <p className="text-lg mb-4">{blog.text}</p>
-          {currentUsername === blog.username && (
+          <section className="flex justify-between align-middle items-center text-center">
+            <h1 className="text-5xl font-bold m-4 p-4">{blog.title}</h1>
             <div>
-              <button
-                onClick={() => setIsEditing(true)}
-                className="bg-blue-500 text-white py-2 px-4 rounded-md"
-              >
-                Edit Blog
-              </button>
-              <button
-                onClick={handleDelete}
-                className="bg-red-500 text-white py-2 px-4 rounded-md ml-2"
-              >
-                Delete
-              </button>
+              <p className="mx-4 p-4 font-normal">Author: <span className="font-medium">{blog.username}</span></p>
+              {currentUsername === blog.username && (
+                <div className="flex justify-center items-center align-middle text-center gap-4">
+                  <button
+                    onClick={() => setIsEditing(true)}
+                    className="bg-blue-500 text-base-colors-50 py-2 px-4 rounded-md"
+                  >
+                    Edit Blog
+                  </button>
+                  <button
+                    onClick={handleDelete}
+                    className="bg-red-500 text-base-colors-50 py-2 px-4 rounded-md"
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
             </div>
-          )}
+          </section>
+          <p className="text-lg m-4 bg-base-colors-100 p-4">{blog.text}</p>
         </div>
       )}
     </div>

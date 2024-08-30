@@ -38,39 +38,44 @@ const HeroSection: FC = () => {
 
     return (
         <section ref={sectionRef} className="scrollbar flex overflow-x-auto snap-x snap-mandatory scroll-smooth md:mt-6 mb-12">
-            <Link href={"/guitars/basses"} className="md:rounded-md w-screen h-[50vw] md:w-[800px] md:h-[400px] object-cover snap-center snap-always md:mx-6 cursor-pointer shrink-0">    
+            <Link href={"/guitars/basses"} className="md:rounded-xl w-screen h-[50vw] md:w-[800px] md:h-[400px] object-cover snap-center snap-always md:mx-6 cursor-pointer shrink-0">    
                 <Image
                     style={{width: "100%", height: "100%", objectFit: "cover"}}
                     src={guitars}
                     alt="guitars"
+                    className="md:rounded-xl"
                 />
             </Link>
-            <Link href={"/drums/acoustic-drums"} className="md:rounded-md w-screen h-[50vw] md:w-[800px] md:h-[400px] object-cover snap-center snap-always md:mr-6 cursor-pointer shrink-0">
+            <Link href={"/drums/acoustic-drums"} className="md:rounded-xl w-screen h-[50vw] md:w-[800px] md:h-[400px] object-cover snap-center snap-always md:mr-6 cursor-pointer shrink-0">
                 <Image
                     style={{width: "100%", height: "100%", objectFit: "cover"}}
                     src={drums}
                     alt="drums"
+                    className="md:rounded-xl"
                 />
             </Link>
-            <Link href={"/equipment/dj-equipment"} className="md:rounded-md w-screen h-[50vw] md:w-[800px] md:h-[400px] object-cover snap-center snap-always md:mr-6 cursor-pointer shrink-0">
+            <Link href={"/equipment/dj-equipment"} className="md:rounded-xl w-screen h-[50vw] md:w-[800px] md:h-[400px] object-cover snap-center snap-always md:mr-6 cursor-pointer shrink-0">
                 <Image
                     style={{width: "100%", height: "100%", objectFit: "cover"}}
                     src={dj}
                     alt="dj"
+                    className="md:rounded-xl"
                 />
             </Link>
-            <Link href={"/orchestra"} className="md:rounded-md w-screen h-[50vw] md:w-[800px] md:h-[400px] object-cover snap-center snap-always md:mr-6 cursor-pointer shrink-0">
+            <Link href={"/orchestra"} className="md:rounded-xl w-screen h-[50vw] md:w-[800px] md:h-[400px] object-cover snap-center snap-always md:mr-6 cursor-pointer shrink-0">
                 <Image
                     style={{width: "100%", height: "100%", objectFit: "cover"}}
                     src={orchestra}
                     alt="orchestra"
+                    className="md:rounded-xl"
                 />
             </Link>
-            <Link href={"/vinyls"} className="md:rounded-md w-screen h-[50vw] md:w-[800px] md:h-[400px] object-cover snap-center snap-always md:mr-6 cursor-pointer shrink-0">
+            <Link href={"/vinyls"} className="md:rounded-xl w-screen h-[50vw] md:w-[800px] md:h-[400px] object-cover snap-center snap-always md:mr-6 cursor-pointer shrink-0">
                 <Image
                     style={{width: "100%", height: "100%", objectFit: "cover"}}
                     src={vinyls}
                     alt="vinyls"
+                    className="md:rounded-xl"
                 />
             </Link>
         </section>

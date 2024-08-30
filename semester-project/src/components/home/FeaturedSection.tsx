@@ -3,9 +3,9 @@
 import { FC, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import "../styles/products.css"
-import "../styles/scrollbar.css"
-import error from "../images/error/error.png"
+import "../styles/products.css";
+import "../styles/scrollbar.css";
+import error from "../images/error/error.png";
 
 const FeaturedSection: FC = () => {
   const [featuredItems, setFeaturedItems] = useState<any[]>([]);
@@ -23,9 +23,13 @@ const FeaturedSection: FC = () => {
 
         const data = await response.json();
 
-        setAssets(data.includes.Asset);
+        setAssets(data.includes?.Asset || []);
 
-        const groupedByType: { [key: string]: any[] } = data.items.reduce(
+        const filteredItems = (data.items || []).filter(
+          (item: any) => item.sys.contentType.sys.id !== "blogs"
+        );
+
+        const groupedByType: { [key: string]: any[] } = filteredItems.reduce(
           (acc: { [key: string]: any[] }, item: any) => {
             const contentType = item.sys.contentType.sys.id;
             if (!acc[contentType]) {

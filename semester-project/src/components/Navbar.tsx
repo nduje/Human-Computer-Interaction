@@ -57,14 +57,14 @@
     };
 
     return (
-      <section className="flex-col text-center align-middle justify-center mx-auto bg-base-colors-100">
+      <section className="flex-col text-center align-middle justify-center mx-auto bg-base-colors-200 md:bg-base-colors-100">
         <section className="flex flex-row justify-between md:justify-evenly align-middle items-center h-16 md:h-20">
             <div className="flex flex-row justify-center align-middle font-roboto text-3xl md:text-5xl md:hover:text-[50px] hover:cursor-pointer h-auto max-h-16 md:max-h-20">
                 <Link href="/" className="flex flex-row justify-center align-middle items-center ml-6 md:ml-0">
                     <div className="flex justify-center align-middle text-base-colors-300 my-10 font-bold">
                         G
                     </div>
-                    <div className="flex justify-center align-middle text-base-colors-200 my-10 font-medium">
+                    <div className="flex justify-center align-middle text-base-colors-50 md:text-base-colors-200 my-10 font-medium">
                         String
                     </div>
                 </ Link>
@@ -103,27 +103,17 @@
 
         <section className={`off-screen-menu flex md:hidden ${menuOpen ? 'active' : ''}`}>
           <hr className="mt-16 rounded-full border-base-colors-100/25 border-[1px] w-full max-w-full"></hr>
-          <ul className="flex flex-col items-center justify-evenly align-middle m-auto p-auto w-full h-full gap-2">
+          <ul className="flex flex-col items-center justify-center align-middle m-auto p-auto w-full h-full gap-11">
             {Object.entries(pages).map(([name, path]) => (
-              <li key={name} className="inline-flex leading-none items-center justify-center align-middle px-4 rounded-tl-3xl rounded-br-3xl active:bg-base-colors-300">
-                <Link href={path} className="flex m-0 p-0 rounded-tl-3xl rounded-br-3xl">
+              <li key={name} className="flex flex-col leading-none items-center justify-center align-middle px-4 rounded-tl-3xl rounded-br-3xl">
+                <Link href={path} className="flex m-0 px-4 rounded-tl-3xl rounded-br-3xl active:bg-base-colors-300">
                   <span className={cn(baseClassPhone, {"pointer-events-none": path === pathName})}>
                     {name}
                   </span>
                 </Link>
+                <hr className="mt-2 rounded-full border-base-colors-100/25 border-[1px] w-full"></hr>
               </li>
             ))}
-            <hr className="mt-2 rounded-full border-base-colors-100/25 border-[1px] w-full max-w-full"></hr>
-            <li className="inline-flex leading-none items-center justify-center align-middle px-4 rounded-tl-3xl rounded-br-3xl hover:bg-base-colors-300">
-              <Link href="/" className="flex m-0 p-0 rounded-tl-3xl rounded-br-3xl">
-                <span className={cn(baseClassPhone, "")}>Blogs</span>
-              </Link>
-            </li>
-            <li className="inline-flex leading-none items-center justify-center align-middle px-4 rounded-tl-3xl rounded-br-3xl hover:bg-base-colors-300">
-              <Link href="/" className="flex m-0 p-0 rounded-tl-3xl rounded-br-3xl">
-                <span className={cn(baseClassPhone, "")}>Login</span>
-              </Link>
-            </li>
           </ul>
         </section>
     </section>

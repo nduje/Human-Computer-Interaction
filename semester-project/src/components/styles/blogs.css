@@ -2,10 +2,12 @@ section .cover-container .cover {
     transition: transform 0.5s ease;
 }
 
-section:hover .cover-container .cover {
-    transform: scale(1.2);
-}
+@media (min-width: 768px) {
+    section:hover .cover-container .cover {
+        transform: scale(1.2);
+    }
 
-section:not(:hover) .cover-container .cover {
-    transform: scale(1);
+    section:not(:hover) .cover-container .cover {
+        transform: scale(1);
+    }
 }

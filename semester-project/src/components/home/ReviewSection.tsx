@@ -15,7 +15,7 @@ const ReviewSection: FC = () => {
             The service is consistently excellent. My order arrived quickly and was well-packaged. Customer support is always responsive and helpful.
           </p>
           <h3 className="text-xs md:text-base font-bold text-base-colors-200">
-            14.8.2024.
+            5.8.2024.
           </h3>
         </div>
         <div className="flex flex-shrink-0 flex-col justify-between align-middle text-center m-4 p-4 md:m-8 md:p-8 rounded-tl-3xl rounded-br-3xl bg-base-colors-100 w-full md:w-1/4 h-28 md:h-48 snap-center snap-always">
