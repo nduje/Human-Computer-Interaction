@@ -9,7 +9,9 @@ import "../../components/styles/products.css";
 const FetchEquipment = () => {
   const [equipments, setEquipments] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
+  const [originalOrder, setOriginalOrder] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [sortOrder, setSortOrder] = useState("");
   const itemsPerPage = 5;
 
   useEffect(() => {
@@ -26,6 +28,7 @@ const FetchEquipment = () => {
 
         setEquipments(data.items);
         setAssets(data.includes.Asset);
+        setOriginalOrder(data.items);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -36,7 +39,49 @@ const FetchEquipment = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [currentPage]);
+
+  const sortByRelevance = () => {
+    setEquipments([...originalOrder]);
+    setSortOrder("");
+    setCurrentPage(1);
+  };
+
+  const sortByNameAsc = () => {
+    const sortedEquipments = [...equipments].sort((a, b) =>
+      a.fields.name.localeCompare(b.fields.name)
+    );
+    setEquipments(sortedEquipments);
+    setSortOrder("name-asc");
+    setCurrentPage(1);
+  };
+
+  const sortByNameDesc = () => {
+    const sortedEquipments = [...equipments].sort((a, b) =>
+      b.fields.name.localeCompare(a.fields.name)
+    );
+    setEquipments(sortedEquipments);
+    setSortOrder("name-desc");
+    setCurrentPage(1);
+  };
+
+  const sortByPriceAsc = () => {
+    const sortedEquipments = [...equipments].sort(
+      (a, b) => a.fields.price - b.fields.price
+    );
+    setEquipments(sortedEquipments);
+    setSortOrder("price-asc");
+    setCurrentPage(1);
+  };
+
+  const sortByPriceDesc = () => {
+    const sortedEquipments = [...equipments].sort(
+      (a, b) => b.fields.price - a.fields.price
+    );
+    setEquipments(sortedEquipments);
+    setSortOrder("price-desc");
+    setCurrentPage(1);
+  };
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -58,6 +103,49 @@ const FetchEquipment = () => {
 
   return (
     <section className="flex flex-col justify-center items-center text-center text-base-colors-200 m-0">
+      <div className="flex flex-row justify-center items-center space-x-4 mt-4 mb-4">
+        <button
+          onClick={sortByRelevance}
+          className={`px-4 py-2 bg-base-colors-200 text-base-colors-50 rounded-tl-3xl rounded-br-3xl hover:bg-base-colors-300 ${
+            sortOrder === "" ? "bg-base-colors-300" : ""
+          }`}
+        >
+          Sort by Relevance
+        </button>
+        <button
+          onClick={sortByNameAsc}
+          className={`px-4 py-2 bg-base-colors-200 text-base-colors-50 rounded-tl-3xl rounded-br-3xl hover:bg-base-colors-300 ${
+            sortOrder === "name-asc" ? "bg-base-colors-300" : ""
+          }`}
+        >
+          Sort by Name ↑
+        </button>
+        <button
+          onClick={sortByNameDesc}
+          className={`px-4 py-2 bg-base-colors-200 text-base-colors-50 rounded-tl-3xl rounded-br-3xl hover:bg-base-colors-300 ${
+            sortOrder === "name-desc" ? "bg-base-colors-300" : ""
+          }`}
+        >
+          Sort by Name ↓
+        </button>
+        <button
+          onClick={sortByPriceAsc}
+          className={`px-4 py-2 bg-base-colors-200 text-base-colors-50 rounded-tl-3xl rounded-br-3xl hover:bg-base-colors-300 ${
+            sortOrder === "price-asc" ? "bg-base-colors-300" : ""
+          }`}
+        >
+          Sort by Price ↑
+        </button>
+        <button
+          onClick={sortByPriceDesc}
+          className={`px-4 py-2 bg-base-colors-200 text-base-colors-50 rounded-tl-3xl rounded-br-3xl hover:bg-base-colors-300 ${
+            sortOrder === "price-desc" ? "bg-base-colors-300" : ""
+          }`}
+        >
+          Sort by Price ↓
+        </button>
+      </div>
+
       <ul className="flex flex-col justify-center items-center align-middle mx-0 md:mx-auto my-6 md:my-12">
         {currentEquipment?.map((equipment) => (
           <Link key={equipment.sys.id} href={`/equipment/${equipment.sys.id}`}>
@@ -89,12 +177,21 @@ const FetchEquipment = () => {
                   </>
                 )}
                 <div className="flex flex-col justify-start text-left font-roboto m-2 md:m-4 col-span-2 md:col-auto">
-                  <p className="name text-left font-medium text-xs md:text-xl">{equipment.fields.name}</p>
-                  <p className="font-bold text-base md:text-3xl">{equipment.fields.price}€</p>
+                  <p className="name text-left font-medium text-xs md:text-xl">
+                    {equipment.fields.name}
+                  </p>
+                  <p className="font-bold text-base md:text-3xl">
+                    {equipment.fields.price}€
+                  </p>
                 </div>
               </div>
               <div className="flex md:inline-flex flex-col w-auto md:w-auto m-2 md:ml-auto md:mr-4 md:my-4 justify-between col-span-4 md:col-auto">
-                <p className={cn(colors[equipment.fields.category], "flex h-full items-center justify-center px-4 py-1 font-medium md:font-normal text-xs md:text-md rounded-3xl md:rounded-bl-none md:rounded-tr-none md:rounded-tl-3xl md:rounded-br-3xl")}>
+                <p
+                  className={cn(
+                    colors[equipment.fields.category],
+                    "flex h-full items-center justify-center px-4 py-1 font-medium md:font-normal text-xs md:text-md rounded-3xl md:rounded-bl-none md:rounded-tr-none md:rounded-tl-3xl md:rounded-br-3xl"
+                  )}
+                >
                   {equipment.fields.category}
                 </p>
               </div>
@@ -102,16 +199,27 @@ const FetchEquipment = () => {
           </Link>
         ))}
       </ul>
-      <div   className={`flex flex-row items-center w-[80vw] md:w-[50vw] font-roboto font-medium text-xs md:text-xl mx-0 md:mx-auto mt-1 md:mt-2 ${
-        (currentPage > 1 && indexOfLastItem < equipments.length) ? 'justify-between' : 'justify-center'
-      }`}>
+
+      <div
+        className={`flex flex-row items-center w-[80vw] md:w-[50vw] font-roboto font-medium text-xs md:text-xl mx-0 md:mx-auto mt-1 md:mt-2 ${
+          currentPage > 1 && indexOfLastItem < equipments.length
+            ? "justify-between"
+            : "justify-center"
+        }`}
+      >
         {currentPage > 1 && (
-          <button onClick={handlePreviousPage} className="inline-block text-base-colors-50 bg-base-colors-200 active:bg-base-colors-300 md:hover:bg-base-colors-300 rounded-tl-3xl rounded-br-3xl hover:cursor-pointer px-4 py-2">
+          <button
+            onClick={handlePreviousPage}
+            className="inline-block text-base-colors-50 bg-base-colors-200 active:bg-base-colors-300 md:hover:bg-base-colors-300 rounded-tl-3xl rounded-br-3xl hover:cursor-pointer px-4 py-2"
+          >
             Previous Page
           </button>
         )}
         {indexOfLastItem < equipments.length && (
-          <button onClick={handleNextPage} className="inline-block text-base-colors-50 bg-base-colors-200 active:bg-base-colors-300 md:hover:bg-base-colors-300 rounded-tl-3xl rounded-br-3xl hover:cursor-pointer px-4 py-2">
+          <button
+            onClick={handleNextPage}
+            className="inline-block text-base-colors-50 bg-base-colors-200 active:bg-base-colors-300 md:hover:bg-base-colors-300 rounded-tl-3xl rounded-br-3xl hover:cursor-pointer px-4 py-2"
+          >
             Next Page
           </button>
         )}
