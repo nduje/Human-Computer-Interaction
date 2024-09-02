@@ -106,7 +106,9 @@ const FetchRock = () => {
           </Link>
         ))}
       </ul>
-      <div className="flex flex-row justify-around md:justify-evenly items-center w-full font-roboto font-medium text-xs md:text-xl mx-0 md:mx-auto mt-1 md:mt-2">
+      <div   className={`flex flex-row items-center w-[80vw] md:w-[50vw] font-roboto font-medium text-xs md:text-xl mx-0 md:mx-auto mt-1 md:mt-2 ${
+        (currentPage > 1 && indexOfLastItem < vinyls.length) ? 'justify-between' : 'justify-center'
+      }`}>
         {currentPage > 1 && (
           <button onClick={handlePreviousPage} className="inline-block text-base-colors-50 bg-base-colors-200 active:bg-base-colors-300 md:hover:bg-base-colors-300 rounded-tl-3xl rounded-br-3xl hover:cursor-pointer px-4 py-2">
             Previous Page

@@ -1,9 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
-import "../styles/blogs.css"
 import error from "../images/error/error.png";
 
 const BlitzNewsSection = () => {
@@ -46,14 +44,14 @@ const BlitzNewsSection = () => {
                 {blogs.map((blog) => (
                     <section
                         key={blog.sys.id}
-                        className="flex flex-col justify-center align-middle items-center text-sm md:text-base text-base-colors-200 md:hover:text-base-colors-300"
+                        className="flex flex-col justify-center align-middle items-center text-sm md:text-base text-base-colors-200"
                     >
-                        <div className="cover-container rounded-t-md w-full h-[150px] md:h-[225px] relative overflow-hidden">
+                        <div className="rounded-t-md w-full h-[150px] md:h-[225px] relative overflow-hidden">
                             <Image
                                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
                                 src={getImageUrl(blog.fields.images[0].sys.id) || error}
                                 alt={blog.fields.name}
-                                className="cover rounded-t-md"
+                                className="rounded-t-md"
                                 width={1024}
                                 height={1024}
                             />

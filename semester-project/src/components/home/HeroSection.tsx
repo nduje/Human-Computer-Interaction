@@ -29,7 +29,7 @@ const HeroSection: FC = () => {
                 } else {
                     section.scrollLeft += scrollAmount;
                 }
-            }, 15000);
+            }, 8000);
     
             return () => clearInterval(interval);
         }

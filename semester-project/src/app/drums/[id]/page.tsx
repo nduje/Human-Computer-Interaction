@@ -76,6 +76,11 @@ const DrumDetails = ({ params }: { params: { id: string } }) => {
     fetchDrumData();
   }, [id]);
 
+  const getImageUrl = (imageId: string) => {
+    const asset = assets.find((asset: any) => asset.sys.id === imageId);
+    return asset ? `https:${asset.fields.file.url}` : null;
+  };
+
   if (!drum) {
     return <div>Loading...</div>;
   }
@@ -121,45 +126,32 @@ const DrumDetails = ({ params }: { params: { id: string } }) => {
           </div>
         </div>
       </article>
-      <article className="flex flex-col text-left w-screen bg-base-colors-100 m-0 md:m-4 p-2 md:p-4">
-        <h2 className="text-base md:text-2xl font-bold mb-1 md:mb-2 underline">Description:</h2>
-        <p className="text-xs md:text-lg">{drum.description}</p>
+      <article className="flex flex-col w-screen md:w-fit text-left bg-base-colors-100 m-0 md:m-4 p-2 md:p-4">
+        <h2 className="w-full max-w-full text-base md:text-2xl font-bold mb-1 md:mb-2 underline">Description:</h2>
+        <p className="w-full max-w-full break-words overflow-hidden whitespace-normal text-xs md:text-lg">{drum.description}</p>
       </article>
       <article className="flex font-roboto flex-col text-center align-middle justify-center text-base-colors-200 bg-base-colors-50 h-auto w-auto md:m-12">
         <h1 className="font-bold text-xl md:text-3xl text-base-colors-200 mt-6 md:m-12">More Like This</h1>
-        <div className="scrollbar flex flex-row justify-evenly text-left items-start align-middle md:my-8 p-4 md:p-0 overflow-x-auto snap-x snap-mandatory">
-          {relatedDrums.map((relatedDrum) => {
-            const relatedImageAsset = relatedDrum.images[0]
-              ? assets.find((asset) => asset.sys.id === relatedDrum.images[0].sys.id)
-              : null;
-
-            return (
-              <div
-                key={relatedDrum.id}
-                className="flex flex-col bg-base-colors-100 w-1/2 md:w-1/6 rounded-md flex-shrink-0 snap-center snap-always mx-[25vw] md:mx-2"
-              >
-                {relatedImageAsset && (
-                  <Link href={`/drums/${relatedDrum.id}`} className="product flex flex-col justify-center items-left text-left rounded-md align-middle m-auto">
-                    <Image
-                      src={`https:${relatedImageAsset.fields.file.url}`}
-                      alt={relatedDrum.name}
-                      width={256}
-                      height={256}
-                      style={{ objectFit: "contain" }}
-                      className="w-full md:w-[200px] h-full md:h-[200px] m-0 md:mt-2 md:mx-auto p-0 border-x-8 border-t-8 md:border-0 rounded-t-md border-base-colors-100"
-                    />
-                    <h2 className="name font-medium text-sm md:text-lg mx-2 mt-1 md:mt-2 h-[60px] md:h-[55px] overflow-hidden text-ellipsis">
-                      {relatedDrum.name}
-                    </h2>
-                    <h3 className="font-bold text-lg md:text-3xl mx-2 mb-1 md:mb-2 mt-1">
-                      {relatedDrum.price}€
-                    </h3>
-                  </Link>
-                )}
-              </div>
-            );
-          })}
-        </div>
+        <ul className="scrollbar flex flex-row justify-evenly text-left items-start align-middle p-4 md:p-0 md:my-8 overflow-x-auto snap-x snap-mandatory">
+            {relatedDrums.map((item) => (
+            <li key={item.id} className="flex flex-col bg-base-colors-100 w-1/2 md:w-1/6 rounded-md flex-shrink-0 snap-center snap-always mx-[25vw] md:mx-2">
+                <Link href={`/drums/${item.id}`} className="product flex flex-col justify-center items-left text-left align-middle rounded-md m-auto">
+                    {item.images && item.images.length > 0 && (
+                      <Image
+                          src={getImageUrl(item.images[0].sys.id) || error}
+                          alt={item.name}
+                          width={512}
+                          height={512}
+                          style={{objectFit: "contain"}}
+                          className="w-full h-full m-0 p-0 border-x-8 border-t-8 rounded-t-md border-base-colors-100"
+                      />
+                    )}
+                    <h2 className="name font-medium text-sm md:text-lg mx-2 mt-1 md:mt-2 h-[60px] md:h-[55px] overflow-hidden text-ellipsis">{item.name}</h2>
+                    <h3 className="font-bold text-xl md:text-3xl mx-2 mb-1 md:mb-2 mt-1">{item.price}€</h3>
+                </Link>
+            </li>
+            ))}
+        </ul>
       </article>
     </section>
   );

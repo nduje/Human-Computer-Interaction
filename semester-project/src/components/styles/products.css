@@ -1,3 +1,9 @@
-.product:hover .name {
+@media (min-width: 768px) {
+    .product:hover .name {
+      color: #C9313B;
+    }
+  }
+
+.product:active .name {
     color: #C9313B;
 }
