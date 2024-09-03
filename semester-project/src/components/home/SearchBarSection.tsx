@@ -71,7 +71,7 @@ const SearchBar: FC = () => {
       window.removeEventListener("resize", handleResize);
       document.body.classList.remove("no-scroll");
     };
-  }, [menuOpen, window.location.href]);
+  }, [menuOpen]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
