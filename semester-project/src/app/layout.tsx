@@ -32,7 +32,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={clsx(roboto.variable, "font-roboto w-full m-0 p-0 overflow-x-hidden")}>
+      <body className={clsx(roboto.variable, "font-roboto w-full h-full m-0 p-0 overflow-x-hidden")}>
         <Navbar pages={pages}/>
         {children}
         <Footer pages={pages} />

@@ -63,7 +63,7 @@ const FeaturedSection: FC = () => {
 
   return (
     <article className="flex font-roboto flex-col text-center align-middle justify-center text-base-colors-200 bg-base-colors-50 h-auto w-auto m-6 md:m-12">
-        <h1 className="font-bold text-xl md:text-3xl text-base-colors-200 m-6 md:m-12">
+        <h1 className="font-bold text-xl md:text-3xl text-base-colors-200 mb-6 md:mb-12">
             Featured Products
         </h1>
         <ul className="scrollbar flex flex-row justify-evenly text-left items-start align-middle p-4 md:p-0 md:my-8 overflow-x-auto snap-x snap-mandatory">

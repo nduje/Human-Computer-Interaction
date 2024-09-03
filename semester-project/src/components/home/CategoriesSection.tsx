@@ -12,8 +12,8 @@ import vinyls from "../images/categories/vinyls.jpg";
 
 const HeadlineSection: FC = () => {
     return (
-        <article className="flex font-roboto flex-col text-center align-middle justify-center bg-base-colors-50 h-auto w-auto m-6 md:m-12">
-            <h1 className="font-bold text-xl md:text-3xl text-base-colors-200 m-6 md:m-12">
+        <article className="flex font-roboto flex-col text-center align-middle justify-center bg-base-colors-50 h-auto w-auto">
+            <h1 className="font-bold text-xl md:text-3xl text-base-colors-200 mb-6 md:mb-12">
             Our Categories
             </h1>
             <section className="grid grid-row-1 md:grid-cols-3 md:gap-x-36 gap-y-3 md:gap-y-12 m-4 md:m-8 mx-10 md:mx-20 text-center align-middle">

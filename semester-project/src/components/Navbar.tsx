@@ -82,13 +82,15 @@ const Navbar: FC<NavbarProps> = ({ pages }) => {
           </nav>
       </section>
 
-      <SearchBar></SearchBar>
+      <div className="hidden md:flex">
+        <SearchBar />
+      </div>
 
       <section className="hidden md:flex">
         <nav className="flex items-center align-middle justify-evenly mx-auto my-0 bg-base-colors-200 w-full h-14">
           <ul className="flex items-center justify-evenly align-middle m-auto w-full h-full p-2">
             {Object.entries(pages).map(([name, path]) => (
-              <li key={name} className="flex h-full items-center justify-center align-middle px-2 rounded-tl-3xl rounded-br-3xl active:bg-base-colors-300 hover:bg-base-colors-300">
+              <li key={name} className={`flex h-full items-center justify-center align-middle px-2 rounded-tl-3xl rounded-br-3xl ${pathName.includes(path) ? "bg-base-colors-300" : "bg-transparent"} active:bg-base-colors-300 hover:bg-base-colors-300`}>
                 <Link href={path} className="rounded-tl-3xl rounded-br-3xl">
                   <span className={cn(baseClass, {"pointer-events-none": path === pathName})}>
                     {name}
@@ -106,11 +108,12 @@ const Navbar: FC<NavbarProps> = ({ pages }) => {
       />
 
       <section className={`off-screen-menu flex md:hidden ${menuOpen ? 'active' : ''}`}>
-        <hr className="mt-16 rounded-full border-base-colors-100/25 border-[1px] w-full max-w-full"></hr>
-        <ul className="flex flex-col items-center justify-center align-middle m-auto p-auto w-full h-full gap-11">
+        <hr className="mt-[63px] rounded-full border-base-colors-100/25 border-[1px] w-full max-w-full"></hr>
+        <ul className="flex flex-col items-center justify-start align-middle m-auto p-auto w-full h-full gap-11">
+          <li className="m-2"><SearchBar /></li>
           {Object.entries(pages).map(([name, path]) => (
             <li key={name} className="flex flex-col leading-none items-center justify-center align-middle px-4 rounded-tl-3xl rounded-br-3xl">
-              <Link href={path} className="flex m-0 px-4 rounded-tl-3xl rounded-br-3xl active:bg-base-colors-300">
+              <Link href={path} className={`flex m-0 px-4 rounded-tl-3xl rounded-br-3xl ${pathName.includes(path) ? "bg-base-colors-300" : "bg-transparent"} active:bg-base-colors-300`}>
                 <span className={cn(baseClassPhone, {"pointer-events-none": path === pathName})}>
                   {name}
                 </span>

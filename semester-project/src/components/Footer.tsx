@@ -14,7 +14,7 @@ const Footer: FC<FooterProps> = ({ pages }) => {
   const pathName = usePathname();
 
   return (
-    <div className="font-roboto flex-col justify-center text-center align-middle bg-base-colors-200 w-full p-3 mt-10 md:mt-20 overflow-x-hidden">
+    <div className="font-roboto flex-col justify-center text-center align-middle bg-base-colors-200 w-full p-3 mb-0 mt-10 md:mt-20 overflow-x-hidden">
       <section className="grid grid-row-5 md:grid-cols-3 items-center align-middle w-full py-10 px-16 md:px-32 flex-col">
         <article className="flex flex-col justify-center items-center md:items-start text-center md:text-left align-middle">
           <Link

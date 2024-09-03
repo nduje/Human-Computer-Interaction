@@ -36,8 +36,8 @@ const BlitzNewsSection = () => {
     };
 
     return (
-        <article className="flex font-roboto flex-col text-center align-middle justify-center bg-base-colors-50 m-6 md:m-12">
-            <h1 className="font-bold text-xl md:text-3xl text-base-colors-200 m-6 md:m-12">
+        <article className="flex font-roboto flex-col text-center align-middle justify-center bg-base-colors-50 mt-6 md:mt-12">
+            <h1 className="font-bold text-xl md:text-3xl text-base-colors-200 mb-6 md:mb-12">
                 Blitz News
             </h1>
             <section className="grid grid-rows-1 md:grid-cols-3 gap-7 md:gap-14 m-4 md:m-8 mx-10 md:mx-20">

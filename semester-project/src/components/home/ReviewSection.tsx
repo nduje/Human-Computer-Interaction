@@ -6,7 +6,7 @@ import "../styles/scrollbar.css"
 const ReviewSection: FC = () => {
   return (
     <article className="flex font-roboto flex-col text-center align-middle justify-center bg-base-colors-50 m-6 md:m-12">
-      <h1 className="font-bold text-xl md:text-3xl text-base-colors-200 m-6 md:m-12">
+      <h1 className="font-bold text-xl md:text-3xl text-base-colors-200 mb-6 md:mb-12">
         In Your Own Words
       </h1>
       <div className="scrollbar flex justify-evenly align-middle text-center overflow-x-auto md:overflow-x-hidden snap-x snap-mandatory">

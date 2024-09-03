@@ -1,0 +1,23 @@
+.vertical-scrollbar {
+    scroll-behavior: smooth;
+}
+
+.vertical-scrollbar::-webkit-scrollbar {
+    margin-top: 1rem;
+    width: 5px;
+}
+
+.vertical-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(28, 28, 28, 0.9);
+    border-radius: 0;
+}
+
+.vertical-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+@media (max-width: 768px) {
+    .vertical-scrollbar::-webkit-scrollbar-thumb {
+        background-color: rgba(243, 243, 243, 0.9);
+    }
+}
