@@ -91,6 +91,7 @@ const Navbar: FC<NavbarProps> = ({ pages }) => {
         searchRef.current &&
         !searchRef.current.contains(event.target as Node)
       ) {
+        setSearchInput("");
         setMenuOpen(false);
       }
     };
@@ -156,10 +157,7 @@ const Navbar: FC<NavbarProps> = ({ pages }) => {
               {filteredElements.length > 0 ? (
                 filteredElements.map((item: any) => (
                   <li key={item.sys.id} className="px-4 py-2 hover:bg-gray-200">
-                    <Link
-                      href={`/${item.sys.contentType.sys.id}/${item.sys.id}`}
-                      onClick={closeMenu}
-                    >
+                    <Link href={`/details/${item.sys.id}`} onClick={closeMenu}>
                       {item.fields.name}
                     </Link>
                   </li>
