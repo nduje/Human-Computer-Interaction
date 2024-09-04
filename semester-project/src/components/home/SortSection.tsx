@@ -19,6 +19,7 @@ const Sort: FC<SortProps> = ({items, setItems, setCurrentPage}) => {
     const [sortOrder, setSortOrder] = useState("");
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const sortRef = useRef<HTMLDivElement>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
 
     
     const originalOrder = [...items]
@@ -67,17 +68,17 @@ const Sort: FC<SortProps> = ({items, setItems, setCurrentPage}) => {
     
       useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
-          if (
-            sortRef.current &&
-            !sortRef.current.contains(event.target as Node)
-          ) {
-            setIsDropdownOpen(false);
-          }
+            if (
+                sortRef.current  && !buttonRef.current?.contains(event.target as Node) &&
+                !sortRef.current.contains(event.target as Node)
+            ) {
+                setIsDropdownOpen(false);
+            }
         };
-    
+
         document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-          document.removeEventListener("mousedown", handleClickOutside);
+            return () => {
+                document.removeEventListener("mousedown", handleClickOutside);
         };
       }, []);
 
@@ -130,6 +131,7 @@ const Sort: FC<SortProps> = ({items, setItems, setCurrentPage}) => {
             <div className="relative flex justify-center lg:hidden">
             <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                ref={buttonRef}
                 className="px-4 py-2 bg-base-colors-200 text-base-colors-50 rounded-tl-3xl rounded-br-3xl hover:bg-base-colors-300"
             >
                 Sort by
