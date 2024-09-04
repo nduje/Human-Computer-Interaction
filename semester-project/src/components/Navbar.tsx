@@ -70,7 +70,7 @@ const Navbar: FC<NavbarProps> = ({ pages }) => {
                   </div>
               </ Link>
           </div>
-          <nav className="flex md:hidden p-4">
+          <nav className="flex md:hidden p-4 z-50">
             <div
               className={`hamburger-menu w-[30px] h-[30px] ml-auto relative z-50 ${menuOpen ? 'active' : ''}`}
               onClick={toggleMenu}
@@ -107,7 +107,7 @@ const Navbar: FC<NavbarProps> = ({ pages }) => {
         onClick={closeMenu}
       />
 
-      <section className={`off-screen-menu flex md:hidden ${menuOpen ? 'active' : ''}`}>
+      <section className={`off-screen-menu flex md:hidden ${menuOpen ? 'active' : ''} z-40`}>
         <hr className="mt-[63px] rounded-full border-base-colors-100/25 border-[1px] w-full max-w-full"></hr>
         <ul className="flex flex-col items-center justify-start align-middle m-auto p-auto w-full h-full gap-11">
           <li className="m-2"><SearchBar /></li>

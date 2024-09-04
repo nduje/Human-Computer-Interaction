@@ -5,13 +5,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { cn, colors } from "../../../../lib/utils";
 import "../../../components/styles/products.css";
+import Sort from "../../../components/home/SortSection";
 
 const FetchDJEquipments = () => {
   const [equipments, setEquipments] = useState<any[]>([]);
-  const [originalOrder, setOriginalOrder] = useState<any[]>([]);
   const [assets, setAssets] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortOrder, setSortOrder] = useState("");
   const itemsPerPage = 5;
 
   useEffect(() => {
@@ -31,7 +30,6 @@ const FetchDJEquipments = () => {
         );
 
         setEquipments(djEquipments);
-        setOriginalOrder(djEquipments);
         setAssets(data.includes.Asset);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -44,48 +42,6 @@ const FetchDJEquipments = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
-
-  const sortByRelevance = () => {
-    setEquipments([...originalOrder]);
-    setSortOrder("");
-    setCurrentPage(1);
-  };
-
-  const sortByNameAsc = () => {
-    const sortedEquipments = [...equipments].sort((a, b) =>
-      a.fields.name.localeCompare(b.fields.name)
-    );
-    setEquipments(sortedEquipments);
-    setSortOrder("name-asc");
-    setCurrentPage(1);
-  };
-
-  const sortByNameDesc = () => {
-    const sortedEquipments = [...equipments].sort((a, b) =>
-      b.fields.name.localeCompare(a.fields.name)
-    );
-    setEquipments(sortedEquipments);
-    setSortOrder("name-desc");
-    setCurrentPage(1);
-  };
-
-  const sortByPriceAsc = () => {
-    const sortedEquipments = [...equipments].sort(
-      (a, b) => a.fields.price - b.fields.price
-    );
-    setEquipments(sortedEquipments);
-    setSortOrder("price-asc");
-    setCurrentPage(1);
-  };
-
-  const sortByPriceDesc = () => {
-    const sortedEquipments = [...equipments].sort(
-      (a, b) => b.fields.price - a.fields.price
-    );
-    setEquipments(sortedEquipments);
-    setSortOrder("price-desc");
-    setCurrentPage(1);
-  };
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -107,48 +63,7 @@ const FetchDJEquipments = () => {
 
   return (
     <section className="flex flex-col justify-center items-center text-center text-base-colors-200 m-0">
-      <div className="flex flex-row justify-center items-center space-x-4 mt-4 mb-4">
-        <button
-          onClick={sortByRelevance}
-          className={`px-4 py-2 bg-base-colors-200 text-base-colors-50 rounded-tl-3xl rounded-br-3xl hover:bg-base-colors-300 ${
-            sortOrder === "" ? "bg-base-colors-300" : ""
-          }`}
-        >
-          Sort by Relevance
-        </button>
-        <button
-          onClick={sortByNameAsc}
-          className={`px-4 py-2 bg-base-colors-200 text-base-colors-50 rounded-tl-3xl rounded-br-3xl hover:bg-base-colors-300 ${
-            sortOrder === "name-asc" ? "bg-base-colors-300" : ""
-          }`}
-        >
-          Sort by Name ↑
-        </button>
-        <button
-          onClick={sortByNameDesc}
-          className={`px-4 py-2 bg-base-colors-200 text-base-colors-50 rounded-tl-3xl rounded-br-3xl hover:bg-base-colors-300 ${
-            sortOrder === "name-desc" ? "bg-base-colors-300" : ""
-          }`}
-        >
-          Sort by Name ↓
-        </button>
-        <button
-          onClick={sortByPriceAsc}
-          className={`px-4 py-2 bg-base-colors-200 text-base-colors-50 rounded-tl-3xl rounded-br-3xl hover:bg-base-colors-300 ${
-            sortOrder === "price-asc" ? "bg-base-colors-300" : ""
-          }`}
-        >
-          Sort by Price ↑
-        </button>
-        <button
-          onClick={sortByPriceDesc}
-          className={`px-4 py-2 bg-base-colors-200 text-base-colors-50 rounded-tl-3xl rounded-br-3xl hover:bg-base-colors-300 ${
-            sortOrder === "price-desc" ? "bg-base-colors-300" : ""
-          }`}
-        >
-          Sort by Price ↓
-        </button>
-      </div>
+      <Sort items={equipments} setItems={setEquipments} setCurrentPage={setCurrentPage} />
 
       <ul className="flex flex-col justify-center items-center align-middle mx-0 md:mx-auto my-6 md:my-12">
         {currentEquipments?.map((equipment) => (
