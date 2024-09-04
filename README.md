@@ -1,8 +1,12 @@
-﻿# Semester Project: Music Shop
+﻿# Semester Project: Music Catalog
 
-## GString | Music Shop:
+## GString | Music Catalog:
 
 [GString on Vercel](https://gstring.vercel.app/)
+
+## Project Documentation:
+
+[GString on Notion](https://sky-curtain-042.notion.site/GString-2ee37f8b09de4014affb561cbe2979af?pvs=25)
 
 ## Class Projects:
 
