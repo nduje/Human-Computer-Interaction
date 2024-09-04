@@ -46,12 +46,12 @@ interface Asset {
     }
 }
 
-interface ProductListProps {
+interface ProductsListProps {
     items: Item[],
     assets: Asset[]
 }
 
-const ProductList: FC<ProductListProps> = ({items, assets}) => {
+const ProductsList: FC<ProductsListProps> = ({items, assets}) => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
 
@@ -79,7 +79,7 @@ const ProductList: FC<ProductListProps> = ({items, assets}) => {
     };
 
     return (
-        <section>
+        <section className="flex flex-col justify-center items-center align-middle">
             <ul className="flex flex-col justify-center items-center align-middle mx-0 md:mx-auto my-6 md:my-12">
                 {currentItems?.map((item) => (
                 <Link key={item.sys.id} href={`/${item.sys.contentType.sys.id}/${item.sys.id}`}>
@@ -162,4 +162,4 @@ const ProductList: FC<ProductListProps> = ({items, assets}) => {
     );
 }
 
-export default ProductList;
+export default ProductsList;

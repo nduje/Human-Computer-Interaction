@@ -12,7 +12,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "GString | Music Shop",
+  title: "GString | Music Catalog",
   description: "Unlock Your Musical Journey",
 };
 
