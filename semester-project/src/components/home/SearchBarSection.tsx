@@ -141,7 +141,7 @@ const SearchBar: FC = () => {
               ))
             ) : (
               <li className="font-bold px-4 py-2 text-center text-base-colors-300">
-                No elements found
+                No products found
               </li>
             )}
           </ul>
