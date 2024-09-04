@@ -9,8 +9,8 @@ const ReviewSection: FC = () => {
       <h1 className="font-bold text-xl md:text-3xl text-base-colors-200 mb-6 md:mb-12">
         In Your Own Words
       </h1>
-      <div className="scrollbar flex justify-evenly align-middle text-center overflow-x-auto md:overflow-x-hidden snap-x snap-mandatory">
-        <div className="flex flex-shrink-0 flex-col justify-between align-middle text-center m-4 p-4 md:m-8 md:p-8 rounded-tl-3xl rounded-br-3xl bg-base-colors-100 w-full md:w-1/4 h-28 md:h-48 snap-center snap-always">
+      <div className="scrollbar flex justify-evenly align-middle text-center overflow-x-auto lg:overflow-x-hidden snap-x snap-mandatory">
+        <div className="flex flex-shrink-0 flex-col justify-between align-middle text-center m-4 p-4 md:m-8 md:p-8 rounded-tl-3xl rounded-br-3xl bg-base-colors-100 w-full lg:w-1/4 h-28 lg:h-48 snap-center snap-always">
           <p className="text-xs md:text-base font-normal text-base-colors-200 italic">
             The service is consistently excellent. My order arrived quickly and was well-packaged. Customer support is always responsive and helpful.
           </p>
@@ -18,7 +18,7 @@ const ReviewSection: FC = () => {
             5.8.2024.
           </h3>
         </div>
-        <div className="flex flex-shrink-0 flex-col justify-between align-middle text-center m-4 p-4 md:m-8 md:p-8 rounded-tl-3xl rounded-br-3xl bg-base-colors-100 w-full md:w-1/4 h-28 md:h-48 snap-center snap-always">
+        <div className="flex flex-shrink-0 flex-col justify-between align-middle text-center m-4 p-4 md:m-8 md:p-8 rounded-tl-3xl rounded-br-3xl bg-base-colors-100 w-full lg:w-1/4 h-28 lg:h-48 snap-center snap-always">
           <p className="text-xs md:text-base font-normal text-base-colors-200 italic">
             Great prices and fast shipping. I received my order sooner than expected.
           </p>
@@ -26,7 +26,7 @@ const ReviewSection: FC = () => {
             16.12.2023.
           </h3>
         </div>
-        <div className="flex flex-shrink-0 flex-col justify-between align-middle text-center m-4 p-4 md:m-8 md:p-8 rounded-tl-3xl rounded-br-3xl bg-base-colors-100 w-full md:w-1/4 h-28 md:h-48 snap-center snap-always">
+        <div className="flex flex-shrink-0 flex-col justify-between align-middle text-center m-4 p-4 md:m-8 md:p-8 rounded-tl-3xl rounded-br-3xl bg-base-colors-100 w-full lg:w-1/4 h-28 lg:h-48 snap-center snap-always">
           <p className="text-xs md:text-base font-normal text-base-colors-200 italic">
             Shopping here is always a smooth experience. The website is easy to navigate, and delivery is prompt.
           </p>

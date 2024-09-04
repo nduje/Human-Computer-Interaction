@@ -14,7 +14,7 @@ export default function VinylsPage() {
       <h1 className="font-bold text-xl md:text-3xl text-base-colors-200 m-6 md:m-12">
         Vinyls
       </h1>
-      <section className="grid grid-rows-1 md:grid-cols-3 gap-x-12 md:gap-x-36 gap-y-4 md:gap-y-12 m-4 md:m-8 mx-10 md:mx-20 text-center align-middle">
+      <section className="grid grid-rows-1 lg:grid-cols-3 gap-x-12 md:gap-x-36 gap-y-4 lg:gap-y-12 m-4 lg:m-8 mx-10 lg:mx-20 text-center align-middle">
         <div className="flex flex-col justify-between text-center align-middle">
           <Link
             href="/vinyls/rock/"
@@ -92,7 +92,7 @@ export default function VinylsPage() {
         </div>
       </section>
       <Link href="/vinyls/all-vinyls/" className="inline-block justify-center items-center text-center align-middle text-base-colors-50 bg-base-colors-200 active:bg-base-colors-300 md:hover:bg-base-colors-300 rounded-tl-3xl rounded-br-3xl hover:cursor-pointer px-4 py-2 mx-auto mt-6 md:mt-12">
-        <h3 className="font-roboto font-medium text-xs md:text-xl">
+        <h3 className="font-roboto font-medium text-base md:text-xl">
           Display all products
         </h3>
       </Link>

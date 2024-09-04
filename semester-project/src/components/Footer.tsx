@@ -15,11 +15,11 @@ const Footer: FC<FooterProps> = ({ pages }) => {
 
   return (
     <div className="font-roboto flex-col justify-center text-center align-middle bg-base-colors-200 w-full p-3 mb-0 mt-10 md:mt-20 overflow-x-hidden">
-      <section className="grid grid-row-5 md:grid-cols-3 items-center align-middle w-full py-10 px-16 md:px-32 flex-col">
-        <article className="flex flex-col justify-center items-center md:items-start text-center md:text-left align-middle">
+      <section className="grid grid-row-5 md:flex md:flex-col lg:grid lg:grid-cols-3 items-center align-middle w-full py-10 px-16 md:px-32 flex-col">
+        <article className="flex flex-col justify-center items-center lg:items-start text-center lg:text-left align-middle">
           <Link
             href="/"
-            className="flex flex-row justify-center md:justify-start items-center md:items-start text-center md:text-left align-middle text-2xl md:text-4xl py-1 px-2 my-1 rounded-tl-3xl rounded-br-3xl hover:cursor-pointer active:bg-base-colors-400/30 md:hover:bg-base-colors-400/25"
+            className="flex flex-row justify-center lg:justify-start items-center lg:items-start text-center lg:text-left align-middle text-2xl md:text-4xl py-1 px-2 my-1 rounded-tl-3xl rounded-br-3xl hover:cursor-pointer active:bg-base-colors-400/30 md:hover:bg-base-colors-400/25"
           >
             <h1 className="font-roboto text-base-colors-300 font-bold my-1 md:my-2">
               G
@@ -32,7 +32,7 @@ const Footer: FC<FooterProps> = ({ pages }) => {
             Unlock your musical journey and explore a world of instruments, gear, and resources for musicians of all levels.
           </h2>
         </article>
-        <hr className="md:hidden my-8 rounded-full border-base-colors-100 border-[1px] w-full max-w-full"></hr>
+        <hr className="lg:hidden my-8 rounded-full border-base-colors-100 border-[1px] w-full max-w-full"></hr>
         <article className="flex flex-col justify-center text-center align-center p-0">
           <h1 className="font-roboto text-xl md:text-3xl font-normal text-base-colors-100">
             Sitemap
@@ -52,8 +52,8 @@ const Footer: FC<FooterProps> = ({ pages }) => {
             ))}
           </ul>
         </article>
-        <hr className="md:hidden my-8 rounded-full border-base-colors-100 border-[1px] w-full max-w-full"></hr>
-        <article className="flex flex-col justify-center text-center md:text-right align-center p-0">
+        <hr className="lg:hidden my-8 rounded-full border-base-colors-100 border-[1px] w-full max-w-full"></hr>
+        <article className="flex flex-col justify-center text-center lg:text-right align-center p-0">
           <h1 className="whitespace-nowrap font-roboto font-normal text-xl md:text-3xl text-base-colors-50 pb-1 md:pb-3">
             Contact Us
           </h1>

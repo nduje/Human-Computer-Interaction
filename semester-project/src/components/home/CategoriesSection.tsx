@@ -16,8 +16,8 @@ const HeadlineSection: FC = () => {
             <h1 className="font-bold text-xl md:text-3xl text-base-colors-200 mb-6 md:mb-12">
             Our Categories
             </h1>
-            <section className="grid grid-row-1 md:grid-cols-3 md:gap-x-36 gap-y-3 md:gap-y-12 m-4 md:m-8 mx-10 md:mx-20 text-center align-middle">
-                <div className="flex flex-col justify-between text-center align-middle">
+            <section className="grid grid-row-1 lg:grid-cols-3 lg:gap-x-16 gap-y-3 lg:gap-y-12 m-4 lg:m-8 mx-10 lg:mx-20 text-center align-middle">
+                <div className="flex flex-col justify-between text-center align-middle mx-0 md:mx-36 lg:mx-0">
                     <Link href="/guitars" className="flex flex-auto justify-between text-center align-middle mx-0 my-2 md:m-4 px-2 md:px-4 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}
@@ -31,7 +31,7 @@ const HeadlineSection: FC = () => {
                     </Link>
                     <hr className="border-[1px] md:border-[1.5px] w-full border-base-colors-100"></hr>
                 </div>  
-                <div className="flex flex-col justify-between text-center align-middle">
+                <div className="flex flex-col justify-between text-center align-middle mx-0 md:mx-36 lg:mx-0">
                     <Link href="/keys" className="flex flex-auto justify-between text-center align-middle mx-0 my-2 md:m-4 px-2 md:px-4 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}
@@ -45,7 +45,7 @@ const HeadlineSection: FC = () => {
                     </Link>
                     <hr className="border-[1px] md:border-[1.5px] w-full border-base-colors-100"></hr>
                 </div>  
-                <div className="flex flex-col justify-between text-center align-middle">
+                <div className="flex flex-col justify-between text-center align-middle mx-0 md:mx-36 lg:mx-0">
                     <Link href="/drums" className="flex flex-auto justify-between text-center align-middle mx-0 my-2 md:m-4 px-2 md:px-4 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}
@@ -59,7 +59,7 @@ const HeadlineSection: FC = () => {
                     </Link>
                     <hr className="border-[1px] md:border-[1.5px] w-full border-base-colors-100"></hr>
                 </div>
-                <div className="flex flex-col justify-between text-center align-middle">
+                <div className="flex flex-col justify-between text-center align-middle mx-0 md:mx-36 lg:mx-0">
                     <Link href="/orchestra" className="flex flex-auto justify-between text-center align-middle mx-0 my-2 md:m-4 px-2 md:px-4 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}
@@ -73,7 +73,7 @@ const HeadlineSection: FC = () => {
                     </Link>
                     <hr className="border-[1px] md:border-[1.5px] w-full border-base-colors-100"></hr>
                 </div>
-                <div className="flex flex-col justify-between text-center align-middle">
+                <div className="flex flex-col justify-between text-center align-middle mx-0 md:mx-36 lg:mx-0">
                     <Link href="/equipment" className="flex flex-auto justify-between text-center align-middle mx-0 my-2 md:m-4 px-2 md:px-4 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}
@@ -87,7 +87,7 @@ const HeadlineSection: FC = () => {
                     </Link>
                     <hr className="border-[1px] md:border-[1.5px] w-full border-base-colors-100"></hr>
                 </div>
-                <div className="flex flex-col justify-between text-center align-middle">
+                <div className="flex flex-col justify-between text-center align-middle mx-0 md:mx-36 lg:mx-0">
                     <Link href="/vinyls" className="flex flex-auto justify-between text-center align-middle mx-0 my-2 md:m-4 px-2 md:px-4 hover:cursor-pointer text-base-colors-200 hover:text-base-colors-300">
                         <Image
                             style={{width: "75px", height: "75px", objectFit: "contain"}}

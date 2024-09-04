@@ -40,11 +40,11 @@ const BlitzNewsSection = () => {
             <h1 className="font-bold text-xl md:text-3xl text-base-colors-200 mb-6 md:mb-12">
                 Blitz News
             </h1>
-            <section className="grid grid-rows-1 md:grid-cols-3 gap-7 md:gap-14 m-4 md:m-8 mx-10 md:mx-20">
+            <section className="grid grid-rows-1 lg:grid-cols-3 gap-7 lg:gap-14 m-4 lg:m-8 mx-10 lg:mx-20">
                 {blogs.map((blog) => (
                     <section
                         key={blog.sys.id}
-                        className="flex flex-col justify-center align-middle items-center text-sm md:text-base text-base-colors-200"
+                        className="flex flex-col justify-center align-middle items-center text-sm md:text-base text-base-colors-200 m-auto w-auto md:w-3/4 lg:w-auto"
                     >
                         <div className="rounded-t-md w-full h-[150px] md:h-[225px] relative overflow-hidden">
                             <Image

@@ -134,7 +134,7 @@ const KeysDetails = ({ params }: { params: { id: string } }) => {
         <h1 className="font-bold text-xl md:text-3xl text-base-colors-200 mt-6 md:m-12">More Like This</h1>
         <ul className="scrollbar flex flex-row justify-evenly text-left items-start align-middle p-4 md:p-0 md:my-8 overflow-x-auto snap-x snap-mandatory">
             {relatedKeys.map((item) => (
-            <li key={item.id} className="flex flex-col bg-base-colors-100 w-1/2 md:w-1/6 rounded-md flex-shrink-0 snap-center snap-always mx-[25vw] md:mx-2">
+            <li key={item.id} className="flex flex-col bg-base-colors-100 w-1/2 lg:w-1/6 rounded-md flex-shrink-0 snap-center snap-always mx-[25vw] lg:mx-2">
                 <Link href={`/keys/${item.id}`} className="product flex flex-col justify-center items-left text-left align-middle rounded-md m-auto">
                     {item.images && item.images.length > 0 && (
                       <Image
