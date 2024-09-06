@@ -82,8 +82,14 @@ const Navbar: FC<NavbarProps> = ({ pages }) => {
           </nav>
       </section>
 
-      <div className="hidden md:flex">
+      <div className="hidden text-base-colors-200 md:flex justify-around items-center align-middle text-center">
+        <Link href="/blogs/all-blogs" className="font-roboto font-medium text-2xl mx-16 hover:bg-base-colors-300 hover:text-base-colors-100 px-4 py-2 rounded-tl-3xl rounded-br-3xl">
+          <h3>Blogs</h3>
+        </Link>
         <SearchBar />
+        <Link href="/authentication" className="font-roboto font-medium text-2xl mx-16 hover:bg-base-colors-300 hover:text-base-colors-100 px-4 py-2 rounded-tl-3xl rounded-br-3xl">
+          <h3>Login</h3>
+        </Link>
       </div>
 
       <section className="hidden md:flex">
@@ -109,7 +115,7 @@ const Navbar: FC<NavbarProps> = ({ pages }) => {
 
       <section className={`off-screen-menu flex md:hidden ${menuOpen ? 'active' : ''} z-40`}>
         <hr className="mt-[63px] rounded-full border-base-colors-100/25 border-[1px] w-full max-w-full"></hr>
-        <ul className="flex flex-col items-center justify-start align-middle m-auto p-auto w-full h-full gap-11">
+        <ul className="font-roboto flex flex-col items-center justify-start align-middle m-auto p-auto w-full h-full gap-8">
           <li className="m-2"><SearchBar /></li>
           {Object.entries(pages).map(([name, path]) => (
             <li key={name} className="flex flex-col leading-none items-center justify-center align-middle px-4 rounded-tl-3xl rounded-br-3xl">
@@ -121,6 +127,23 @@ const Navbar: FC<NavbarProps> = ({ pages }) => {
               <hr className="mt-2 rounded-full border-base-colors-100/25 border-[1px] w-full"></hr>
             </li>
           ))}
+          <hr className="mt-2 rounded-full border-base-colors-100/25 border-[1px] w-[75%]"></hr>
+          <li>
+            <Link href="/blogs/all-blogs" className="flex m-0 px-4 rounded-tl-3xl rounded-br-3xl active:bg-base-colors-300">
+              <span className={cn(baseClassPhone, "")}>
+                Blogs
+              </span>
+            </Link>
+            <hr className="mt-2 rounded-full border-base-colors-100/25 border-[1px] w-full"></hr>
+          </li>
+          <li>
+            <Link href="/authentication" className="flex m-0 px-4 rounded-tl-3xl rounded-br-3xl active:bg-base-colors-300">
+              <span className={cn(baseClassPhone, "")}>
+                Login
+              </span>
+            </Link>
+            <hr className="mt-2 rounded-full border-base-colors-100/25 border-[1px] w-full"></hr>
+          </li>
         </ul>
       </section>
   </section>

@@ -69,8 +69,15 @@ const LoginForm: FC = () => {
           throw new Error("Login failed. No token received.");
         }
       } else {
-        setSuccess(true); // Registration was successful
+
         setFormData({ username: "", password: "" }); // Clear form fields
+        setTimeout(() => {
+          setSuccess(true); // Registration was successful
+        }, 50); // Optional delay to show success message before switching modes
+        setTimeout(() => {
+          setIsLoginMode(true); // Switch back to login mode after successful registration
+          setSuccess(false);
+        }, 1000)
       }
     } catch (error) {
       setError((error as Error).message);
@@ -113,7 +120,7 @@ const LoginForm: FC = () => {
   };
 
   return (
-    <section className="flex justify-center items-center h-screen text-base-colors-200 font-roboto">
+    <section className="flex justify-center items-center mt-10 md:mt-20 h-fit text-base-colors-200 font-roboto">
       <form
         onSubmit={handleSubmit}
         className="bg-base-colors-50 p-6 rounded-md shadow-md w-80 flex flex-col"
@@ -125,14 +132,14 @@ const LoginForm: FC = () => {
             </h1>
             {error && <p className="text-base-colors-300 mb-4">{error}</p>}
             {success && (
-              <p className="text-base-colors-400 mb-4">
+              <p className="font-roboto font-medium text-md text-base-colors-400 mb-4">
                 {isLoginMode
                   ? "Login successful!"
-                  : "Registration successful! Please log in."}
+                  : "Registration successful!"}
               </p>
             )}
             <div className="mb-4">
-              <label htmlFor="username" className="block">
+              <label htmlFor="username" className="font-roboto font-medium underline">
                 Username
               </label>
               <input
@@ -146,7 +153,7 @@ const LoginForm: FC = () => {
               />
             </div>
             <div className="mb-4">
-              <label htmlFor="password" className="block">
+              <label htmlFor="password" className="font-roboto font-medium underline">
                 Password
               </label>
               <input
@@ -161,7 +168,7 @@ const LoginForm: FC = () => {
             </div>
             <button
               type="submit"
-              className="flex justify-center items-center align-middle text-enter text-lg font-medium text-base-colors-50 m-auto w-36 px-1 py-2 border-0 rounded-tl-3xl rounded-br-3xl bg-base-colors-200 hover:bg-base-colors-300"
+              className="flex justify-center items-center align-middle text-enter text-lg font-medium text-base-colors-50 m-auto w-36 px-1 py-2 border-0 rounded-tl-3xl rounded-br-3xl bg-base-colors-200 md:hover:bg-base-colors-300 active:bg-base-colors-300"
             >
               {isLoginMode ? "Login" : "Sign Up"}
             </button>
@@ -169,7 +176,7 @@ const LoginForm: FC = () => {
               {isLoginMode ? "Don't have an account?" : "Already have an account?"}{" "}
               <span
                 onClick={toggleMode}
-                className="text-base-colors-300 cursor-pointer"
+                className="text-base-colors-300 cursor-pointer font-bold"
               >
                 {isLoginMode ? "Sign up" : "Login"}
               </span>
@@ -182,7 +189,7 @@ const LoginForm: FC = () => {
             <button
               type="button"
               onClick={handleLogout}
-              className="flex justify-center items-center align-middle text-enter text-lg font-medium text-base-colors-50 m-auto w-36 mt-4 px-1 py-2 border-0 rounded-tl-3xl rounded-br-3xl bg-base-colors-200 hover:bg-base-colors-300"
+              className="flex justify-center items-center align-middle text-enter text-lg font-medium text-base-colors-50 m-auto w-36 mt-4 px-1 py-2 border-0 rounded-tl-3xl rounded-br-3xl bg-base-colors-200 md:hover:bg-base-colors-300 active:bg-base-colors-300"
             >
               Logout
             </button>

@@ -11,3 +11,17 @@ section .cover-container .cover {
         transform: scale(1);
     }
 }
+
+div .cover-container .cover {
+    transition: transform 0.5s ease;
+}
+
+@media (min-width: 768px) {
+    div:hover .cover-container .cover {
+        transform: scale(1.2);
+    }
+
+    div:not(:hover) .cover-container .cover {
+        transform: scale(1);
+    }
+}

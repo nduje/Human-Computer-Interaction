@@ -35,7 +35,7 @@ const AllBlogsPage: FC = () => {
           throw new Error("Failed to fetch blogs");
         }
 
-        const data = await response.json();
+        const data = (await response.json() as Blog[]).sort((a, b) => b.id - a.id);
         setBlogs(data);
       } catch (error) {
         setError((error as Error).message);
@@ -49,6 +49,10 @@ const AllBlogsPage: FC = () => {
     // Check if user is logged in by checking for token in localStorage
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
 
   const handleCreate = async () => {
@@ -107,14 +111,11 @@ const AllBlogsPage: FC = () => {
         All Blogs
       </h1>
 
-      {loading && <p>Loading...</p>}
-      {error && <p className="text-red-500">{error}</p>}
-
       {isLoggedIn && (
-        <>
+        <div className="font-roboto font-medium">
           <button
             onClick={() => setIsCreating(!isCreating)}
-            className="bg-blue-500 text-white py-2 px-4 rounded-md mb-4"
+            className="bg-base-colors-200 md:hover:bg-base-colors-300 active:bg-base-colors-300 text-base-colors-100 py-2 px-4 mb-4 rounded-tl-3xl rounded-br-3xl"
           >
             {isCreating ? "Cancel" : "Create New Blog"}
           </button>
@@ -125,10 +126,10 @@ const AllBlogsPage: FC = () => {
                 e.preventDefault();
                 handleCreate();
               }}
-              className="bg-white p-6 rounded-md shadow-md w-full mb-4"
+              className="bg-base-colors-50 p-6 rounded-md shadow-md w-full mb-4"
             >
               <div className="mb-4">
-                <label htmlFor="title" className="block text-gray-700">
+                <label htmlFor="title" className="underline">
                   Title
                 </label>
                 <input
@@ -138,11 +139,11 @@ const AllBlogsPage: FC = () => {
                   value={newBlog.title}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md mt-1"
+                  className="w-full px-3 py-2 border border-base-colors-200/20 rounded-md mt-1"
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="text" className="block text-gray-700">
+                <label htmlFor="text" className="underline">
                   Text
                 </label>
                 <textarea
@@ -151,32 +152,42 @@ const AllBlogsPage: FC = () => {
                   value={newBlog.text}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md mt-1"
+                  className="w-full px-3 py-2 border border-base-colors-200/20 rounded-md mt-1"
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="image" className="block text-gray-700">
+                <label htmlFor="image" className="underline">
                   Image
                 </label>
-                <input
-                  type="file"
-                  id="image"
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md mt-1"
-                />
+                <div className="flex justify-center items-center">
+              <label
+                htmlFor="file-upload" 
+                className="cursor-pointer font-medium text-md text-base-colors-100 m-2 md:m-4 py-2 px-4 rounded-tl-3xl rounded-br-3xl bg-base-colors-200 md:hover:bg-base-colors-300 active:bg-base-colors-300"
+              >
+                Upload File
+              </label>
+              <input
+                id="file-upload"
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                className="hidden"
+              />
+            </div>
               </div>
               <button
                 type="submit"
-                className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
+                className="w-full bg-base-colors-200 md:hover:bg-base-colors-300 active:bg-base-colors-300 text-base-colors-100 py-2 px-4 mb-4 rounded-tl-3xl rounded-br-3xl"
               >
                 Create Blog
               </button>
             </form>
           )}
-        </>
+        </div>
       )}
+
+      {loading && <p>Loading...</p>}
+      {error && <p className="text-base-colors-300">{error}</p>}
 
       <section className="grid grid-rows-1 md:grid-cols-3 gap-7 md:gap-14 m-4 md:m-8 mx-10 md:mx-20">
         {blogs.map((blog) => (
@@ -193,7 +204,7 @@ const AllBlogsPage: FC = () => {
                 />
               </div>
               <div className="flex justify-start text-left items-center align-middle rounded-b-md bg-base-colors-100 h-12 md:h-16 w-full p-2 md:p-4 overflow-hidden">
-                <h1 className="font-medium overflow-hidden text-ellipsis break-all md:whitespace-nowrap">
+                <h1 className="font-medium overflow-hidden text-ellipsis break-all md:base-colors-50space-nowrap">
                   {blog.title}
                 </h1>
               </div>

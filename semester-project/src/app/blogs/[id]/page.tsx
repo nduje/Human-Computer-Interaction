@@ -138,92 +138,105 @@ const BlogPage = ({ id }: { id: string }) => {
   };
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p className="text-red-500">{error}</p>;
-  if (!blog) return <p className="text-red-500">Blog not found</p>;
+  if (error) return <p className="font-roboto font-bold text-base-colors-300 text-xl">{error}</p>;
+  if (!blog) return <p className="font-roboto font-bold text-base-colors-300 text-xl">Blog not found</p>;
 
   return (
-    <div className="w-full m-0 p-0 font-roboto text-base-colors-200">
+    <div className="md:w-full m-0 p-0 font-roboto text-base-colors-200">
       {isEditing ? (
         // Edit Mode
         <div>
-          <input
-            type="text"
-            value={blog.title}
-            onChange={(e) =>
-              setBlog((prev) =>
-                prev ? { ...prev, title: e.target.value } : prev
-              )
-            }
-            className="text-3xl font-bold mb-4 w-full"
-          />
-          <textarea
-            value={blog.text}
-            onChange={(e) =>
-              setBlog((prev) =>
-                prev ? { ...prev, text: e.target.value } : prev
-              )
-            }
-            className="text-lg w-full mb-4"
-          />
           {newImage && (
             <div className="relative w-full h-96 mb-4">
               <Image
                 src={newImage}
                 alt={blog.title}
                 fill
-                style={{ objectFit: "cover" }}
-                className="rounded-md"
+                style={{ objectFit: "contain" }}
+                className="border-b-2 border-base-colors-200 bg-base-colors-200"
               />
             </div>
           )}
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-            className="mb-4"
-          />
-          <button
-            onClick={handleSave}
-            className="bg-green-500 text-base-colors-50 py-2 px-4 rounded-md"
-          >
-            Save
-          </button>
-          <button
-            onClick={handleDelete}
-            className="bg-red-500 text-base-colors-50 py-2 px-4 rounded-md ml-2"
-          >
-            Delete
-          </button>
+          <section className="flex flex-col justify-center items-center align-middle text-center w-screen">
+            <input
+              type="text"
+              value={blog.title}
+              onChange={(e) =>
+                setBlog((prev) =>
+                  prev ? { ...prev, title: e.target.value } : prev
+                )
+              }
+              className="text-2xl md:text-5xl font-bold md:m-4 p-2 md:p-4 w-[90vw] outline-base-colors-200"
+            />
+            <textarea
+              value={blog.text}
+              onChange={(e) =>
+                setBlog((prev) =>
+                  prev ? { ...prev, text: e.target.value } : prev
+                )
+              }
+              className="font-roboto font-normal flex justify-start text-left text-lg bg-base-colors-100 m-2 md:m-4 p-2 md:p-4 w-[90vw] outline-base-colors-200"
+            />
+          </section>
+          <section className="flex flex-row justify-center items-center text-center align-middle m-4 md:m-8">
+            <div className="flex justify-center items-center">
+              <label
+                htmlFor="file-upload" 
+                className="cursor-pointer font-medium text-md text-base-colors-100 m-2 md:m-4 py-2 px-4 rounded-tl-3xl rounded-br-3xl bg-base-colors-200 md:hover:bg-base-colors-300 active:bg-base-colors-300"
+              >
+                Upload File
+              </label>
+              <input
+                id="file-upload"
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                className="hidden"
+              />
+            </div>
+            <button
+              onClick={handleSave}
+              className="font-medium text-md text-base-colors-100 m-2 md:m-4 py-2 px-4 rounded-tl-3xl rounded-br-3xl bg-base-colors-200 md:hover:bg-base-colors-300 active:bg-base-colors-300"
+            >
+              Save
+            </button>
+            <button
+              onClick={handleDelete}
+              className="font-medium text-md text-base-colors-100 m-2 md:m-4 py-2 px-4 rounded-tl-3xl rounded-br-3xl bg-base-colors-200 md:hover:bg-base-colors-300 active:bg-base-colors-300"
+            >
+              Delete
+            </button>
+          </section>
         </div>
       ) : (
         // View Mode
-        <div>
+        <div className="font-roboto text-base-colors-200 flex flex-col justify-center items-center align-middle text-center break-words">
           {blog.image && (
-            <div className="relative w-full h-[30vw] mb-4">
+            <div className="relative w-full h-96 mb-4">
               <Image
                 src={blog.image}
                 alt={blog.title}
                 fill
-                style={{ objectFit: "cover" }}
-                className="rounded border-b-2 border-base-colors-200"
+                style={{ objectFit: "contain"}}
+                className="border-b-2 border-base-colors-200 bg-base-colors-200"
               />
             </div>
           )}
-          <section className="flex justify-between align-middle items-center text-center">
-            <h1 className="text-5xl font-bold m-4 p-4">{blog.title}</h1>
-            <div>
-              <p className="mx-4 p-4 font-normal">Author: <span className="font-medium">{blog.username}</span></p>
+          <section className="font-roboto flex flex-col md:flex-row justify-between align-middle items-center text-center w-[90vw]">
+            <h1 className="text-2xl md:text-5xl text-left font-bold p-2 md:p-4 w-3/4">{blog.title}</h1>
+            <div className="flex flex-col justify-center text-center items-center align-middle mb-2 md:m-4 p-2 md:p-4">
+              <p className="m-2 md:m-4 font-normal">Author: <span className="font-bold">{blog.username}</span></p>
               {currentUsername === blog.username && (
                 <div className="flex justify-center items-center align-middle text-center gap-4">
                   <button
                     onClick={() => setIsEditing(true)}
-                    className="bg-blue-500 text-base-colors-50 py-2 px-4 rounded-md"
+                    className="font-medium text-md text-base-colors-100 py-2 px-4 rounded-tl-3xl rounded-br-3xl bg-base-colors-200 md:hover:bg-base-colors-300 active:bg-base-colors-300"
                   >
                     Edit Blog
                   </button>
                   <button
                     onClick={handleDelete}
-                    className="bg-red-500 text-base-colors-50 py-2 px-4 rounded-md"
+                    className="font-medium text-md text-base-colors-100 py-2 px-4 rounded-tl-3xl rounded-br-3xl bg-base-colors-200 md:hover:bg-base-colors-300 active:bg-base-colors-300"
                   >
                     Delete
                   </button>
@@ -231,7 +244,8 @@ const BlogPage = ({ id }: { id: string }) => {
               )}
             </div>
           </section>
-          <p className="text-lg m-4 bg-base-colors-100 p-4">{blog.text}</p>
+          <hr className="mb-2 rounded-full border-base-colors-200 border-[1px] w-[90vw]"></hr>
+          <p className="font-roboto font-normal flex justify-start text-left text-lg bg-base-colors-100 m-2 md:m-4 p-2 md:p-4 w-[90vw]">{blog.text}</p>
         </div>
       )}
     </div>

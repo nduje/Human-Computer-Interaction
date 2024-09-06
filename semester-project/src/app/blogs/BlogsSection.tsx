@@ -35,7 +35,7 @@ const BlogsSection: FC = () => {
           throw new Error("Failed to fetch blogs");
         }
 
-        const data = await response.json();
+        const data = (await response.json() as Blog[]).sort((a, b) => b.id - a.id);
         setBlogs(data);
       } catch (error) {
         setError((error as Error).message);
@@ -46,60 +46,7 @@ const BlogsSection: FC = () => {
 
     fetchBlogs();
 
-    // Check if user is logged in by checking for token in localStorage
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
   }, []);
-
-  const handleCreate = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        throw new Error("No token found. Please log in.");
-      }
-
-      const response = await fetch("http://localhost:5000/api/auth/blogs", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newBlog),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to create blog");
-      }
-
-      const createdBlog = await response.json();
-      setBlogs([...blogs, createdBlog]);
-      setIsCreating(false);
-      setNewBlog({ title: "", text: "", image: "" });
-    } catch (error) {
-      setError((error as Error).message);
-    }
-  };
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setNewBlog({
-      ...newBlog,
-      [name]: value,
-    });
-  };
-
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setNewBlog({ ...newBlog, image: reader.result as string });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   // Display only the first 3 blogs
   const blogsToShow = blogs.slice(0, 3);
@@ -113,78 +60,10 @@ const BlogsSection: FC = () => {
       {loading && <p>Loading...</p>}
       {error && <p className="text-red-500">{error}</p>}
 
-      {isLoggedIn && (
-        <>
-          <button
-            onClick={() => setIsCreating(!isCreating)}
-            className="bg-blue-500 text-white py-2 px-4 rounded-md mb-4"
-          >
-            {isCreating ? "Cancel" : "Create New Blog"}
-          </button>
-
-          {isCreating && (
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleCreate();
-              }}
-              className="bg-white p-6 rounded-md shadow-md w-full mb-4"
-            >
-              <div className="mb-4">
-                <label htmlFor="title" className="block text-gray-700">
-                  Title
-                </label>
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  value={newBlog.title}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md mt-1"
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="text" className="block text-gray-700">
-                  Text
-                </label>
-                <textarea
-                  id="text"
-                  name="text"
-                  value={newBlog.text}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md mt-1"
-                />
-              </div>
-              <div className="mb-4">
-                <label htmlFor="image" className="block text-gray-700">
-                  Image
-                </label>
-                <input
-                  type="file"
-                  id="image"
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md mt-1"
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
-              >
-                Create Blog
-              </button>
-            </form>
-          )}
-        </>
-      )}
-
       <section className="grid grid-rows-1 md:grid-cols-3 gap-7 md:gap-14 m-4 md:m-8 mx-10 md:mx-20">
         {blogsToShow.map((blog) => (
           <Link key={blog.id} href={`/blogs/${blog.id}`} passHref>
-            <div className="flex flex-col justify-center align-middle items-center text-sm md:text-base text-base-colors-200 hover:cursor-pointer hover:text-base-colors-300">
+            <div className="flex flex-col justify-center align-middle items-center text-sm md:text-base text-base-colors-200 hover:cursor-pointer md:hover:text-base-colors-300 active:text-base-colors-300">
               <div className="cover-container rounded-t-md w-full h-[150px] md:h-[225px] relative overflow-hidden">
                 <Image
                   src={blog.image}
@@ -207,7 +86,7 @@ const BlogsSection: FC = () => {
 
       {/* Button to view all blogs */}
       <Link href="/blogs/all-blogs">
-        <button className="bg-gray-500 text-white py-2 px-4 rounded-md mt-4">
+        <button className="font-roboto font-medium bg-base-colors-200 md:hover:bg-base-colors-300 active:bg-base-colors-300 text-base-colors-100 py-2 px-4 rounded-tl-3xl rounded-br-3xl mt-4">
           Show All Blogs
         </button>
       </Link>
