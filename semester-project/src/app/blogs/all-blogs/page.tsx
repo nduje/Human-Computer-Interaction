@@ -35,7 +35,7 @@ const AllBlogsPage: FC = () => {
           throw new Error("Failed to fetch blogs");
         }
 
-        const data = (await response.json() as Blog[]).sort((a, b) => b.id - a.id);
+        const data = (await response.json() as Blog[]).filter(blog => blog.id > 15).sort((a, b) => b.id - a.id);
         setBlogs(data);
       } catch (error) {
         setError((error as Error).message);
@@ -129,7 +129,7 @@ const AllBlogsPage: FC = () => {
               className="bg-base-colors-50 p-6 rounded-md shadow-md w-full mb-4"
             >
               <div className="mb-4">
-                <label htmlFor="title" className="underline">
+                <label htmlFor="title" className="underline text-base-colors-200">
                   Title
                 </label>
                 <input
@@ -139,11 +139,11 @@ const AllBlogsPage: FC = () => {
                   value={newBlog.title}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-base-colors-200/20 rounded-md mt-1"
+                  className="w-full px-3 py-2 border text-base-colors-200 border-base-colors-200/20 rounded-md mt-1"
                 />
               </div>
               <div className="mb-4">
-                <label htmlFor="text" className="underline">
+                <label htmlFor="text" className="underline text-base-colors-200">
                   Text
                 </label>
                 <textarea
@@ -152,7 +152,7 @@ const AllBlogsPage: FC = () => {
                   value={newBlog.text}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-3 py-2 border border-base-colors-200/20 rounded-md mt-1"
+                  className="w-full px-3 py-2 border text-base-colors-200 border-base-colors-200/20 rounded-md mt-1"
                 />
               </div>
               <div className="mb-4">

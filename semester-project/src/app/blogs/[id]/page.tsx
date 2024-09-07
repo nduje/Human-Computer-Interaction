@@ -223,7 +223,7 @@ const BlogPage = ({ id }: { id: string }) => {
             </div>
           )}
           <section className="font-roboto flex flex-col md:flex-row justify-between align-middle items-center text-center w-[90vw]">
-            <h1 className="text-2xl md:text-5xl text-left font-bold p-2 md:p-4 w-3/4">{blog.title}</h1>
+            <h1 className="text-2xl md:text-5xl text-center md:text-left font-bold p-2 md:p-4 w-3/4">{blog.title}</h1>
             <div className="flex flex-col justify-center text-center items-center align-middle mb-2 md:m-4 p-2 md:p-4">
               <p className="m-2 md:m-4 font-normal">Author: <span className="font-bold">{blog.username}</span></p>
               {currentUsername === blog.username && (
@@ -245,7 +245,7 @@ const BlogPage = ({ id }: { id: string }) => {
             </div>
           </section>
           <hr className="mb-2 rounded-full border-base-colors-200 border-[1px] w-[90vw]"></hr>
-          <p className="font-roboto font-normal flex justify-start text-left text-lg bg-base-colors-100 m-2 md:m-4 p-2 md:p-4 w-[90vw]">{blog.text}</p>
+          <p className="font-roboto font-normal flex justify-start text-center md:text-left text-lg bg-base-colors-100 m-2 md:m-4 p-2 md:p-4 w-[90vw]">{blog.text}</p>
         </div>
       )}
     </div>
